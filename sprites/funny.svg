@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round">
+      <circle cx="120" cy="120" r="118"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <!-- Background -->
+    <rect width="240" height="240" fill="#0f0f23"/>
+
+    <!-- Face circle -->
+    <circle cx="120" cy="120" r="100" fill="#FFD93D"/>
+    <circle cx="120" cy="120" r="100" fill="none" stroke="#E8A800" stroke-width="3"/>
+
+    <!-- Left eye - wink (closed) -->
+    <path d="M75 102 Q92 112 108 102" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Right eye - open and mischievous -->
+    <rect x="137" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
+    <rect x="151" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
+    <rect x="137" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
+    <rect x="151" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
+    <!-- Pupil looking at you -->
+    <rect x="145" y="96" width="6" height="6" fill="#0f0f23"/>
+    <rect x="140" y="92" width="4" height="4" fill="#aaffcc" opacity="0.8"/>
+
+    <!-- Raised right eyebrow (the cheeky one) -->
+    <path d="M130 78 Q150 66 170 80" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Smirk mouth - asymmetric -->
+    <path d="M90 142 Q120 155 160 138" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Tiny star sparkle -->
+    <g transform="translate(195, 65)" fill="#FFD93D" opacity="0.7">
+      <polygon points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2"/>
+    </g>
+
+    <!-- Mood label -->
+    <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#00ff88" opacity="0.8">FUNNY</text>
+  </g>
+</svg>

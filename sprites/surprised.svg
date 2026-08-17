@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round">
+      <circle cx="120" cy="120" r="118"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <!-- Background -->
+    <rect width="240" height="240" fill="#0f0f23"/>
+
+    <!-- Face circle -->
+    <circle cx="120" cy="120" r="100" fill="#FFD93D"/>
+    <circle cx="120" cy="120" r="100" fill="none" stroke="#E8A800" stroke-width="3"/>
+
+    <!-- Left eye - BIG and round -->
+    <rect x="70" y="85" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="88" y="85" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="70" y="103" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="88" y="103" width="18" height="18" rx="3" fill="#00ff88"/>
+    <!-- Inner pupil -->
+    <rect x="80" y="95" width="8" height="8" fill="#0f0f23"/>
+    <rect x="73" y="88" width="5" height="5" fill="#aaffcc" opacity="0.9"/>
+
+    <!-- Right eye - BIG and round -->
+    <rect x="134" y="85" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="152" y="85" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="134" y="103" width="18" height="18" rx="3" fill="#00ff88"/>
+    <rect x="152" y="103" width="18" height="18" rx="3" fill="#00ff88"/>
+    <!-- Inner pupil -->
+    <rect x="152" y="95" width="8" height="8" fill="#0f0f23"/>
+    <rect x="137" y="88" width="5" height="5" fill="#aaffcc" opacity="0.9"/>
+
+    <!-- Eyebrows raised HIGH -->
+    <path d="M68 72 Q90 60 110 72" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round"/>
+    <path d="M130 72 Q150 60 172 72" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Mouth - open O shape -->
+    <ellipse cx="120" cy="150" rx="18" ry="22" fill="#0f0f23"/>
+    <ellipse cx="120" cy="150" rx="18" ry="22" fill="none" stroke="#00ff88" stroke-width="3"/>
+
+    <!-- Exclamation marks -->
+    <text x="42" y="75" font-family="monospace" font-size="20" font-weight="bold" fill="#FFD93D" opacity="0.7">!</text>
+    <text x="192" y="75" font-family="monospace" font-size="20" font-weight="bold" fill="#FFD93D" opacity="0.7">!</text>
+
+    <!-- Mood label -->
+    <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#00ff88" opacity="0.8">SURPRISED</text>
+  </g>
+</svg>

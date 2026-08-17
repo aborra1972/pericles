@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round">
+      <circle cx="120" cy="120" r="118"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <!-- Background -->
+    <rect width="240" height="240" fill="#0f0f23"/>
+
+    <!-- Face circle - slightly red tint -->
+    <circle cx="120" cy="120" r="100" fill="#FFD93D"/>
+    <circle cx="120" cy="120" r="100" fill="#ff4444" opacity="0.15"/>
+    <circle cx="120" cy="120" r="100" fill="none" stroke="#E8A800" stroke-width="3"/>
+
+    <!-- Left eye - squinting angry -->
+    <rect x="75" y="98" width="14" height="10" rx="2" fill="#00ff88"/>
+    <rect x="89" y="98" width="14" height="10" rx="2" fill="#00ff88"/>
+
+    <!-- Right eye - squinting angry -->
+    <rect x="137" y="98" width="14" height="10" rx="2" fill="#00ff88"/>
+    <rect x="151" y="98" width="14" height="10" rx="2" fill="#00ff88"/>
+
+    <!-- Angry eyebrows - V shape -->
+    <path d="M68 88 L108 80" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round"/>
+    <path d="M172 88 L132 80" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Frown mouth -->
+    <path d="M90 150 Q120 135 150 150" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Steam/anger lines -->
+    <g stroke="#FF6B35" stroke-width="2" stroke-linecap="round" opacity="0.6">
+      <line x1="50" y1="55" x2="40" y2="40"/>
+      <line x1="55" y1="65" x2="48" y2="52"/>
+      <line x1="185" y1="65" x2="192" y2="52"/>
+      <line x1="190" y1="55" x2="200" y2="40"/>
+    </g>
+
+    <!-- Red tint on cheeks -->
+    <circle cx="65" cy="125" r="12" fill="#ff4444" opacity="0.25"/>
+    <circle cx="175" cy="125" r="12" fill="#ff4444" opacity="0.25"/>
+
+    <!-- Mood label -->
+    <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#ff6b35" opacity="0.8">ANGRY</text>
+  </g>
+</svg>

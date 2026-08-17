@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round">
+      <circle cx="120" cy="120" r="118"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="240" height="240" fill="#0f0f23"/>
+
+    <!-- Face -->
+    <circle cx="120" cy="120" r="100" fill="#FFD93D"/>
+    <circle cx="120" cy="120" r="100" fill="none" stroke="#E8A800" stroke-width="3"/>
+
+    <!-- Left eye - wink (animated open/close) -->
+    <path d="M75 102 Q92 112 108 102" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round">
+      <animate attributeName="d" values="M75 102 Q92 112 108 102;M75 102 Q92 95 108 102;M75 102 Q92 112 108 102" dur="3s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Right eye - open (blinks) -->
+    <g>
+      <animateTransform attributeName="transform" type="scale" values="1;1;1;1;1;0.1;1;1;1;1;1;1;1;1;1;0.1;1;1;1" dur="5s" repeatCount="indefinite" additive="sum"/>
+      <rect x="137" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
+      <rect x="151" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
+      <rect x="137" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
+      <rect x="151" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
+      <!-- Pupil that glances at you -->
+      <rect x="145" y="96" width="6" height="6" fill="#0f0f23">
+        <animate attributeName="x" values="145;148;145;142;145" dur="2.5s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="140" y="92" width="4" height="4" fill="#aaffcc" opacity="0.8"/>
+    </g>
+
+    <!-- Cheeky eyebrow -->
+    <path d="M130 78 Q150 66 170 80" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round">
+      <animate attributeName="d" values="M130 78 Q150 66 170 80;M130 75 Q150 63 170 77;M130 78 Q150 66 170 80" dur="2s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Smirk (animated wiggle) -->
+    <path d="M90 142 Q120 155 160 138" fill="none" stroke="#00ff88" stroke-width="5" stroke-linecap="round">
+      <animate attributeName="d" values="M90 142 Q120 155 160 138;M90 140 Q120 158 160 136;M90 142 Q120 155 160 138" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Star sparkle (twinkling) -->
+    <g transform="translate(195, 65)" fill="#FFD93D">
+      <polygon points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;0.2;0.7;0.9;0.7" dur="2s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;15;0;-10;0" dur="4s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#00ff88" opacity="0.8">FUNNY</text>
+  </g>
+</svg>
