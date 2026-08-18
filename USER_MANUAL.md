@@ -75,10 +75,10 @@ Durante la reproducción de voz, cambiá temporalmente a `speaking.svg`. Al fina
 
 | Problema | Solución |
 |----------|----------|
-| La demo online devuelve 404 | Revisá el workflow **Deploy character gallery to Pages** en la pestaña Actions. |
+| La demo online devuelve 404 | Revisá la publicación desde `main` en **Settings → Pages**. |
 | Las caras no aparecen localmente | Ejecutá el servidor desde la raíz del repositorio, no desde `demo/`. |
 | Una animación ya terminó | Presioná **Reiniciar**. |
-| GitHub Pages muestra una versión anterior | Esperá a que termine el deployment disparado por el último push a `main`. |
+| GitHub Pages muestra una versión anterior | Esperá a que termine la publicación disparada por el último push a `main`. |
 
 ## Referencias
 
