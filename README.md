@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" width="300" alt="Pericles - AI Assistant"/>
+  <img src="skins/backwards-cap/happy.svg" width="240" alt="Pericles wearing a backwards cap"/>
 </p>
 
 <h1 align="center">🏛️ Pericles</h1>
