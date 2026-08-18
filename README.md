@@ -71,6 +71,8 @@ Se evaluó procesamiento local vs nube. **Cloud gana** por:
 
 ## Personalidad
 
+El [perfil canónico del personaje](CHARACTER.md) define los rasgos que deben conservar el firmware y los prompts.
+
 Pericles no es un asistente genérico. Tiene:
 
 - **Carisma ateniense** — sabio pero chistoso, como un profesor que hace reír
