@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <radialGradient id="face" cx="40%" cy="35%"><stop stop-color="#FFE87A"/><stop offset=".7" stop-color="#FFD93D"/><stop offset="1" stop-color="#D4A017"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="240" height="240" rx="18" fill="#0a0a1a"/>
+  <text x="120" y="20" text-anchor="middle" fill="#FFE87A" font-family="monospace" font-size="9" letter-spacing="2">EXPRESSIVE MOODS</text>
+  <g font-family="monospace" font-size="7" text-anchor="middle" fill="#9AA4C7">
+    <g transform="translate(45 62)">
+      <circle r="31" fill="url(#face)"/><ellipse cx="-10" cy="-3" rx="6" ry="7" fill="#fff"/><ellipse cx="10" cy="-3" rx="6" ry="7" fill="#fff"/><circle cx="-10" cy="-3" r="3"/><circle cx="10" cy="-3" r="3"/><path d="M-11 13 Q0 18 11 13" fill="none" stroke="#71380F" stroke-width="2" stroke-linecap="round"/><animateTransform attributeName="transform" type="translate" values="45,62;45,63;45,62" dur="4.8s" repeatCount="indefinite"/><text y="42">IDLE</text>
+    </g>
+    <g transform="translate(120 62)">
+      <circle r="31" fill="url(#face)"/><path d="M-18 0 Q-10 -8 -2 0M2 0 Q10 -8 18 0" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/><path d="M-13 11 Q0 24 13 11" fill="none" stroke="#71380F" stroke-width="2.5"/><animateTransform attributeName="transform" type="translate" values="120,62;120,62;120,57;120,62" keyTimes="0;.3;.45;1" dur="2.5s" repeatCount="indefinite"/><text y="42">HAPPY</text>
+    </g>
+    <g transform="translate(195 62)">
+      <circle r="31" fill="url(#face)"/><ellipse cx="-10" cy="-2" rx="7" ry="7" fill="#fff"/><ellipse cx="10" cy="-2" rx="7" ry="7" fill="#fff"/><g><circle cx="-8" cy="-4" r="3"/><circle cx="12" cy="-4" r="3"/><animateTransform attributeName="transform" type="translate" values="0,0;2,-2;0,0" dur="4s" repeatCount="indefinite"/></g><path d="M-8 13 Q0 10 8 13" fill="none" stroke="#71380F" stroke-width="2"/><circle cx="25" cy="-23" r="3" fill="none" stroke="#70D6FF"><animate attributeName="r" values="2;5;2" dur="3s" repeatCount="indefinite"/></circle><text y="42">THINK</text>
+    </g>
+    <g transform="translate(45 165)">
+      <circle r="31" fill="url(#face)"/><ellipse cx="-10" cy="-4" rx="8" ry="9" fill="#fff"/><ellipse cx="10" cy="-4" rx="8" ry="9" fill="#fff"/><circle cx="-10" cy="-3" r="4"/><circle cx="10" cy="-3" r="4"/><ellipse cy="14" rx="4" ry="6" fill="#1a1a2e"/><animateTransform attributeName="transform" type="scale" values="1;1.08;.96;1" dur="4s" additive="sum" repeatCount="indefinite"/><text y="42">SURPRISE</text>
+    </g>
+    <g transform="translate(120 165)">
+      <circle r="31" fill="url(#face)"/><path d="M-18 -2 Q-10 5 -2 -2" fill="none" stroke="#1a1a2e" stroke-width="2.5"/><ellipse cx="11" cy="-3" rx="7" ry="7" fill="#fff"/><circle cx="11" cy="-3" r="3"/><path d="M-13 12 Q0 22 15 9" fill="none" stroke="#71380F" stroke-width="2.5"/><polygon points="25,-24 27,-19 32,-17 27,-15 25,-10 23,-15 18,-17 23,-19" fill="#FFE87A" filter="url(#glow)"><animateTransform attributeName="transform" type="rotate" values="0 25 -17;30 25 -17;0 25 -17" dur="2s" repeatCount="indefinite"/></polygon><text y="42">FUNNY</text>
+    </g>
+    <g transform="translate(195 165)">
+      <circle r="31" fill="url(#face)"/><circle r="31" fill="#E74C3C" opacity=".14"><animate attributeName="opacity" values=".1;.3;.1" dur="1.8s" repeatCount="indefinite"/></circle><path d="M-18 -12 L-2 -5M18 -12 L2 -5" stroke="#71380F" stroke-width="3"/><path d="M-16 -1 H-3M3 -1 H16" stroke="#1a1a2e" stroke-width="3"/><path d="M-12 16 Q0 6 12 16" fill="none" stroke="#71380F" stroke-width="2.5"/><animateTransform attributeName="transform" type="translate" values="195,165;193,165;197,165;195,165" dur="1.8s" repeatCount="indefinite"/><text y="42">ANGRY</text>
+    </g>
+  </g>
+</svg>

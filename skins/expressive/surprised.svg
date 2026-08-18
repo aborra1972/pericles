@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round"><circle cx="120" cy="120" r="118"/></clipPath>
+    <radialGradient id="faceGrad" cx="42%" cy="38%">
+      <stop offset="0%" stop-color="#FFE87A"/>
+      <stop offset="65%" stop-color="#FFD93D"/>
+      <stop offset="100%" stop-color="#D4A017"/>
+    </radialGradient>
+    <radialGradient id="irisGrad" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#A93226"/>
+    </radialGradient>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="240" height="240" fill="#0a0a1a"/>
+
+    <!-- === FACE GROUP (surprise jump + squash) === -->
+    <g>
+      <!-- Anticipation: slight crouch before jump -->
+      <!-- Jump up, then squash on land -->
+      <animateTransform attributeName="transform" type="translate"
+        values="0,0; 0,2; 0,0; 0,-8; 0,-10; 0,-8; 0,3; 0,1; 0,0; 0,0; 0,0"
+        dur="4s" repeatCount="indefinite"/>
+      <!-- Squash & stretch during jump -->
+      <animateTransform attributeName="transform" type="scale"
+        values="1,1; 1.02,0.97; 1,1; 0.96,1.06; 0.95,1.08; 0.96,1.06; 1.04,0.95; 1.02,0.98; 1,1; 1,1; 1,1"
+        dur="4s" repeatCount="indefinite" additive="sum"/>
+
+      <!-- Face base -->
+      <circle cx="120" cy="120" r="100" fill="url(#faceGrad)"/>
+      <circle cx="120" cy="120" r="100" fill="none" stroke="#C49214" stroke-width="2.5"/>
+      <ellipse cx="102" cy="85" rx="42" ry="28" fill="white" opacity="0.07"/>
+
+      <!-- === EYES (WIDE OPEN - white showing above iris) === -->
+      <!-- Left eye -->
+      <g>
+        <ellipse cx="88" cy="108" rx="24" ry="24" fill="white"/>
+        <ellipse cx="88" cy="108" rx="24" ry="24" fill="none" stroke="#333" stroke-width="2.5"/>
+        <!-- Iris (smaller, centered low to show white above) -->
+        <circle cx="88" cy="112" r="12" fill="url(#irisGrad)"/>
+        <circle cx="88" cy="112" r="12" fill="none" stroke="#7B241C" stroke-width="1.5"/>
+        <!-- Pupil (dilated from surprise) -->
+        <circle cx="88" cy="112" r="7" fill="#0a0a1a"/>
+        <!-- Highlights (bigger, more alert) -->
+        <circle cx="82" cy="105" r="4.5" fill="white" opacity="0.9"/>
+        <circle cx="94" cy="116" r="2.2" fill="white" opacity="0.5"/>
+      </g>
+
+      <!-- Right eye -->
+      <g>
+        <ellipse cx="152" cy="108" rx="24" ry="24" fill="white"/>
+        <ellipse cx="152" cy="108" rx="24" ry="24" fill="none" stroke="#333" stroke-width="2.5"/>
+        <circle cx="152" cy="112" r="12" fill="url(#irisGrad)"/>
+        <circle cx="152" cy="112" r="12" fill="none" stroke="#7B241C" stroke-width="1.5"/>
+        <circle cx="152" cy="112" r="7" fill="#0a0a1a"/>
+        <circle cx="146" cy="105" r="4.5" fill="white" opacity="0.9"/>
+        <circle cx="158" cy="116" r="2.2" fill="white" opacity="0.5"/>
+      </g>
+
+      <!-- === EYEBROWS (shot up high - bouncing) === -->
+      <g>
+        <!-- Left brow - high arch, bouncing -->
+        <path d="M58,62 Q80,48 108,58" fill="none" stroke="#7A5C12" stroke-width="5.5" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="translate"
+            values="0,0; 0,-6; 0,-2; 0,-5; 0,-1; 0,0"
+            dur="4s" repeatCount="indefinite"/>
+        </path>
+        <!-- Right brow - high arch, bouncing -->
+        <path d="M132,58 Q160,48 182,62" fill="none" stroke="#7A5C12" stroke-width="5.5" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="translate"
+            values="0,0; 0,-6; 0,-2; 0,-5; 0,-1; 0,0"
+            dur="4s" repeatCount="indefinite" begin="0.1s"/>
+        </path>
+      </g>
+
+      <!-- === MOUTH (small "O" gasp) === -->
+      <ellipse cx="120" cy="148" rx="10" ry="12" fill="#1a1a2e" stroke="#8B4513" stroke-width="3"/>
+      <!-- Inner mouth highlight -->
+      <ellipse cx="120" cy="146" rx="5" ry="6" fill="#333" opacity="0.5"/>
+
+      <!-- === EXCLAMATION PARTICLES (secondary action) === -->
+      <!-- Top burst lines -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1;0.7;0" dur="4s" repeatCount="indefinite" begin="0.3s"/>
+        <animateTransform attributeName="transform" type="translate"
+          values="120,35; 120,25; 120,18" dur="4s" repeatCount="indefinite" begin="0.3s"/>
+        <line x1="0" y1="0" x2="0" y2="-12" stroke="#FFE87A" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0.8;0.5;0" dur="4s" repeatCount="indefinite" begin="0.4s"/>
+        <animateTransform attributeName="transform" type="translate"
+          values="100,40; 95,30; 92,24" dur="4s" repeatCount="indefinite" begin="0.4s"/>
+        <line x1="0" y1="0" x2="-8" y2="-10" stroke="#FFD93D" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0.8;0.5;0" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+        <animateTransform attributeName="transform" type="translate"
+          values="140,40; 145,30; 148,24" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+        <line x1="0" y1="0" x2="8" y2="-10" stroke="#FFD93D" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+
+      <!-- Side sparks -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0.9;0.5;0" dur="4s" repeatCount="indefinite" begin="0.6s"/>
+        <animateTransform attributeName="transform" type="translate"
+          values="40,75; 32,70; 26,66" dur="4s" repeatCount="indefinite" begin="0.6s"/>
+        <polygon points="0,-5 1.2,-1.8 5,0 1.2,1.8 0,5 -1.2,1.8 -5,0 -1.2,-1.8" fill="#FFE87A"/>
+      </g>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;0.9;0.5;0" dur="4s" repeatCount="indefinite" begin="0.7s"/>
+        <animateTransform attributeName="transform" type="translate"
+          values="200,75; 208,70; 214,66" dur="4s" repeatCount="indefinite" begin="0.7s"/>
+        <polygon points="0,-5 1.2,-1.8 5,0 1.2,1.8 0,5 -1.2,1.8 -5,0 -1.2,-1.8" fill="#FFE87A"/>
+      </g>
+    </g>
+  </g>
+</svg>
