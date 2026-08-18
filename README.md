@@ -17,6 +17,28 @@ Un asistente técnico y general que vive en una placa ESP32-S3 con pantalla redo
 
 Su personaje está inspirado en **Pericles Addams**, de *Los Locos Addams*: travieso, excéntrico, con humor oscuro y afectuoso, nunca cruel.
 
+## Demo de personajes
+
+<p align="center">
+  <a href="https://aborra1972.github.io/pericles/demo/"><strong>Abrir la galería interactiva</strong></a>
+  ·
+  <a href="USER_MANUAL.md">Leer el manual de usuario</a>
+</p>
+
+La demo permite comparar los **cinco modelos** y filtrar sus **siete estados animados**. Se publica automáticamente desde `main` mediante GitHub Pages.
+
+| Pixel | Expressive | Windswept | Knit beanie | Backwards cap |
+|:-----:|:----------:|:---------:|:-----------:|:-------------:|
+| <img src="skins/pixel/happy-anim.svg" width="130" alt="Modelo pixel feliz"> | <img src="skins/expressive/happy.svg" width="130" alt="Modelo expressive feliz"> | <img src="skins/windswept/happy.svg" width="130" alt="Modelo windswept feliz"> | <img src="skins/knit-beanie/happy.svg" width="130" alt="Modelo knit beanie feliz"> | <img src="skins/backwards-cap/happy.svg" width="130" alt="Modelo backwards cap feliz"> |
+
+Para ejecutarla localmente:
+
+```bash
+python3 -m http.server 8000
+```
+
+Después abrí `http://localhost:8000/demo/`. El [manual de usuario](USER_MANUAL.md) explica cómo recorrer la galería, elegir un modelo e integrar sus estados.
+
 ## Hardware
 
 | Componente | Estado |
@@ -115,9 +137,9 @@ La API devuelve `mood` + `text`, y el ESP32:
 - [ ] Levantar pantalla redonda y mostrar algo
 - [ ] Conexión WiFi + primera llamada a la API
 - [ ] Micrófono I2S + Whisper API
-- [ ] Cara animada con sprites por mood
+- [x] Cinco caras animadas con sprites por mood
 - [ ] Streaming de respuestas (texto letra por letra)
-- [ ] Integrar personalidad completa
+- [x] Definir la personalidad canónica
 - [ ] Carcaza / housing impreso en 3D
 
 ## Desarrollo
