@@ -13,7 +13,7 @@
 
     <!-- Left eye (normal, blinks) -->
     <g>
-      <animateTransform attributeName="transform" type="scale" values="1;1;1;1;1;0.1;1;1;1;1;1;1;1;1;0.1;1" dur="5s" repeatCount="indefinite" additive="sum"/>
+
       <rect x="75" y="95" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="89" y="95" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="75" y="109" width="14" height="14" rx="2" fill="#00ff88"/>
@@ -23,7 +23,7 @@
 
     <!-- Right eye (pupil moves - thinking) -->
     <g>
-      <animateTransform attributeName="transform" type="scale" values="1;1;1;1;1;0.1;1;1;1;1;1;1;1;1;0.1;1" dur="5s" repeatCount="indefinite" additive="sum" begin="0.05s"/>
+
       <rect x="137" y="95" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="151" y="95" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="137" y="109" width="14" height="14" rx="2" fill="#00ff88"/>
@@ -64,5 +64,5 @@
     </circle>
 
     <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#00ff88" opacity="0.8">THINKING</text>
-  </g>
+  <g id="blink-eyelids" data-blink="single"><ellipse cx="89" cy="109" rx="20" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></ellipse><path d="M78.2 109 Q89 111 99.8 109" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></path><ellipse cx="151" cy="109" rx="20" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></ellipse><path d="M140.2 109 Q151 111 161.8 109" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></path></g></g>
 </svg>

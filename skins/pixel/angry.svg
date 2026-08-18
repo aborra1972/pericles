@@ -42,5 +42,5 @@
 
     <!-- Mood label -->
     <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#ff6b35" opacity="0.8">ANGRY</text>
-  </g>
+  <g id="blink-eyelids" data-blink="single"><ellipse cx="89" cy="103" rx="20" ry="0" fill="#F2B843"><animate attributeName="ry" values="0;0;10;10;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></ellipse><path d="M78.2 103 Q89 105 99.8 103" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></path><ellipse cx="151" cy="103" rx="20" ry="0" fill="#F2B843"><animate attributeName="ry" values="0;0;10;10;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></ellipse><path d="M140.2 103 Q151 105 161.8 103" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></path></g></g>
 </svg>

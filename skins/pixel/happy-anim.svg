@@ -16,7 +16,7 @@
 
     <!-- Left eye group (blinks) -->
     <g>
-      <animateTransform attributeName="transform" type="scale" values="1;1;1;1;0.1;1;1;1;1;1;1;1;1;1;0.1;1;1;1" dur="4s" repeatCount="indefinite" additive="sum"/>
+
       <rect x="75" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="89" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="75" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
@@ -26,7 +26,7 @@
 
     <!-- Right eye group (blinks slightly delayed) -->
     <g>
-      <animateTransform attributeName="transform" type="scale" values="1;1;1;1;0.1;1;1;1;1;1;1;1;1;1;0.1;1;1;1" dur="4s" repeatCount="indefinite" additive="sum" begin="0.05s"/>
+
       <rect x="137" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="151" y="90" width="14" height="14" rx="2" fill="#00ff88"/>
       <rect x="137" y="104" width="14" height="14" rx="2" fill="#00ff88"/>
@@ -48,5 +48,5 @@
     </circle>
 
     <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#00ff88" opacity="0.8">HAPPY</text>
-  </g>
+  <g id="blink-eyelids" data-blink="single"><ellipse cx="89" cy="104" rx="20" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></ellipse><path d="M78.2 104 Q89 106 99.8 104" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" repeatCount="indefinite"/></path><ellipse cx="151" cy="104" rx="20" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></ellipse><path d="M140.2 104 Q151 106 161.8 104" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.94;.96;.975;.995;1" dur="5.2s" begin=".025s" repeatCount="indefinite"/></path></g></g>
 </svg>

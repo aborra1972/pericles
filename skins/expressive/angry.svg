@@ -30,6 +30,6 @@
       </g>
       <circle cx="58" cy="135" r="15" fill="#E74C3C" opacity=".18"><animate attributeName="opacity" values=".18;.18;.4;.18" dur="3.2s" repeatCount="indefinite"/></circle>
       <circle cx="182" cy="135" r="15" fill="#E74C3C" opacity=".18"><animate attributeName="opacity" values=".18;.18;.4;.18" dur="3.2s" begin=".08s" repeatCount="indefinite"/></circle>
-    </g>
+    <g id="blink-eyelids" data-blink="double"><ellipse cx="88" cy="110" rx="23" ry="0" fill="#E7B443"><animate attributeName="ry" values="0;0;16;16;0;0;16;16;0;0" keyTimes="0;.85;.87;.885;.905;.925;.942;.955;.975;1" dur="6.4s" repeatCount="indefinite"/></ellipse><path d="M71.4 110 Q88 112 104.6 110" fill="none" stroke="#7A5C12" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0;1;1;0;0" keyTimes="0;.85;.87;.885;.905;.925;.942;.955;.975;1" dur="6.4s" repeatCount="indefinite"/></path><ellipse cx="152" cy="110" rx="23" ry="0" fill="#E7B443"><animate attributeName="ry" values="0;0;16;16;0;0;16;16;0;0" keyTimes="0;.85;.87;.885;.905;.925;.942;.955;.975;1" dur="6.4s" begin=".025s" repeatCount="indefinite"/></ellipse><path d="M135.4 110 Q152 112 168.6 110" fill="none" stroke="#7A5C12" stroke-width="2.5" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0;1;1;0;0" keyTimes="0;.85;.87;.885;.905;.925;.942;.955;.975;1" dur="6.4s" begin=".025s" repeatCount="indefinite"/></path></g></g>
   </g>
 </svg>
