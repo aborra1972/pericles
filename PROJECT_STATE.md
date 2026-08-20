@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-02` |
-| Last completed | `GUI-01` |
+| Active task | `GUI-05` |
+| Last completed | `GUI-04` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -78,7 +78,10 @@
 | BE-27 | PASS | Fake weather/news/Boca adapters; 150 tests total | pending |
 | BE-28 | PASS | DeviceConfigStore with support bundles; 157 tests total | pending |
 | GUI-01 | PASS | ShellRouter with 7 routes and navigation history; 8 configurator tests | pending |
+| GUI-02 | PASS | RED tests for USB device detection and profile mismatch | pending |
+| GUI-03 | PASS | DeviceDetector with ESP32-S3 and ReSpeaker support | pending |
+| GUI-04 | PASS | Profile mismatch detection; 14 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-02` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-05` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).

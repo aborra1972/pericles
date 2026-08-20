@@ -1,9 +1,9 @@
 # Phase 4 - Linux Configurator
 
 - [x] **GUI-01** Add shell routes: onboarding, device, personality, skins, diagnostics, firmware, profiles. Verify route test.
-- [ ] **GUI-02** Write RED tests for unknown USB device and profile mismatch.
-- [ ] **GUI-03** Enumerate supported USB serial/DFU devices. Verify fixture list.
-- [ ] **GUI-04** Match N16R8 and ReSpeaker hardware manifests. Verify `GUI-02`.
+- [x] **GUI-02** Write RED tests for unknown USB device and profile mismatch.
+- [x] **GUI-03** Enumerate supported USB serial/DFU devices. Verify fixture list.
+- [x] **GUI-04** Match N16R8 and ReSpeaker hardware manifests. Verify `GUI-02`.
 - [ ] **GUI-05** Implement owner email-code login. Verify expired and invalid code states.
 - [ ] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
 - [ ] **GUI-07** Build personality and session settings panel. Verify schema round trip.
