@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-25` |
-| Last completed | `BE-24` |
+| Active task | `BE-26` |
+| Last completed | `BE-25` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -73,7 +73,8 @@
 | BE-22 | PASS | ResponseStreamer with chunked streaming and duration; 128 tests total | pending |
 | BE-23 | PASS | RED tests for audio deletion after transcription | pending |
 | BE-24 | PASS | TranscriptionPipeline with ephemeral cleanup; 133 tests total | pending |
+| BE-25 | PASS | DailySummaryOrchestrator with category toggles; 139 tests total | pending |
 
 ## Next Action
 
-Execute `BE-25` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-26` from [`tasks/03-backend.md`](tasks/03-backend.md).
