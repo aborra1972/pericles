@@ -2,7 +2,7 @@
 
 Each ADR must state decision, rejected alternatives, consequences, test strategy, and rollback boundary.
 
-- [ ] **ADR-01** Create `docs/adr/001-repository-layout.md` for `backend/`, `configurator/`, `firmware/`, `contracts/`, and `tests/`. Verify links and tree.
+- [x] **ADR-01** Create `docs/adr/001-repository-layout.md` for `backend/`, `configurator/`, `firmware/`, `contracts/`, and `tests/`. Verify links and tree.
 - [ ] **ADR-02** Create `docs/adr/002-technology-stack.md`; compare backend, GUI, and ESP-IDF options with a tiny build spike. Verify all three hello-world builds.
 - [ ] **ADR-03** Create `docs/adr/003-online-backend.md` defining deployment, config, health, and secrets. Verify local container health check.
 - [ ] **ADR-04** Create `docs/adr/004-memory-storage.md` for canonical Markdown plus indexed retrieval, tenant isolation, retention, and deletion. Verify sample query benchmark.

@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Ready for implementation |
-| Active task | `ADR-01` |
-| Last completed | `BASE-03` |
+| Active task | `ADR-02` |
+| Last completed | `ADR-01` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -33,7 +33,8 @@
 | BASE-01 | PASS | 50 SVGs; 5×8 contracts; 40 overview refs; 5 previews | `fa8657a` |
 | BASE-02 | PASS | PRD specifies 8 MB flash + 8 MB PSRAM | `0c76b69` |
 | BASE-03 | PASS | 115 unique IDs; 10 task documents; links valid | planning commit |
+| ADR-01 | PASS | 10 directories checked; links valid | pending |
 
 ## Next Action
 
-Execute `ADR-01` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-02` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
