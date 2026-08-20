@@ -14,7 +14,7 @@
 - [x] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
 - [x] **GUI-13** Add WiFi, BLE, OpenAI, and XVF3800 diagnostics. Verify mocked services.
 - [x] **GUI-14** Implement config backup, restore, and clone. Verify checksum failure.
-- [ ] **GUI-15** Implement guarded factory reset. Verify double confirmation.
+- [x] **GUI-15** Implement guarded factory reset. Verify double confirmation.
 - [ ] **GUI-16** Write RED tests for invalid image, interrupted flash, and profile mismatch.
 - [ ] **GUI-17** Implement ESP32 backup, flash progress, verification, and reboot. Verify `GUI-16`.
 - [ ] **GUI-18** Implement XVF3800 I2C DFU flow. Verify simulated success and failure.
