@@ -27,4 +27,4 @@
 - [x] **BE-25** Implement configurable daily-summary orchestration. Verify category toggles.
 - [x] **BE-26** Add Google Calendar OAuth adapter behind a fake. Verify token refresh.
 - [x] **BE-27** Add weather, news, and Boca source adapters behind fakes. Verify partial failure.
-- [ ] **BE-28** Add device config/version endpoints and technical-only support bundles. Verify secret scan.
+- [x] **BE-28** Add device config/version endpoints and technical-only support bundles. Verify secret scan.

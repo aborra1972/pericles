@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 3 In Progress |
-| Active task | `BE-28` |
-| Last completed | `BE-27` |
+| Status | Phase 3 Complete |
+| Active task | None — Phase 3 done, ready for Phase 4 |
+| Last completed | `BE-28` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -76,7 +76,8 @@
 | BE-25 | PASS | DailySummaryOrchestrator with category toggles; 139 tests total | pending |
 | BE-26 | PASS | FakeCalendarAdapter with token refresh; 144 tests total | pending |
 | BE-27 | PASS | Fake weather/news/Boca adapters; 150 tests total | pending |
+| BE-28 | PASS | DeviceConfigStore with support bundles; 157 tests total | pending |
 
 ## Next Action
 
-Execute `BE-28` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Phase 3 complete (28 backend tasks). Begin Phase 4: Device Firmware from [`TASKS.md`](TASKS.md).
