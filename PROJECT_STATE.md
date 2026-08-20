@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 3 Complete |
-| Active task | None — Phase 3 done, ready for Phase 4 |
-| Last completed | `BE-28` |
+| Status | Phase 4 In Progress |
+| Active task | `GUI-02` |
+| Last completed | `GUI-01` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -77,7 +77,8 @@
 | BE-26 | PASS | FakeCalendarAdapter with token refresh; 144 tests total | pending |
 | BE-27 | PASS | Fake weather/news/Boca adapters; 150 tests total | pending |
 | BE-28 | PASS | DeviceConfigStore with support bundles; 157 tests total | pending |
+| GUI-01 | PASS | ShellRouter with 7 routes and navigation history; 8 configurator tests | pending |
 
 ## Next Action
 
-Phase 3 complete (28 backend tasks). Begin Phase 4: Device Firmware from [`TASKS.md`](TASKS.md).
+Execute `GUI-02` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
