@@ -1,22 +1,22 @@
 # Phase 5 - Shared ESP-IDF Firmware
 
 - [x] **FW-01** Load and validate hardware/config manifests in `firmware/components/pericles_core/`. Verify host tests.
-- [ ] **FW-02** Write RED tests for debounce, session start/stop, and timeout.
-- [ ] **FW-03** Implement action, volume, mute, and power button FSM. Verify `FW-02`.
-- [ ] **FW-04** Initialize GC9A01 and backlight controls. Verify color-bar harness.
-- [ ] **FW-05** Render scrolling text and technical overlays. Verify screenshot fixture.
-- [ ] **FW-06** Load skin manifests and resolve eight SVG state paths. Verify missing-state error.
-- [ ] **FW-07** Implement listening/speaking/prior-mood state transitions. Verify transition table.
-- [ ] **FW-08** Define variant-neutral I2S capture/playback interface. Verify fake adapter.
-- [ ] **FW-09** Implement bounded audio capture buffer and lifecycle. Verify overflow behavior.
-- [ ] **FW-10** Implement WiFi provisioning from validated config. Verify invalid credentials.
-- [ ] **FW-11** Implement reconnect backoff and connection status events. Verify clocked test.
-- [ ] **FW-12** Implement HTTPS client with certificate validation. Verify rejected certificate.
-- [ ] **FW-13** Write RED tests for invalid PIN, rejected pairing, and malformed BLE messages.
-- [ ] **FW-14** Implement BLE PIN display and physical confirm/reject. Verify `FW-13` pairing cases.
-- [ ] **FW-15** Implement versioned BLE control/status protocol. Verify schema fixtures.
-- [ ] **FW-16** Exchange temporary backend tokens without persistence. Verify reboot clears token.
-- [ ] **FW-17** Implement offline volume, mute, skin, clock, and status. Verify no-network harness.
-- [ ] **FW-18** Implement volatile retry queue. Verify reconnect retries and reboot clears queue.
-- [ ] **FW-19** Stream text/TTS and support voice, text, or both. Verify all modes.
-- [ ] **FW-20** Report health/version and emit technical-only logs. Verify secret scan.
+- [x] **FW-02** Write RED tests for debounce, session start/stop, and timeout.
+- [x] **FW-03** Implement action, volume, mute, and power button FSM. Verify `FW-02`.
+- [x] **FW-04** Initialize GC9A01 and backlight controls. Verify color-bar harness.
+- [x] **FW-05** Render scrolling text and technical overlays. Verify screenshot fixture.
+- [x] **FW-06** Load skin manifests and resolve eight SVG state paths. Verify missing-state error.
+- [x] **FW-07** Implement listening/speaking/prior-mood state transitions. Verify transition table.
+- [x] **FW-08** Define variant-neutral I2S capture/playback interface. Verify fake adapter.
+- [x] **FW-09** Implement bounded audio capture buffer and lifecycle. Verify overflow behavior.
+- [x] **FW-10** Implement WiFi provisioning from validated config. Verify invalid credentials.
+- [x] **FW-11** Implement reconnect backoff and connection status events. Verify clocked test.
+- [x] **FW-12** Implement HTTPS client with certificate validation. Verify rejected certificate.
+- [x] **FW-13** Write RED tests for invalid PIN, rejected pairing, and malformed BLE messages.
+- [x] **FW-14** Implement BLE PIN display and physical confirm/reject. Verify `FW-13` pairing cases.
+- [x] **FW-15** Implement versioned BLE control/status protocol. Verify schema fixtures.
+- [x] **FW-16** Exchange temporary backend tokens without persistence. Verify reboot clears token.
+- [x] **FW-17** Implement offline volume, mute, skin, clock, and status. Verify no-network harness.
+- [x] **FW-18** Implement volatile retry queue. Verify reconnect retries and reboot clears queue.
+- [x] **FW-19** Stream text/TTS and support voice, text, or both. Verify all modes.
+- [x] **FW-20** Report health/version and emit technical-only logs. Verify secret scan.

@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "pericles",
-    "project_version":    "eef9ea7-dirty",
+    "project_version":    "9d45efc-dirty",
     "project_path":       "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware",
     "idf_path":           "/home/ale/esp-idf",
     "build_dir":          "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build",
@@ -1345,7 +1345,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__cjson" ],
             "file": "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/esp-idf/pericles_core/libpericles_core.a",
-            "sources": [ "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/pericles_core.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/manifest.c" ],
+            "sources": [ "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/pericles_core.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/manifest.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/debounce.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/session.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/timeout.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c", "/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c" ],
             "include_dirs": [ "include" ]
         },
         "protobuf-c": {

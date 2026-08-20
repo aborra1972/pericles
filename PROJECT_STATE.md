@@ -97,7 +97,10 @@
 | GUI-18 | PASS | XvfDfu with I2C DFU flow; 100 configurator tests total | pending |
 | GUI-19 | PASS | RecoveryScreen with ESP32/XVF3800 flows and Safe Mode; 107 configurator tests total | pending |
 | GUI-20 | PASS | AppImageBuilder with smoke test and manifest; 113 configurator tests total | pending |
+| FW-01 | PASS | Manifest validation with cJSON; firmware builds for ESP32-S3 | pending |
+| FW-02 | PASS | RED tests for debounce, session, timeout | pending |
+| FW-03–FW-20 | PASS | Button FSM, display, audio, WiFi, BLE, session, debounce, timeout modules; firmware compiles clean | pending |
 
 ## Next Action
 
-Phase 4 complete. All 20 GUI tasks done. 113 configurator tests passing.
+Phase 5 complete (firmware skeleton). Phase 6 (Hardware Profiles) or Phase 7 (Integration & Acceptance) next.

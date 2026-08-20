@@ -1,0 +1,295 @@
+[0/1] Re-running CMake...
+-- Building ESP-IDF components for target esp32s3
+NOTICE: Processing 2 dependencies:
+NOTICE: [1/2] espressif/cjson (1.7.19~2)
+NOTICE: [2/2] idf (5.4.0)
+-- Project sdkconfig file /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/sdkconfig
+Loading defaults file /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/sdkconfig.defaults...
+warning: unknown kconfig symbol 'ESPTOOLPYFLASHSIZE_16MB' assigned to 'y' in /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/sdkconfig.defaults
+warning: unknown kconfig symbol 'ESPTOOLPYFLASHMODE_QIO' assigned to 'y' in /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/sdkconfig.defaults
+warning: unknown kconfig symbol 'ESPTOOLPYFLASHFREQ_80M' assigned to 'y' in /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/sdkconfig.defaults
+-- Compiler supported targets: xtensa-esp-elf
+-- App "pericles" version: 9d45efc-dirty
+-- Adding linker script /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.bt_funcs.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script /home/ale/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script /home/ale/esp-idf/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espcoredump espressif__cjson esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon pericles_core protobuf-c protocomm pthread rt sdmmc soc spi_flash spiffs tcp_transport touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/ale/esp-idf/components/app_trace /home/ale/esp-idf/components/app_update /home/ale/esp-idf/components/bootloader /home/ale/esp-idf/components/bootloader_support /home/ale/esp-idf/components/bt /home/ale/esp-idf/components/cmock /home/ale/esp-idf/components/console /home/ale/esp-idf/components/cxx /home/ale/esp-idf/components/driver /home/ale/esp-idf/components/efuse /home/ale/esp-idf/components/esp-tls /home/ale/esp-idf/components/esp_adc /home/ale/esp-idf/components/esp_app_format /home/ale/esp-idf/components/esp_bootloader_format /home/ale/esp-idf/components/esp_coex /home/ale/esp-idf/components/esp_common /home/ale/esp-idf/components/esp_driver_ana_cmpr /home/ale/esp-idf/components/esp_driver_cam /home/ale/esp-idf/components/esp_driver_dac /home/ale/esp-idf/components/esp_driver_gpio /home/ale/esp-idf/components/esp_driver_gptimer /home/ale/esp-idf/components/esp_driver_i2c /home/ale/esp-idf/components/esp_driver_i2s /home/ale/esp-idf/components/esp_driver_isp /home/ale/esp-idf/components/esp_driver_jpeg /home/ale/esp-idf/components/esp_driver_ledc /home/ale/esp-idf/components/esp_driver_mcpwm /home/ale/esp-idf/components/esp_driver_parlio /home/ale/esp-idf/components/esp_driver_pcnt /home/ale/esp-idf/components/esp_driver_ppa /home/ale/esp-idf/components/esp_driver_rmt /home/ale/esp-idf/components/esp_driver_sdio /home/ale/esp-idf/components/esp_driver_sdm /home/ale/esp-idf/components/esp_driver_sdmmc /home/ale/esp-idf/components/esp_driver_sdspi /home/ale/esp-idf/components/esp_driver_spi /home/ale/esp-idf/components/esp_driver_touch_sens /home/ale/esp-idf/components/esp_driver_tsens /home/ale/esp-idf/components/esp_driver_uart /home/ale/esp-idf/components/esp_driver_usb_serial_jtag /home/ale/esp-idf/components/esp_eth /home/ale/esp-idf/components/esp_event /home/ale/esp-idf/components/esp_gdbstub /home/ale/esp-idf/components/esp_hid /home/ale/esp-idf/components/esp_http_client /home/ale/esp-idf/components/esp_http_server /home/ale/esp-idf/components/esp_https_ota /home/ale/esp-idf/components/esp_https_server /home/ale/esp-idf/components/esp_hw_support /home/ale/esp-idf/components/esp_lcd /home/ale/esp-idf/components/esp_local_ctrl /home/ale/esp-idf/components/esp_mm /home/ale/esp-idf/components/esp_netif /home/ale/esp-idf/components/esp_netif_stack /home/ale/esp-idf/components/esp_partition /home/ale/esp-idf/components/esp_phy /home/ale/esp-idf/components/esp_pm /home/ale/esp-idf/components/esp_psram /home/ale/esp-idf/components/esp_ringbuf /home/ale/esp-idf/components/esp_rom /home/ale/esp-idf/components/esp_security /home/ale/esp-idf/components/esp_system /home/ale/esp-idf/components/esp_timer /home/ale/esp-idf/components/esp_vfs_console /home/ale/esp-idf/components/esp_wifi /home/ale/esp-idf/components/espcoredump /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/managed_components/espressif__cjson /home/ale/esp-idf/components/esptool_py /home/ale/esp-idf/components/fatfs /home/ale/esp-idf/components/freertos /home/ale/esp-idf/components/hal /home/ale/esp-idf/components/heap /home/ale/esp-idf/components/http_parser /home/ale/esp-idf/components/idf_test /home/ale/esp-idf/components/ieee802154 /home/ale/esp-idf/components/json /home/ale/esp-idf/components/log /home/ale/esp-idf/components/lwip /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/main /home/ale/esp-idf/components/mbedtls /home/ale/esp-idf/components/mqtt /home/ale/esp-idf/components/newlib /home/ale/esp-idf/components/nvs_flash /home/ale/esp-idf/components/nvs_sec_provider /home/ale/esp-idf/components/openthread /home/ale/esp-idf/components/partition_table /home/ale/esp-idf/components/perfmon /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core /home/ale/esp-idf/components/protobuf-c /home/ale/esp-idf/components/protocomm /home/ale/esp-idf/components/pthread /home/ale/esp-idf/components/rt /home/ale/esp-idf/components/sdmmc /home/ale/esp-idf/components/soc /home/ale/esp-idf/components/spi_flash /home/ale/esp-idf/components/spiffs /home/ale/esp-idf/components/tcp_transport /home/ale/esp-idf/components/touch_element /home/ale/esp-idf/components/ulp /home/ale/esp-idf/components/unity /home/ale/esp-idf/components/usb /home/ale/esp-idf/components/vfs /home/ale/esp-idf/components/wear_levelling /home/ale/esp-idf/components/wifi_provisioning /home/ale/esp-idf/components/wpa_supplicant /home/ale/esp-idf/components/xtensa
+-- Configuring done (3.3s)
+-- Generating done (0.7s)
+-- Build files have been written to: /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build
+[1/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/timeout.c.obj
+[2/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/audio.c.obj
+FAILED: esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/audio.c.obj 
+/home/ale/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc -DCJSON_CIRCULAR_LIMIT=10000 -DCJSON_NESTING_LIMIT=1000 -DESP_PLATFORM -DIDF_VER=\"v5.4\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/config -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include -I/home/ale/esp-idf/components/newlib/platform_include -I/home/ale/esp-idf/components/freertos/config/include -I/home/ale/esp-idf/components/freertos/config/include/freertos -I/home/ale/esp-idf/components/freertos/config/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/ale/esp-idf/components/freertos/esp_additions/include -I/home/ale/esp-idf/components/esp_hw_support/include -I/home/ale/esp-idf/components/esp_hw_support/include/soc -I/home/ale/esp-idf/components/esp_hw_support/include/soc/esp32s3 -I/home/ale/esp-idf/components/esp_hw_support/dma/include -I/home/ale/esp-idf/components/esp_hw_support/ldo/include -I/home/ale/esp-idf/components/esp_hw_support/debug_probe/include -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/. -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/include -I/home/ale/esp-idf/components/heap/include -I/home/ale/esp-idf/components/heap/tlsf -I/home/ale/esp-idf/components/log/include -I/home/ale/esp-idf/components/soc/include -I/home/ale/esp-idf/components/soc/esp32s3 -I/home/ale/esp-idf/components/soc/esp32s3/include -I/home/ale/esp-idf/components/soc/esp32s3/register -I/home/ale/esp-idf/components/hal/platform_port/include -I/home/ale/esp-idf/components/hal/esp32s3/include -I/home/ale/esp-idf/components/hal/include -I/home/ale/esp-idf/components/esp_rom/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include/esp32s3 -I/home/ale/esp-idf/components/esp_rom/esp32s3 -I/home/ale/esp-idf/components/esp_common/include -I/home/ale/esp-idf/components/esp_system/include -I/home/ale/esp-idf/components/esp_system/port/soc -I/home/ale/esp-idf/components/esp_system/port/include/private -I/home/ale/esp-idf/components/xtensa/esp32s3/include -I/home/ale/esp-idf/components/xtensa/include -I/home/ale/esp-idf/components/xtensa/deprecated_include -I/home/ale/esp-idf/components/lwip/include -I/home/ale/esp-idf/components/lwip/include/apps -I/home/ale/esp-idf/components/lwip/include/apps/sntp -I/home/ale/esp-idf/components/lwip/lwip/src/include -I/home/ale/esp-idf/components/lwip/port/include -I/home/ale/esp-idf/components/lwip/port/freertos/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/sys -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/managed_components/espressif__cjson/cJSON -mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware=. -fmacro-prefix-map=/home/ale/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/audio.c.obj -MF esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/audio.c.obj.d -o esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/audio.c.obj -c /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:5:5: error: redeclaration of enumerator 'AUDIO_MODE_IDLE'
+    5 |     AUDIO_MODE_IDLE = 0,
+      |     ^~~~~~~~~~~~~~~
+In file included from /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:1:
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:103:5: note: previous definition of 'AUDIO_MODE_IDLE' with type 'enum <anonymous>'
+  103 |     AUDIO_MODE_IDLE = 0,
+      |     ^~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:6:5: error: redeclaration of enumerator 'AUDIO_MODE_CAPTURING'
+    6 |     AUDIO_MODE_CAPTURING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:104:5: note: previous definition of 'AUDIO_MODE_CAPTURING' with type 'enum <anonymous>'
+  104 |     AUDIO_MODE_CAPTURING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:7:5: error: redeclaration of enumerator 'AUDIO_MODE_PLAYING'
+    7 |     AUDIO_MODE_PLAYING = 2,
+      |     ^~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:105:5: note: previous definition of 'AUDIO_MODE_PLAYING' with type 'enum <anonymous>'
+  105 |     AUDIO_MODE_PLAYING = 2,
+      |     ^~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:8:3: error: conflicting types for 'audio_mode_t'; have 'enum <anonymous>'
+    8 | } audio_mode_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:106:3: note: previous declaration of 'audio_mode_t' with type 'audio_mode_t'
+  106 | } audio_mode_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:16:3: error: conflicting types for 'audio_handle_t'; have 'struct <anonymous>'
+   16 | } audio_handle_t;
+      |   ^~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:114:3: note: previous declaration of 'audio_handle_t' with type 'audio_handle_t'
+  114 | } audio_handle_t;
+      |   ^~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:18:16: error: conflicting types for 'audio_init'; have 'pericles_err_t(audio_handle_t *, int,  int,  int)'
+   18 | pericles_err_t audio_init(audio_handle_t *audio, int sample_rate, int channels, int bits) {
+      |                ^~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:116:16: note: previous declaration of 'audio_init' with type 'pericles_err_t(audio_handle_t *, int,  int,  int)'
+  116 | pericles_err_t audio_init(audio_handle_t *audio, int sample_rate, int channels, int bits);
+      |                ^~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:30:16: error: conflicting types for 'audio_start_capture'; have 'pericles_err_t(audio_handle_t *)'
+   30 | pericles_err_t audio_start_capture(audio_handle_t *audio) {
+      |                ^~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:117:16: note: previous declaration of 'audio_start_capture' with type 'pericles_err_t(audio_handle_t *)'
+  117 | pericles_err_t audio_start_capture(audio_handle_t *audio);
+      |                ^~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:36:16: error: conflicting types for 'audio_stop_capture'; have 'pericles_err_t(audio_handle_t *)'
+   36 | pericles_err_t audio_stop_capture(audio_handle_t *audio) {
+      |                ^~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:118:16: note: previous declaration of 'audio_stop_capture' with type 'pericles_err_t(audio_handle_t *)'
+  118 | pericles_err_t audio_stop_capture(audio_handle_t *audio);
+      |                ^~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:42:16: error: conflicting types for 'audio_start_playback'; have 'pericles_err_t(audio_handle_t *)'
+   42 | pericles_err_t audio_start_playback(audio_handle_t *audio) {
+      |                ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:119:16: note: previous declaration of 'audio_start_playback' with type 'pericles_err_t(audio_handle_t *)'
+  119 | pericles_err_t audio_start_playback(audio_handle_t *audio);
+      |                ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/audio.c:48:16: error: conflicting types for 'audio_stop_playback'; have 'pericles_err_t(audio_handle_t *)'
+   48 | pericles_err_t audio_stop_playback(audio_handle_t *audio) {
+      |                ^~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:120:16: note: previous declaration of 'audio_stop_playback' with type 'pericles_err_t(audio_handle_t *)'
+  120 | pericles_err_t audio_stop_playback(audio_handle_t *audio);
+      |                ^~~~~~~~~~~~~~~~~~~
+[3/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/ble_manager.c.obj
+FAILED: esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/ble_manager.c.obj 
+/home/ale/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc -DCJSON_CIRCULAR_LIMIT=10000 -DCJSON_NESTING_LIMIT=1000 -DESP_PLATFORM -DIDF_VER=\"v5.4\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/config -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include -I/home/ale/esp-idf/components/newlib/platform_include -I/home/ale/esp-idf/components/freertos/config/include -I/home/ale/esp-idf/components/freertos/config/include/freertos -I/home/ale/esp-idf/components/freertos/config/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/ale/esp-idf/components/freertos/esp_additions/include -I/home/ale/esp-idf/components/esp_hw_support/include -I/home/ale/esp-idf/components/esp_hw_support/include/soc -I/home/ale/esp-idf/components/esp_hw_support/include/soc/esp32s3 -I/home/ale/esp-idf/components/esp_hw_support/dma/include -I/home/ale/esp-idf/components/esp_hw_support/ldo/include -I/home/ale/esp-idf/components/esp_hw_support/debug_probe/include -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/. -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/include -I/home/ale/esp-idf/components/heap/include -I/home/ale/esp-idf/components/heap/tlsf -I/home/ale/esp-idf/components/log/include -I/home/ale/esp-idf/components/soc/include -I/home/ale/esp-idf/components/soc/esp32s3 -I/home/ale/esp-idf/components/soc/esp32s3/include -I/home/ale/esp-idf/components/soc/esp32s3/register -I/home/ale/esp-idf/components/hal/platform_port/include -I/home/ale/esp-idf/components/hal/esp32s3/include -I/home/ale/esp-idf/components/hal/include -I/home/ale/esp-idf/components/esp_rom/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include/esp32s3 -I/home/ale/esp-idf/components/esp_rom/esp32s3 -I/home/ale/esp-idf/components/esp_common/include -I/home/ale/esp-idf/components/esp_system/include -I/home/ale/esp-idf/components/esp_system/port/soc -I/home/ale/esp-idf/components/esp_system/port/include/private -I/home/ale/esp-idf/components/xtensa/esp32s3/include -I/home/ale/esp-idf/components/xtensa/include -I/home/ale/esp-idf/components/xtensa/deprecated_include -I/home/ale/esp-idf/components/lwip/include -I/home/ale/esp-idf/components/lwip/include/apps -I/home/ale/esp-idf/components/lwip/include/apps/sntp -I/home/ale/esp-idf/components/lwip/lwip/src/include -I/home/ale/esp-idf/components/lwip/port/include -I/home/ale/esp-idf/components/lwip/port/freertos/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/sys -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/managed_components/espressif__cjson/cJSON -mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware=. -fmacro-prefix-map=/home/ale/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/ble_manager.c.obj -MF esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/ble_manager.c.obj.d -o esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/ble_manager.c.obj -c /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:5:5: error: redeclaration of enumerator 'BLE_STATE_OFF'
+    5 |     BLE_STATE_OFF = 0,
+      |     ^~~~~~~~~~~~~
+In file included from /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:1:
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:146:5: note: previous definition of 'BLE_STATE_OFF' with type 'enum <anonymous>'
+  146 |     BLE_STATE_OFF = 0,
+      |     ^~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:6:5: error: redeclaration of enumerator 'BLE_STATE_ADVERTISING'
+    6 |     BLE_STATE_ADVERTISING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:147:5: note: previous definition of 'BLE_STATE_ADVERTISING' with type 'enum <anonymous>'
+  147 |     BLE_STATE_ADVERTISING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:7:5: error: redeclaration of enumerator 'BLE_STATE_CONNECTED'
+    7 |     BLE_STATE_CONNECTED = 2,
+      |     ^~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:148:5: note: previous definition of 'BLE_STATE_CONNECTED' with type 'enum <anonymous>'
+  148 |     BLE_STATE_CONNECTED = 2,
+      |     ^~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:8:5: error: redeclaration of enumerator 'BLE_STATE_PAIRING'
+    8 |     BLE_STATE_PAIRING = 3,
+      |     ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:149:5: note: previous definition of 'BLE_STATE_PAIRING' with type 'enum <anonymous>'
+  149 |     BLE_STATE_PAIRING = 3,
+      |     ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:9:3: error: conflicting types for 'ble_state_t'; have 'enum <anonymous>'
+    9 | } ble_state_t;
+      |   ^~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:150:3: note: previous declaration of 'ble_state_t' with type 'ble_state_t'
+  150 | } ble_state_t;
+      |   ^~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:16:3: error: conflicting types for 'ble_handle_t'; have 'struct <anonymous>'
+   16 | } ble_handle_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:157:3: note: previous declaration of 'ble_handle_t' with type 'ble_handle_t'
+  157 | } ble_handle_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:18:16: error: conflicting types for 'ble_init'; have 'pericles_err_t(ble_handle_t *, const char *)'
+   18 | pericles_err_t ble_init(ble_handle_t *ble, const char *device_name) {
+      |                ^~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:159:16: note: previous declaration of 'ble_init' with type 'pericles_err_t(ble_handle_t *, const char *)'
+  159 | pericles_err_t ble_init(ble_handle_t *ble, const char *device_name);
+      |                ^~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:29:16: error: conflicting types for 'ble_start_advertising'; have 'pericles_err_t(ble_handle_t *)'
+   29 | pericles_err_t ble_start_advertising(ble_handle_t *ble) {
+      |                ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:160:16: note: previous declaration of 'ble_start_advertising' with type 'pericles_err_t(ble_handle_t *)'
+  160 | pericles_err_t ble_start_advertising(ble_handle_t *ble);
+      |                ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:35:16: error: conflicting types for 'ble_on_connected'; have 'pericles_err_t(ble_handle_t *)'
+   35 | pericles_err_t ble_on_connected(ble_handle_t *ble) {
+      |                ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:161:16: note: previous declaration of 'ble_on_connected' with type 'pericles_err_t(ble_handle_t *)'
+  161 | pericles_err_t ble_on_connected(ble_handle_t *ble);
+      |                ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:41:16: error: conflicting types for 'ble_on_pairing_complete'; have 'pericles_err_t(ble_handle_t *, _Bool)'
+   41 | pericles_err_t ble_on_pairing_complete(ble_handle_t *ble, bool success) {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:162:16: note: previous declaration of 'ble_on_pairing_complete' with type 'pericles_err_t(ble_handle_t *, _Bool)'
+  162 | pericles_err_t ble_on_pairing_complete(ble_handle_t *ble, bool success);
+      |                ^~~~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/ble_manager.c:53:16: error: conflicting types for 'ble_stop'; have 'pericles_err_t(ble_handle_t *)'
+   53 | pericles_err_t ble_stop(ble_handle_t *ble) {
+      |                ^~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:163:16: note: previous declaration of 'ble_stop' with type 'pericles_err_t(ble_handle_t *)'
+  163 | pericles_err_t ble_stop(ble_handle_t *ble);
+      |                ^~~~~~~~
+[4/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/wifi_manager.c.obj
+FAILED: esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/wifi_manager.c.obj 
+/home/ale/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc -DCJSON_CIRCULAR_LIMIT=10000 -DCJSON_NESTING_LIMIT=1000 -DESP_PLATFORM -DIDF_VER=\"v5.4\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/config -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include -I/home/ale/esp-idf/components/newlib/platform_include -I/home/ale/esp-idf/components/freertos/config/include -I/home/ale/esp-idf/components/freertos/config/include/freertos -I/home/ale/esp-idf/components/freertos/config/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/ale/esp-idf/components/freertos/esp_additions/include -I/home/ale/esp-idf/components/esp_hw_support/include -I/home/ale/esp-idf/components/esp_hw_support/include/soc -I/home/ale/esp-idf/components/esp_hw_support/include/soc/esp32s3 -I/home/ale/esp-idf/components/esp_hw_support/dma/include -I/home/ale/esp-idf/components/esp_hw_support/ldo/include -I/home/ale/esp-idf/components/esp_hw_support/debug_probe/include -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/. -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/include -I/home/ale/esp-idf/components/heap/include -I/home/ale/esp-idf/components/heap/tlsf -I/home/ale/esp-idf/components/log/include -I/home/ale/esp-idf/components/soc/include -I/home/ale/esp-idf/components/soc/esp32s3 -I/home/ale/esp-idf/components/soc/esp32s3/include -I/home/ale/esp-idf/components/soc/esp32s3/register -I/home/ale/esp-idf/components/hal/platform_port/include -I/home/ale/esp-idf/components/hal/esp32s3/include -I/home/ale/esp-idf/components/hal/include -I/home/ale/esp-idf/components/esp_rom/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include/esp32s3 -I/home/ale/esp-idf/components/esp_rom/esp32s3 -I/home/ale/esp-idf/components/esp_common/include -I/home/ale/esp-idf/components/esp_system/include -I/home/ale/esp-idf/components/esp_system/port/soc -I/home/ale/esp-idf/components/esp_system/port/include/private -I/home/ale/esp-idf/components/xtensa/esp32s3/include -I/home/ale/esp-idf/components/xtensa/include -I/home/ale/esp-idf/components/xtensa/deprecated_include -I/home/ale/esp-idf/components/lwip/include -I/home/ale/esp-idf/components/lwip/include/apps -I/home/ale/esp-idf/components/lwip/include/apps/sntp -I/home/ale/esp-idf/components/lwip/lwip/src/include -I/home/ale/esp-idf/components/lwip/port/include -I/home/ale/esp-idf/components/lwip/port/freertos/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/sys -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/managed_components/espressif__cjson/cJSON -mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware=. -fmacro-prefix-map=/home/ale/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/wifi_manager.c.obj -MF esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/wifi_manager.c.obj.d -o esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/wifi_manager.c.obj -c /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:5:5: error: redeclaration of enumerator 'WIFI_STATE_DISCONNECTED'
+    5 |     WIFI_STATE_DISCONNECTED = 0,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:1:
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:124:5: note: previous definition of 'WIFI_STATE_DISCONNECTED' with type 'enum <anonymous>'
+  124 |     WIFI_STATE_DISCONNECTED = 0,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:6:5: error: redeclaration of enumerator 'WIFI_STATE_CONNECTING'
+    6 |     WIFI_STATE_CONNECTING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:125:5: note: previous definition of 'WIFI_STATE_CONNECTING' with type 'enum <anonymous>'
+  125 |     WIFI_STATE_CONNECTING = 1,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:7:5: error: redeclaration of enumerator 'WIFI_STATE_CONNECTED'
+    7 |     WIFI_STATE_CONNECTED = 2,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:126:5: note: previous definition of 'WIFI_STATE_CONNECTED' with type 'enum <anonymous>'
+  126 |     WIFI_STATE_CONNECTED = 2,
+      |     ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:8:5: error: redeclaration of enumerator 'WIFI_STATE_FAILED'
+    8 |     WIFI_STATE_FAILED = 3,
+      |     ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:127:5: note: previous definition of 'WIFI_STATE_FAILED' with type 'enum <anonymous>'
+  127 |     WIFI_STATE_FAILED = 3,
+      |     ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:9:3: error: conflicting types for 'wifi_state_t'; have 'enum <anonymous>'
+    9 | } wifi_state_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:128:3: note: previous declaration of 'wifi_state_t' with type 'wifi_state_t'
+  128 | } wifi_state_t;
+      |   ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:17:3: error: conflicting types for 'wifi_handle_t'; have 'struct <anonymous>'
+   17 | } wifi_handle_t;
+      |   ^~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:136:3: note: previous declaration of 'wifi_handle_t' with type 'wifi_handle_t'
+  136 | } wifi_handle_t;
+      |   ^~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:19:16: error: conflicting types for 'wifi_init'; have 'pericles_err_t(wifi_handle_t *, int)'
+   19 | pericles_err_t wifi_init(wifi_handle_t *wifi, int max_retries) {
+      |                ^~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:138:16: note: previous declaration of 'wifi_init' with type 'pericles_err_t(wifi_handle_t *, int)'
+  138 | pericles_err_t wifi_init(wifi_handle_t *wifi, int max_retries);
+      |                ^~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:31:16: error: conflicting types for 'wifi_connect'; have 'pericles_err_t(wifi_handle_t *, const char *, const char *)'
+   31 | pericles_err_t wifi_connect(wifi_handle_t *wifi, const char *ssid, const char *password) {
+      |                ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:139:16: note: previous declaration of 'wifi_connect' with type 'pericles_err_t(wifi_handle_t *, const char *, const char *)'
+  139 | pericles_err_t wifi_connect(wifi_handle_t *wifi, const char *ssid, const char *password);
+      |                ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:40:16: error: conflicting types for 'wifi_on_connected'; have 'pericles_err_t(wifi_handle_t *)'
+   40 | pericles_err_t wifi_on_connected(wifi_handle_t *wifi) {
+      |                ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:140:16: note: previous declaration of 'wifi_on_connected' with type 'pericles_err_t(wifi_handle_t *)'
+  140 | pericles_err_t wifi_on_connected(wifi_handle_t *wifi);
+      |                ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:47:16: error: conflicting types for 'wifi_on_disconnected'; have 'pericles_err_t(wifi_handle_t *)'
+   47 | pericles_err_t wifi_on_disconnected(wifi_handle_t *wifi) {
+      |                ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:141:16: note: previous declaration of 'wifi_on_disconnected' with type 'pericles_err_t(wifi_handle_t *)'
+  141 | pericles_err_t wifi_on_disconnected(wifi_handle_t *wifi);
+      |                ^~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/wifi_manager.c:61:16: error: conflicting types for 'wifi_get_state'; have 'pericles_err_t(wifi_handle_t *, wifi_state_t *)'
+   61 | pericles_err_t wifi_get_state(wifi_handle_t *wifi, wifi_state_t *state) {
+      |                ^~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:142:16: note: previous declaration of 'wifi_get_state' with type 'pericles_err_t(wifi_handle_t *, wifi_state_t *)'
+  142 | pericles_err_t wifi_get_state(wifi_handle_t *wifi, wifi_state_t *state);
+      |                ^~~~~~~~~~~~~~
+[5/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/pericles_core.c.obj
+[6/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/session.c.obj
+[7/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/debounce.c.obj
+[8/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/display.c.obj
+FAILED: esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/display.c.obj 
+/home/ale/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc -DCJSON_CIRCULAR_LIMIT=10000 -DCJSON_NESTING_LIMIT=1000 -DESP_PLATFORM -DIDF_VER=\"v5.4\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/config -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include -I/home/ale/esp-idf/components/newlib/platform_include -I/home/ale/esp-idf/components/freertos/config/include -I/home/ale/esp-idf/components/freertos/config/include/freertos -I/home/ale/esp-idf/components/freertos/config/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/ale/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/ale/esp-idf/components/freertos/esp_additions/include -I/home/ale/esp-idf/components/esp_hw_support/include -I/home/ale/esp-idf/components/esp_hw_support/include/soc -I/home/ale/esp-idf/components/esp_hw_support/include/soc/esp32s3 -I/home/ale/esp-idf/components/esp_hw_support/dma/include -I/home/ale/esp-idf/components/esp_hw_support/ldo/include -I/home/ale/esp-idf/components/esp_hw_support/debug_probe/include -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/. -I/home/ale/esp-idf/components/esp_hw_support/port/esp32s3/include -I/home/ale/esp-idf/components/heap/include -I/home/ale/esp-idf/components/heap/tlsf -I/home/ale/esp-idf/components/log/include -I/home/ale/esp-idf/components/soc/include -I/home/ale/esp-idf/components/soc/esp32s3 -I/home/ale/esp-idf/components/soc/esp32s3/include -I/home/ale/esp-idf/components/soc/esp32s3/register -I/home/ale/esp-idf/components/hal/platform_port/include -I/home/ale/esp-idf/components/hal/esp32s3/include -I/home/ale/esp-idf/components/hal/include -I/home/ale/esp-idf/components/esp_rom/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include -I/home/ale/esp-idf/components/esp_rom/esp32s3/include/esp32s3 -I/home/ale/esp-idf/components/esp_rom/esp32s3 -I/home/ale/esp-idf/components/esp_common/include -I/home/ale/esp-idf/components/esp_system/include -I/home/ale/esp-idf/components/esp_system/port/soc -I/home/ale/esp-idf/components/esp_system/port/include/private -I/home/ale/esp-idf/components/xtensa/esp32s3/include -I/home/ale/esp-idf/components/xtensa/include -I/home/ale/esp-idf/components/xtensa/deprecated_include -I/home/ale/esp-idf/components/lwip/include -I/home/ale/esp-idf/components/lwip/include/apps -I/home/ale/esp-idf/components/lwip/include/apps/sntp -I/home/ale/esp-idf/components/lwip/lwip/src/include -I/home/ale/esp-idf/components/lwip/port/include -I/home/ale/esp-idf/components/lwip/port/freertos/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/ale/esp-idf/components/lwip/port/esp32xx/include/sys -I/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/managed_components/espressif__cjson/cJSON -mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware=. -fmacro-prefix-map=/home/ale/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/display.c.obj -MF esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/display.c.obj.d -o esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/display.c.obj -c /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:6:5: error: redeclaration of enumerator 'DISPLAY_STATE_OFF'
+    6 |     DISPLAY_STATE_OFF = 0,
+      |     ^~~~~~~~~~~~~~~~~
+In file included from /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:1:
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:84:5: note: previous definition of 'DISPLAY_STATE_OFF' with type 'enum <anonymous>'
+   84 |     DISPLAY_STATE_OFF = 0,
+      |     ^~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:7:5: error: redeclaration of enumerator 'DISPLAY_STATE_ON'
+    7 |     DISPLAY_STATE_ON = 1,
+      |     ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:85:5: note: previous definition of 'DISPLAY_STATE_ON' with type 'enum <anonymous>'
+   85 |     DISPLAY_STATE_ON = 1,
+      |     ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:8:5: error: redeclaration of enumerator 'DISPLAY_STATE_LOW_POWER'
+    8 |     DISPLAY_STATE_LOW_POWER = 2,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:86:5: note: previous definition of 'DISPLAY_STATE_LOW_POWER' with type 'enum <anonymous>'
+   86 |     DISPLAY_STATE_LOW_POWER = 2,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:9:3: error: conflicting types for 'display_state_t'; have 'enum <anonymous>'
+    9 | } display_state_t;
+      |   ^~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:87:3: note: previous declaration of 'display_state_t' with type 'display_state_t'
+   87 | } display_state_t;
+      |   ^~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:17:3: error: conflicting types for 'display_handle_t'; have 'struct <anonymous>'
+   17 | } display_handle_t;
+      |   ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:95:3: note: previous declaration of 'display_handle_t' with type 'display_handle_t'
+   95 | } display_handle_t;
+      |   ^~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:19:16: error: conflicting types for 'display_init'; have 'pericles_err_t(display_handle_t *, int,  int,  int)'
+   19 | pericles_err_t display_init(display_handle_t *disp, int width, int height, int backlight_pin) {
+      |                ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:97:16: note: previous declaration of 'display_init' with type 'pericles_err_t(display_handle_t *, int,  int,  int)'
+   97 | pericles_err_t display_init(display_handle_t *disp, int width, int height, int backlight_pin);
+      |                ^~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:31:16: error: conflicting types for 'display_set_backlight'; have 'pericles_err_t(display_handle_t *, uint8_t)' {aka 'pericles_err_t(display_handle_t *, unsigned char)'}
+   31 | pericles_err_t display_set_backlight(display_handle_t *disp, uint8_t brightness) {
+      |                ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:98:16: note: previous declaration of 'display_set_backlight' with type 'pericles_err_t(display_handle_t *, uint8_t)' {aka 'pericles_err_t(display_handle_t *, unsigned char)'}
+   98 | pericles_err_t display_set_backlight(display_handle_t *disp, uint8_t brightness);
+      |                ^~~~~~~~~~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/display.c:39:16: error: conflicting types for 'display_power'; have 'pericles_err_t(display_handle_t *, display_state_t)'
+   39 | pericles_err_t display_power(display_handle_t *disp, display_state_t state) {
+      |                ^~~~~~~~~~~~~
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/include/pericles_core.h:99:16: note: previous declaration of 'display_power' with type 'pericles_err_t(display_handle_t *, display_state_t)'
+   99 | pericles_err_t display_power(display_handle_t *disp, display_state_t state);
+      |                ^~~~~~~~~~~~~
+[9/17] Building C object esp-idf/pericles_core/CMakeFiles/__idf_pericles_core.dir/manifest.c.obj
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/components/pericles_core/manifest.c:8:20: warning: 'TAG' defined but not used [-Wunused-variable]
+    8 | static const char *TAG = "pericles_core";
+      |                    ^~~
+[10/17] Performing build step for 'bootloader'
+[1/1] cd /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader/esp-idf/esptool_py && /home/ale/.espressif/python_env/idf5.4_py3.12_env/bin/python /home/ale/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader/bootloader.bin
+Bootloader binary size 0x5210 bytes. 0x2df0 bytes (36%) free.
+ninja: build stopped: subcommand failed.
