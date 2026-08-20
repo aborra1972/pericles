@@ -145,6 +145,8 @@ Este documento acumula las respuestas del cuestionario de producto. No es el PRD
 
 ## 8. Hardware confirmado
 
+### Variante integrada
+
 | Componente | Selección |
 |------------|-----------|
 | Placa | ESP32-S3 N16R8 |
@@ -157,6 +159,15 @@ Este documento acumula las respuestas del cuestionario de producto. No es el PRD
 | WiFi | Conexión permanente |
 | Almacenamiento pesado | PC o servicio externo de baja latencia; sin microSD en la primera versión |
 | Alimentación | Conexión permanente; batería recargable fuera del MVP |
+
+### Variante ReSpeaker
+
+- Debe existir una segunda versión compatible con ReSpeaker XVF3800 USB 4-Mic Array y XIAO ESP32-S3R8.
+- La memoria correcta del XIAO es **8 MB de flash y 8 MB de PSRAM**.
+- El XVF3800 se utiliza en modo INT-Device/I2S, con I2S para audio e I2C para control y DFU.
+- La variante aprovecha cuatro micrófonos, AEC, AGC, beamforming, VAD, DoA, de-reverberación, reducción de ruido, LEDs WS2812, mute y salida amplificada.
+- La aplicación Linux detecta la variante y administra por separado el firmware del XIAO y del XVF3800.
+- La experiencia de pantalla GC9A01, skins y estados visuales se conserva; pinout, alimentación y carcasa quedan para el diseño técnico.
 
 ### Estados visuales
 

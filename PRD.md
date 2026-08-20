@@ -11,7 +11,7 @@
 
 Pericles es un asistente físico familiar con voz, pantalla redonda, memoria personal y una identidad inspirada en Pericles Addams. Debe conversar, recordar información autorizada, mostrar emociones mediante skins animadas y ofrecer un resumen diario relevante.
 
-La primera entrega es un prototipo personal administrado desde una aplicación gráfica para Linux. El dispositivo utiliza un ESP32-S3 para interacción, audio y pantalla, mientras el procesamiento de IA, la memoria y los datos pesados residen en un backend online.
+La primera entrega es un prototipo personal administrado desde una aplicación gráfica para Linux. El producto debe soportar una variante ESP32-S3 integrada y otra basada en ReSpeaker XVF3800 con XIAO ESP32-S3. El procesamiento de IA, la memoria y los datos pesados residen en un backend online.
 
 ## 2. Problema
 
@@ -71,7 +71,8 @@ Puede conversar sin crear un perfil. La sesión no genera recuerdos permanentes.
 La aplicación se distribuye como AppImage y debe:
 
 - Pedir al usuario que conecte Pericles por USB-C.
-- Detectar automáticamente el ESP32-S3 N16R8.
+- Detectar automáticamente la variante de hardware conectada.
+- Validar ESP32-S3 N16R8 y ReSpeaker XVF3800 con XIAO ESP32-S3R8.
 - Verificar modelo y firmware antes de habilitar configuración o grabación.
 - Leer y escribir parámetros, skins y configuración.
 - Mostrar estado, logs y diagnósticos.
@@ -205,6 +206,10 @@ La zona horaria se detecta por red y la ubicación del clima se configura manual
 
 ## 8. Hardware
 
+El firmware y la aplicación deben soportar dos perfiles de hardware sin alterar las funciones de producto, personalidad o skins.
+
+### 8.1 Variante integrada
+
 | Componente | Definición |
 |------------|------------|
 | MCU | ESP32-S3 N16R8 |
@@ -219,6 +224,25 @@ La zona horaria se detecta por red y la ubicación del clima se configura manual
 | Datos pesados | Backend online |
 
 No se presupone microSD. La batería queda fuera del MVP.
+
+### 8.2 Variante ReSpeaker
+
+| Componente | Definición |
+|------------|------------|
+| Placa de audio | ReSpeaker XVF3800 USB 4-Mic Array con XIAO ESP32-S3 |
+| MCU | XIAO ESP32-S3R8, dual core hasta 240 MHz |
+| Memoria | 8 MB de flash + 8 MB de PSRAM |
+| Procesador de audio | XMOS XVF3800 |
+| Micrófonos | Array circular de cuatro micrófonos PDM, captura 360° |
+| Procesamiento | AEC, AGC, beamforming, VAD, DoA, de-reverberación y reducción de ruido |
+| Audio codec | TLV320AIC3104 |
+| Comunicación MCU/audio | I2S para audio e I2C para control |
+| Firmware XVF3800 | INT-Device/I2S |
+| Salida | Conector de altavoz amplificado de hasta 5 W y jack de 3,5 mm |
+| Controles integrados | Mute, reset, indicador de mute y 12 LEDs WS2812 |
+| Pantalla | Debe conservar la experiencia GC9A01 y los ocho estados visuales; integración eléctrica pendiente de diseño técnico |
+
+La aplicación debe identificar por separado el firmware del XIAO y del XVF3800. La actualización del XVF3800 debe contemplar I2C DFU en modo I2S y recuperación mediante Safe Mode. Los algoritmos de audio integrados reemplazan al INMP441 y MAX98357 de la variante integrada.
 
 ## 9. Requisitos no funcionales
 
@@ -292,7 +316,7 @@ No se presupone microSD. La batería queda fuera del MVP.
 | ID | Criterio |
 |----|----------|
 | AC-01 | Un usuario no técnico completa onboarding en menos de 10 minutos sin terminal. |
-| AC-02 | La app detecta y valida el ESP32-S3 antes de habilitar grabación. |
+| AC-02 | La app detecta la variante conectada y valida MCU, memoria y firmware antes de habilitar grabación. |
 | AC-03 | La pantalla indica escucha en menos de 500 ms desde el botón. |
 | AC-04 | La respuesta comienza en menos de 2 segundos bajo condiciones normales. |
 | AC-05 | La transcripción alcanza 90% o más en ambiente tranquilo. |
@@ -314,6 +338,7 @@ No se presupone microSD. La batería queda fuera del MVP.
 | Costo sin límite mensual | Mostrar consumo en diagnóstico aunque no se imponga un bloqueo. |
 | Privacidad cloud sin consentimiento separado | Aceptable solo para prototipo personal; revisión obligatoria antes de distribución. |
 | Recuperación de firmware | Backup, validación y flujo guiado por USB-C. |
+| Divergencia entre variantes | Perfiles de hardware explícitos, contrato funcional común y pruebas por variante. |
 | Complejidad de personalidad | Parámetros con valores iniciales y posibilidad de restaurar defaults. |
 
 Pendientes para diseño técnico:
@@ -323,6 +348,8 @@ Pendientes para diseño técnico:
 - Definir formato exacto del archivo de configuración y esquema de migraciones.
 - Definir proveedores de clima, noticias y partidos.
 - Diseñar particiones y estrategia de recuperación de firmware.
+- Definir pinout, alimentación, pantalla GC9A01 y carcasa para la variante ReSpeaker.
+- Definir pruebas de audio equivalentes entre INMP441/MAX98357 y XVF3800.
 - Definir comportamiento exacto de la restauración de una sesión pendiente.
 
 ## 14. Trazabilidad
@@ -331,3 +358,5 @@ Pendientes para diseño técnico:
 - [`CHARACTER.md`](CHARACTER.md): personalidad canónica.
 - [`skins/README.md`](skins/README.md): contrato actual de skins.
 - [`USER_MANUAL.md`](USER_MANUAL.md): manual de la demo existente.
+- [Documentación oficial ReSpeaker XVF3800 con XIAO ESP32-S3](https://wiki.seeedstudio.com/respeaker_xvf3800_xiao_getting_started/).
+- [Especificaciones oficiales XIAO ESP32-S3](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/).
