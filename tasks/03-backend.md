@@ -6,7 +6,7 @@
 - [x] **BE-04** Implement code verification and owner session issuance. Verify `BE-02`.
 - [x] **BE-05** Write RED tests for cross-device access and expired device tokens.
 - [x] **BE-06** Implement device registration and owner assignment. Verify tenant isolation.
-- [ ] **BE-07** Store one encrypted OpenAI key per device. Verify keys never reach logs.
+- [x] **BE-07** Store one encrypted OpenAI key per device. Verify keys never reach logs.
 - [ ] **BE-08** Issue short-lived device/person tokens. Verify scopes and expiration.
 - [ ] **BE-09** Write RED tests for guest persistence and duplicate names.
 - [ ] **BE-10** Implement person profiles, consent, and guest sessions. Verify guest writes nothing.
