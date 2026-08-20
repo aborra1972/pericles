@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Ready for implementation |
-| Active task | `ADR-07` |
-| Last completed | `ADR-06` |
+| Active task | `ADR-08` |
+| Last completed | `ADR-07` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -39,7 +39,8 @@
 | ADR-04 | PASS | Schema defined; retrieval strategy documented; retention/deletion/export covered | pending |
 | ADR-05 | PASS | BLE pairing flow; JWT auth; URI versioning; WebSocket streaming | pending |
 | ADR-06 | PASS | USB-C flash; backup/restore; safe mode; XVF3800 DFU; version mgmt | pending |
+| ADR-07 | PASS | Two profile manifests; capability API; auto-detection; display/audio abstraction | pending |
 
 ## Next Action
 
-Execute `ADR-07` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-08` from [`tasks/01-architecture.md`](tasks/01-architecture.md).

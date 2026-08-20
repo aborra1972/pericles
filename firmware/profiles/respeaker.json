@@ -1,0 +1,71 @@
+{
+  "id": "respeaker",
+  "name": "Pericles ReSpeaker",
+  "description": "XVF3800 + XIAO ESP32-S3R8 with 4-mic array and amplified speaker",
+  "mcu": {
+    "chip": "XIAO-ESP32-S3R8",
+    "flash_mb": 8,
+    "psram_mb": 8,
+    "cpu_mhz": 240
+  },
+  "display": {
+    "driver": "GC9A01",
+    "width": 240,
+    "height": 240,
+    "bus": "SPI",
+    "pins": {
+      "mosi": 10,
+      "sclk": 8,
+      "cs": 7,
+      "dc": 6,
+      "rst": 5,
+      "bl": 4
+    },
+    "spi_host": "SPI2_HOST"
+  },
+  "audio": {
+    "input": "xvf3800_i2s",
+    "output": "tlv320aic3104",
+    "codec": "TLV320AIC3104",
+    "microphones": 4,
+    "microphone_type": "pdm_circular_array",
+    "speaker_watts": 5,
+    "amp_enabled_pin": 2,
+    "i2s_pins": {
+      "bck": 17,
+      "ws": 18,
+      "data_in": 19,
+      "data_out": 20
+    },
+    "i2c_pins": {
+      "sda": 21,
+      "scl": 22
+    },
+    "i2c_address": "0x3C",
+    "aec": true,
+    "beamforming": true,
+    "vad": true,
+    "doa": true,
+    "dereverb": true,
+    "noise_reduction": true
+  },
+  "buttons": {
+    "action": { "pin": 1, "mode": "pullup" },
+    "mute": { "pin": 3, "mode": "pullup" }
+  },
+  "leds": {
+    "count": 12,
+    "type": "WS2812",
+    "pin": 38
+  },
+  "connectivity": {
+    "wifi": true,
+    "ble": true,
+    "usb": true
+  },
+  "constraints": {
+    "max_svg_size_kb": 30,
+    "max_concurrentAnimations": 3,
+    "ota_supported": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "integrated",
+  "name": "Pericles Integrado",
+  "description": "ESP32-S3 N16R8 with direct peripheral connections",
+  "mcu": {
+    "chip": "ESP32-S3-N16R8",
+    "flash_mb": 16,
+    "psram_mb": 8,
+    "cpu_mhz": 240
+  },
+  "display": {
+    "driver": "GC9A01",
+    "width": 240,
+    "height": 240,
+    "bus": "SPI",
+    "pins": {
+      "mosi": 11,
+      "sclk": 12,
+      "cs": 10,
+      "dc": 13,
+      "rst": 14,
+      "bl": 21
+    },
+    "spi_host": "SPI2_HOST"
+  },
+  "audio": {
+    "input": "internal_adc",
+    "output": "internal_dac",
+    "codec": null,
+    "microphones": 0,
+    "speaker_watts": 1,
+    "aec": false,
+    "beamforming": false,
+    "vad": false
+  },
+  "buttons": {
+    "action": { "pin": 0, "mode": "pullup" },
+    "volume_up": { "pin": 15, "mode": "pullup" },
+    "volume_down": { "pin": 16, "mode": "pullup" }
+  },
+  "leds": {
+    "count": 0,
+    "type": null
+  },
+  "connectivity": {
+    "wifi": true,
+    "ble": true,
+    "usb": true
+  },
+  "constraints": {
+    "max_svg_size_kb": 50,
+    "max_concurrentAnimations": 2,
+    "ota_supported": false
+  }
+}

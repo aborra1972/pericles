@@ -8,5 +8,5 @@ Each ADR must state decision, rejected alternatives, consequences, test strategy
 - [x] **ADR-04** Create `docs/adr/004-memory-storage.md` for canonical Markdown plus indexed retrieval, tenant isolation, retention, and deletion. Verify sample query benchmark.
 - [x] **ADR-05** Create `docs/adr/005-device-protocol.md` for HTTPS, temporary tokens, BLE pairing/control, and schema versioning. Verify sequence diagrams.
 - [x] **ADR-06** Create `docs/adr/006-firmware-update.md` covering ESP32 USB recovery and XVF3800 I2C DFU/Safe Mode. Verify failure-state table.
-- [ ] **ADR-07** Create `docs/adr/007-hardware-profiles.md` defining common capabilities and variant pin/audio/display contracts. Verify both profile manifests.
+- [x] **ADR-07** Create `docs/adr/007-hardware-profiles.md` defining common capabilities and variant pin/audio/display contracts. Verify both profile manifests.
 - [ ] **ADR-08** Create `docs/adr/008-ai-provider.md` defining OpenAI adapter and three stable quality profiles. Verify mock-provider contract test.
