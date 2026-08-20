@@ -355,6 +355,8 @@ Pendientes para diseño técnico:
 ## 14. Trazabilidad
 
 - [`PRD_DRAFT.md`](PRD_DRAFT.md): decisiones acumuladas del cuestionario.
+- [`TASKS.md`](TASKS.md): backlog ejecutable del MVP.
+- [`PROJECT_STATE.md`](PROJECT_STATE.md): checkpoint exacto para reanudar trabajo.
 - [`CHARACTER.md`](CHARACTER.md): personalidad canónica.
 - [`skins/README.md`](skins/README.md): contrato actual de skins.
 - [`USER_MANUAL.md`](USER_MANUAL.md): manual de la demo existente.

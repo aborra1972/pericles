@@ -1,0 +1,22 @@
+# Phase 4 - Linux Configurator
+
+- [ ] **GUI-01** Add shell routes: onboarding, device, personality, skins, diagnostics, firmware, profiles. Verify route test.
+- [ ] **GUI-02** Write RED tests for unknown USB device and profile mismatch.
+- [ ] **GUI-03** Enumerate supported USB serial/DFU devices. Verify fixture list.
+- [ ] **GUI-04** Match N16R8 and ReSpeaker hardware manifests. Verify `GUI-02`.
+- [ ] **GUI-05** Implement owner email-code login. Verify expired and invalid code states.
+- [ ] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
+- [ ] **GUI-07** Build personality and session settings panel. Verify schema round trip.
+- [ ] **GUI-08** Build voice and display settings with voice preview. Verify persistence.
+- [ ] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
+- [ ] **GUI-10** List, preview, and push skins. Verify five skins and eight states.
+- [ ] **GUI-11** Build reusable diagnostic result component. Verify pass/fail/timeout states.
+- [ ] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
+- [ ] **GUI-13** Add WiFi, BLE, OpenAI, and XVF3800 diagnostics. Verify mocked services.
+- [ ] **GUI-14** Implement config backup, restore, and clone. Verify checksum failure.
+- [ ] **GUI-15** Implement guarded factory reset. Verify double confirmation.
+- [ ] **GUI-16** Write RED tests for invalid image, interrupted flash, and profile mismatch.
+- [ ] **GUI-17** Implement ESP32 backup, flash progress, verification, and reboot. Verify `GUI-16`.
+- [ ] **GUI-18** Implement XVF3800 I2C DFU flow. Verify simulated success and failure.
+- [ ] **GUI-19** Add guided ESP32 and XVF3800 recovery screens. Verify Safe Mode path.
+- [ ] **GUI-20** Build versioned AppImage and run clean-machine smoke test.

@@ -1,0 +1,30 @@
+# Phase 3 - Online Backend
+
+- [ ] **BE-01** Add backend config loading and `/health`; reject missing secrets. Verify focused unit tests.
+- [ ] **BE-02** Write RED tests for expired email codes and owner sessions.
+- [ ] **BE-03** Implement email-code request and delivery abstraction. Verify fake-mail fixture.
+- [ ] **BE-04** Implement code verification and owner session issuance. Verify `BE-02`.
+- [ ] **BE-05** Write RED tests for cross-device access and expired device tokens.
+- [ ] **BE-06** Implement device registration and owner assignment. Verify tenant isolation.
+- [ ] **BE-07** Store one encrypted OpenAI key per device. Verify keys never reach logs.
+- [ ] **BE-08** Issue short-lived device/person tokens. Verify scopes and expiration.
+- [ ] **BE-09** Write RED tests for guest persistence and duplicate names.
+- [ ] **BE-10** Implement person profiles, consent, and guest sessions. Verify guest writes nothing.
+- [ ] **BE-11** Implement nickname disambiguation. Verify duplicate-name fixture.
+- [ ] **BE-12** Implement owner-only profile export and delete. Verify forbidden non-owner calls.
+- [ ] **BE-13** Implement canonical Markdown memory repository. Verify deterministic read/write.
+- [ ] **BE-14** Add memory metadata schema and migrations. Verify upgrade from v1 fixture.
+- [ ] **BE-15** Add FTS index updates and ranked retrieval. Verify query fixtures.
+- [ ] **BE-16** Add configurable retention and quota enforcement. Verify boundary cases.
+- [ ] **BE-17** Define AI provider interface and deterministic mock. Verify provider contract.
+- [ ] **BE-18** Implement OpenAI adapter behind the interface. Verify mocked HTTP responses.
+- [ ] **BE-19** Map Economic, Balanced, and Maximum quality profiles. Verify backend remapping.
+- [ ] **BE-20** Implement conversation create/end endpoints. Verify timeout and explicit close.
+- [ ] **BE-21** Load daily context and relevant memories for one person. Verify isolation.
+- [ ] **BE-22** Stream text response and enforce configured duration. Verify interrupted client.
+- [ ] **BE-23** Write RED test proving source audio deletion after transcription.
+- [ ] **BE-24** Implement ephemeral transcription pipeline. Verify `BE-23` and failure cleanup.
+- [ ] **BE-25** Implement configurable daily-summary orchestration. Verify category toggles.
+- [ ] **BE-26** Add Google Calendar OAuth adapter behind a fake. Verify token refresh.
+- [ ] **BE-27** Add weather, news, and Boca source adapters behind fakes. Verify partial failure.
+- [ ] **BE-28** Add device config/version endpoints and technical-only support bundles. Verify secret scan.

@@ -1,0 +1,38 @@
+# Pericles Project State
+
+## Current Checkpoint
+
+| Field | Value |
+|-------|-------|
+| Status | Foundation checkpoints complete; implementation not started |
+| Active task | `ADR-01` |
+| Last completed | `BASE-03` |
+| Blocker | Chain strategy must be selected before implementation |
+| Branch | `main` |
+
+## Resume Protocol
+
+1. Run `git status --short --branch`.
+2. Read `TASKS.md` and the file containing the active task.
+3. Confirm the active task's dependencies are `[x]`.
+4. Change only files named by that task.
+5. Run its exact verification command.
+6. Update this file before committing or ending the session.
+
+## Delivered Baseline
+
+- Listening assets and complete eight-state visual surfaces: `fa8657a`.
+- ReSpeaker XVF3800 + XIAO ESP32-S3R8 requirements: `0c76b69`.
+- Existing mood assets remained unchanged; only overview files were replaced.
+
+## Evidence Log
+
+| Task | Result | Verification | Commit |
+|------|--------|--------------|--------|
+| BASE-01 | PASS | 50 SVGs; 5×8 contracts; 40 overview refs; 5 previews | `fa8657a` |
+| BASE-02 | PASS | PRD specifies 8 MB flash + 8 MB PSRAM | `0c76b69` |
+| BASE-03 | PASS | 115 unique IDs; 10 task documents; links valid | planning commit |
+
+## Next Action
+
+Select the chain strategy, then execute `ADR-01` from [`tasks/01-architecture.md`](tasks/01-architecture.md).

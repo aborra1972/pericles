@@ -25,6 +25,8 @@ Su personaje está inspirado en **Pericles Addams**, de *Los Locos Addams*: trav
   <a href="USER_MANUAL.md">Leer el manual de usuario</a>
   ·
   <a href="PRD.md">Consultar el PRD</a>
+  ·
+  <a href="TASKS.md">Ver plan de implementación</a>
 </p>
 
 La demo permite comparar los **cinco modelos** y filtrar sus **ocho estados animados**. Se publica automáticamente desde `main` mediante GitHub Pages.
