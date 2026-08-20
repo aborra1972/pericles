@@ -1,17 +1,22 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-function createWindow() {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    title: 'Pericles Configurador',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
     },
   });
 
-  win.loadFile('index.html');
+  win.loadFile(path.join(__dirname, '..', 'index.html'));
+  return win;
 }
 
 app.whenReady().then(() => {
@@ -25,7 +30,5 @@ app.whenReady().then(() => {
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  app.quit();
 });
