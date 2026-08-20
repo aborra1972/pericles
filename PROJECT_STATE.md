@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-22` |
-| Last completed | `BE-21` |
+| Active task | `BE-23` |
+| Last completed | `BE-22` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -70,7 +70,8 @@
 | BE-19 | PASS | Quality profiles with backend remapping; 111 tests total | pending |
 | BE-20 | PASS | ConversationManager with timeout and explicit close; 118 tests total | pending |
 | BE-21 | PASS | ContextLoader with person isolation and search; 123 tests total | pending |
+| BE-22 | PASS | ResponseStreamer with chunked streaming and duration; 128 tests total | pending |
 
 ## Next Action
 
-Execute `BE-22` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-23` from [`tasks/03-backend.md`](tasks/03-backend.md).
