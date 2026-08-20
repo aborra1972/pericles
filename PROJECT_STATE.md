@@ -4,11 +4,12 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Foundation checkpoints complete; implementation not started |
+| Status | Ready for implementation |
 | Active task | `ADR-01` |
 | Last completed | `BASE-03` |
-| Blocker | Chain strategy must be selected before implementation |
+| Blocker | None |
 | Branch | `main` |
+| Delivery strategy | Stacked PRs merged sequentially to `main` |
 
 ## Resume Protocol
 
@@ -35,4 +36,4 @@
 
 ## Next Action
 
-Select the chain strategy, then execute `ADR-01` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-01` from [`tasks/01-architecture.md`](tasks/01-architecture.md).

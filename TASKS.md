@@ -9,12 +9,12 @@ This is the execution index for [`PRD.md`](PRD.md). Always resume from [`PROJECT
 | Estimated changed lines | 3,000+ |
 | 400-line budget risk | High |
 | Chained PRs recommended | Yes |
-| Delivery strategy | ask-on-risk |
-| Chain strategy | pending |
+| Delivery strategy | ask-on-risk, resolved |
+| Chain strategy | stacked-to-main |
 
-Decision needed before apply: Yes
+Decision needed before apply: No
 Chained PRs recommended: Yes
-Chain strategy: pending
+Chain strategy: stacked-to-main
 400-line budget risk: High
 
 ## Work Units
