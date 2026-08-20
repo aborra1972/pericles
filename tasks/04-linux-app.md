@@ -10,8 +10,8 @@
 - [x] **GUI-08** Build voice and display settings with voice preview. Verify persistence.
 - [x] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
 - [x] **GUI-10** List, preview, and push skins. Verify five skins and eight states.
-- [ ] **GUI-11** Build reusable diagnostic result component. Verify pass/fail/timeout states.
-- [ ] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
+- [x] **GUI-11** Build reusable diagnostic result component. Verify pass/fail/timeout states.
+- [x] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
 - [ ] **GUI-13** Add WiFi, BLE, OpenAI, and XVF3800 diagnostics. Verify mocked services.
 - [ ] **GUI-14** Implement config backup, restore, and clone. Verify checksum failure.
 - [ ] **GUI-15** Implement guarded factory reset. Verify double confirmation.

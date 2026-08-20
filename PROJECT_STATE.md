@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-11` |
-| Last completed | `GUI-10` |
+| Active task | `GUI-13` |
+| Last completed | `GUI-12` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -87,7 +87,9 @@
 | GUI-08 | PASS | VoiceSettings with preview and speed validation; 33 configurator tests total | pending |
 | GUI-09 | PASS | MemorySettings with retention and category toggles; 39 configurator tests total | pending |
 | GUI-10 | PASS | SkinManager with 5 skins and 8 states; 46 configurator tests total | pending |
+| GUI-11 | PASS | DiagnosticRunner with pass/fail/timeout; 52 configurator tests total | pending |
+| GUI-12 | PASS | Mic, speaker, display, button diagnostics mocked | pending |
 
 ## Next Action
 
-Execute `GUI-11` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-13` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
