@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-05` |
-| Last completed | `BE-04` |
+| Active task | `BE-07` |
+| Last completed | `BE-06` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -53,7 +53,9 @@
 | BE-02 | PASS | RED tests for email codes and owner sessions | pending |
 | BE-03 | PASS | EmailCodeStore with expiration and consumption | pending |
 | BE-04 | PASS | OwnerSessionStore with HMAC tokens; 25 tests total | pending |
+| BE-05 | PASS | RED tests for device tokens and cross-device access | pending |
+| BE-06 | PASS | DeviceTokenStore with cross-device prevention; 33 tests total | pending |
 
 ## Next Action
 
-Execute `BE-05` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-07` from [`tasks/03-backend.md`](tasks/03-backend.md).
