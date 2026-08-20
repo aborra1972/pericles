@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-12` |
-| Last completed | `BE-11` |
+| Active task | `BE-13` |
+| Last completed | `BE-12` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -60,7 +60,8 @@
 | BE-09 | PASS | RED tests for guest persistence and duplicate names | pending |
 | BE-10 | PASS | PersonStore with role-based write control; 57 tests total | pending |
 | BE-11 | PASS | Name disambiguation with positional numbering; 63 tests total | pending |
+| BE-12 | PASS | ProfileManager with owner-only export/delete; 69 tests total | pending |
 
 ## Next Action
 
-Execute `BE-12` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-13` from [`tasks/03-backend.md`](tasks/03-backend.md).

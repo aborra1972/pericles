@@ -70,6 +70,10 @@ export class PersonStore {
     return Array.from(this.people.values());
   }
 
+  delete(id: string): boolean {
+    return this.people.delete(id);
+  }
+
   private generateDisambiguation(name: string): string {
     const count = this.list().filter((p) => p.name === name).length + 1;
     return `${name} (${count})`;
