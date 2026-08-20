@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Ready for implementation |
-| Active task | `ADR-02` |
-| Last completed | `ADR-01` |
+| Active task | `ADR-03` |
+| Last completed | `ADR-02` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -34,7 +34,8 @@
 | BASE-02 | PASS | PRD specifies 8 MB flash + 8 MB PSRAM | `0c76b69` |
 | BASE-03 | PASS | 115 unique IDs; 10 task documents; links valid | planning commit |
 | ADR-01 | PASS | 10 directories checked; links valid | pending |
+| ADR-02 | PASS | Backend build OK; Configurator build OK; Firmware structure OK | pending |
 
 ## Next Action
 
-Execute `ADR-02` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-03` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
