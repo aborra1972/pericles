@@ -2,6 +2,7 @@
   "name": "pericles",
   "private": true,
   "workspaces": [
+    "contracts",
     "backend",
     "configurator"
   ],

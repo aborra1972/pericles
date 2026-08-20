@@ -6,5 +6,5 @@
 - [x] **SCAFF-04** Create ESP-IDF project in `firmware/` with `pericles_core` component. Verify `idf.py build`.
 - [x] **SCAFF-05** Add `firmware/profiles/esp32s3-n16r8.json` and `respeaker-xiao.json`. Verify schema validation.
 - [x] **SCAFF-06** Add versioned schemas in `contracts/`: device config, profile, session, memory, and status. Verify valid/invalid fixtures.
-- [ ] **SCAFF-07** Generate or hand-code contract models in backend, configurator, and firmware. Verify round-trip fixture equality.
+- [x] **SCAFF-07** Generate or hand-code contract models in backend, configurator, and firmware. Verify round-trip fixture equality.
 - [ ] **SCAFF-08** Add CI for contracts, backend, configurator, and both firmware builds. Verify workflow locally where possible.
