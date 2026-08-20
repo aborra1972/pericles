@@ -48,7 +48,7 @@
 | SCAFF-05 | PASS | Two profile manifests in firmware/profiles/ | pending |
 | SCAFF-06 | PASS | 5 JSON schemas; valid+invalid fixtures; 15 tests pass | pending |
 | SCAFF-07 | PASS | contracts/src/types.ts; 20 tests pass (schemas + round-trip) | pending |
-| SCAFF-08 | PASS | GitHub Actions CI: contracts, backend, configurator workflows | pending |
+| SCAFF-08 | PASS | GitHub Actions CI defined locally; PAT lacks `workflow` scope to push | pending |
 
 ## Next Action
 
