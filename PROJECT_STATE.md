@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-08` |
-| Last completed | `GUI-07` |
+| Active task | `GUI-09` |
+| Last completed | `GUI-08` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -84,7 +84,8 @@
 | GUI-05 | PASS | EmailCodeLogin with verification and session management | pending |
 | GUI-06 | PASS | Bind, relink, logout flows; 21 configurator tests total | pending |
 | GUI-07 | PASS | PersonalitySettings with JSON round-trip; 27 configurator tests total | pending |
+| GUI-08 | PASS | VoiceSettings with preview and speed validation; 33 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-08` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-09` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
