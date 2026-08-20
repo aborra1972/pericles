@@ -24,7 +24,7 @@ Chain strategy: stacked-to-main
 | 0 | 3 | Preserve current assets and requirements | [`tasks/00-baseline.md`](tasks/00-baseline.md) |
 | 1 | 8 | Decide architecture before code | [`tasks/01-architecture.md`](tasks/01-architecture.md) |
 | 2 | 8 | Scaffold monorepo and contracts | [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md) |
-| 3 | 28 | Build backend vertical slices | [`tasks/03-backend.md`](tasks/03-backend.md) |
+| 3 | 28 | Build backend vertical slices | [`tasks/03-backend.md`](tasks/03-backend.md) ✅ |
 | 4 | 20 | Build Linux configurator | [`tasks/04-linux-app.md`](tasks/04-linux-app.md) |
 | 5 | 20 | Build shared ESP-IDF firmware | [`tasks/05-firmware-core.md`](tasks/05-firmware-core.md) |
 | 6 | 13 | Support both hardware profiles | [`tasks/06-hardware-profiles.md`](tasks/06-hardware-profiles.md) |
