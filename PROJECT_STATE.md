@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-05` |
-| Last completed | `GUI-04` |
+| Active task | `GUI-07` |
+| Last completed | `GUI-06` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -81,7 +81,9 @@
 | GUI-02 | PASS | RED tests for USB device detection and profile mismatch | pending |
 | GUI-03 | PASS | DeviceDetector with ESP32-S3 and ReSpeaker support | pending |
 | GUI-04 | PASS | Profile mismatch detection; 14 configurator tests total | pending |
+| GUI-05 | PASS | EmailCodeLogin with verification and session management | pending |
+| GUI-06 | PASS | Bind, relink, logout flows; 21 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-05` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-07` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).

@@ -4,8 +4,8 @@
 - [x] **GUI-02** Write RED tests for unknown USB device and profile mismatch.
 - [x] **GUI-03** Enumerate supported USB serial/DFU devices. Verify fixture list.
 - [x] **GUI-04** Match N16R8 and ReSpeaker hardware manifests. Verify `GUI-02`.
-- [ ] **GUI-05** Implement owner email-code login. Verify expired and invalid code states.
-- [ ] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
+- [x] **GUI-05** Implement owner email-code login. Verify expired and invalid code states.
+- [x] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
 - [ ] **GUI-07** Build personality and session settings panel. Verify schema round trip.
 - [ ] **GUI-08** Build voice and display settings with voice preview. Verify persistence.
 - [ ] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
