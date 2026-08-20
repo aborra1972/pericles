@@ -10,7 +10,7 @@
 - [x] **BE-08** Issue short-lived device/person tokens. Verify scopes and expiration.
 - [x] **BE-09** Write RED tests for guest persistence and duplicate names.
 - [x] **BE-10** Implement person profiles, consent, and guest sessions. Verify guest writes nothing.
-- [ ] **BE-11** Implement nickname disambiguation. Verify duplicate-name fixture.
+- [x] **BE-11** Implement nickname disambiguation. Verify duplicate-name fixture.
 - [ ] **BE-12** Implement owner-only profile export and delete. Verify forbidden non-owner calls.
 - [ ] **BE-13** Implement canonical Markdown memory repository. Verify deterministic read/write.
 - [ ] **BE-14** Add memory metadata schema and migrations. Verify upgrade from v1 fixture.
