@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-14` |
-| Last completed | `BE-13` |
+| Active task | `BE-15` |
+| Last completed | `BE-14` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -62,7 +62,8 @@
 | BE-11 | PASS | Name disambiguation with positional numbering; 63 tests total | pending |
 | BE-12 | PASS | ProfileManager with owner-only export/delete; 69 tests total | pending |
 | BE-13 | PASS | MarkdownMemoryRepo with frontmatter; 77 tests total | pending |
+| BE-14 | PASS | Memory schema v0→v1 migration; 82 tests total | pending |
 
 ## Next Action
 
-Execute `BE-14` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-15` from [`tasks/03-backend.md`](tasks/03-backend.md).
