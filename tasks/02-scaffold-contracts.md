@@ -3,7 +3,7 @@
 - [x] **SCAFF-01** Create root workspace tooling selected by `ADR-02`, `.editorconfig`, and build commands. Verify clean bootstrap.
 - [x] **SCAFF-02** Create `backend/` health service and focused test. Verify backend test command from ADR.
 - [x] **SCAFF-03** Create `configurator/` shell window and smoke test. Verify app launches without device.
-- [ ] **SCAFF-04** Create ESP-IDF project in `firmware/` with `pericles_core` component. Verify `idf.py build`.
+- [x] **SCAFF-04** Create ESP-IDF project in `firmware/` with `pericles_core` component. Verify `idf.py build`.
 - [ ] **SCAFF-05** Add `firmware/profiles/esp32s3-n16r8.json` and `respeaker-xiao.json`. Verify schema validation.
 - [ ] **SCAFF-06** Add versioned schemas in `contracts/`: device config, profile, session, memory, and status. Verify valid/invalid fixtures.
 - [ ] **SCAFF-07** Generate or hand-code contract models in backend, configurator, and firmware. Verify round-trip fixture equality.

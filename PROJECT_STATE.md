@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 2 In Progress |
-| Active task | `SCAFF-04` |
-| Last completed | `SCAFF-03` |
+| Active task | `SCAFF-05` |
+| Last completed | `SCAFF-04` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -44,7 +44,8 @@
 | SCAFF-01 | PASS | npm workspaces; .editorconfig; build/test scripts; backend builds | pending |
 | SCAFF-02 | PASS | health.ts module; 2 Vitest tests pass; server.ts refactored | pending |
 | SCAFF-03 | PASS | Electron main.ts; index.html; smoke test passes | pending |
+| SCAFF-04 | PASS | ESP-IDF project structure; pericles_core component; sdkconfig.defaults | pending |
 
 ## Next Action
 
-Execute `SCAFF-04` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
+Execute `SCAFF-05` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
