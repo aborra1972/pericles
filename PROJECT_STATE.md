@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-26` |
-| Last completed | `BE-25` |
+| Active task | `BE-27` |
+| Last completed | `BE-26` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -74,7 +74,8 @@
 | BE-23 | PASS | RED tests for audio deletion after transcription | pending |
 | BE-24 | PASS | TranscriptionPipeline with ephemeral cleanup; 133 tests total | pending |
 | BE-25 | PASS | DailySummaryOrchestrator with category toggles; 139 tests total | pending |
+| BE-26 | PASS | FakeCalendarAdapter with token refresh; 144 tests total | pending |
 
 ## Next Action
 
-Execute `BE-26` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-27` from [`tasks/03-backend.md`](tasks/03-backend.md).
