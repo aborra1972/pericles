@@ -8,7 +8,7 @@
 - [x] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
 - [x] **GUI-07** Build personality and session settings panel. Verify schema round trip.
 - [x] **GUI-08** Build voice and display settings with voice preview. Verify persistence.
-- [ ] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
+- [x] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
 - [ ] **GUI-10** List, preview, and push skins. Verify five skins and eight states.
 - [ ] **GUI-11** Build reusable diagnostic result component. Verify pass/fail/timeout states.
 - [ ] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
