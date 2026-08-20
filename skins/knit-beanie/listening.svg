@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round"><circle cx="120" cy="120" r="118"/></clipPath>
+    <radialGradient id="face" cx="40%" cy="35%"><stop stop-color="#FFE2C4"/><stop offset=".7" stop-color="#EFB486"/><stop offset="1" stop-color="#BD725D"/></radialGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9A5B39"/><stop offset=".5" stop-color="#5A3024"/><stop offset="1" stop-color="#2A1718"/></linearGradient>
+    <radialGradient id="iris" data-eye-palette="canonical-blue"><stop stop-color="#8EC5FF"/><stop offset="1" stop-color="#315E9A"/></radialGradient>
+    <linearGradient id="beanie" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#65B7AB"/><stop offset=".55" stop-color="#347F7B"/><stop offset="1" stop-color="#1E5556"/></linearGradient>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="240" height="240" fill="#000000"/>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0;0,1;0,0" dur="4.2s" repeatCount="indefinite"/>
+      <path d="M40 125 Q38 82 54 70 Q84 61 120 68 Q157 61 186 70 Q202 84 200 128 L184 178 Q176 77 120 70 Q65 74 54 178Z" fill="url(#hair)" stroke="#2A1718" stroke-width="3"/>
+      <circle cx="120" cy="123" r="82" fill="url(#face)" stroke="#BD725D" stroke-width="2.5"/>
+      <ellipse cx="88" cy="117" rx="21" ry="20" fill="#fff" stroke="#352735" stroke-width="2"/>
+      <ellipse cx="152" cy="117" rx="21" ry="20" fill="#fff" stroke="#352735" stroke-width="2"/>
+      <g><animateTransform attributeName="transform" type="translate" values="0,0;2,0;0,0;-1,0;0,0" dur="3.1s" repeatCount="indefinite"/><circle cx="88" cy="117" r="10" fill="url(#iris)"/><circle cx="88" cy="117" r="5" fill="#315E9A"/><circle cx="84" cy="113" r="2.5" fill="#fff"/><circle cx="152" cy="117" r="10" fill="url(#iris)"/><circle cx="152" cy="117" r="5" fill="#315E9A"/><circle cx="148" cy="113" r="2.5" fill="#fff"/></g>
+      <path d="M67 87 Q87 76 107 85 M133 85 Q153 76 173 87" fill="none" stroke="#59372F" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M103 153 Q120 156 137 153" fill="none" stroke="#8D4B55" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M61 61 Q89 44 124 55 Q119 68 109 80 L101 69 L90 95 L81 79 L70 103 Q69 79 61 61Z" fill="url(#hair)"/>
+      <path d="M99 55 Q134 40 169 59 Q163 75 152 88 L142 77 L129 106 L119 88 L109 109 Q109 77 99 55Z" fill="url(#hair)"/>
+      <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-1;0,0;0,.5;0,0" dur="5.6s" repeatCount="indefinite"/><path d="M49 68 L64 47 Q77 37 97 33 L120 27 L144 34 Q165 39 179 49 L193 68 Q154 59 120 61 Q84 59 49 68Z" fill="url(#beanie)" stroke="#173F43" stroke-width="3"/><path d="M48 63 Q120 58 194 64 L193 79 Q121 72 49 79Z" fill="#2E7473" stroke="#173F43" stroke-width="3"/><g stroke="#BDE4DB" stroke-width="2" opacity=".38"><path d="M58 65V76M72 62V74M87 60V72M102 58V70M118 57V69M134 58V70M150 59V72M166 61V74M181 63V76"/></g></g>
+      <path d="M115 28 L113 36 H127 L125 28Z" fill="#347F7B" stroke="#173F43" stroke-width="2"/>
+      <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-1;0,0;0,1;0,0" dur="4.9s" repeatCount="indefinite"/><path d="M120 3 C124 3 126 6 129 7 C133 9 134 12 133 16 C134 20 131 23 128 25 C126 29 122 30 119 28 C115 30 111 28 109 25 C105 23 105 19 106 16 C104 12 107 8 110 7 C112 3 116 2 120 3Z" fill="#4C9A94" stroke="#173F43" stroke-width="3"/></g>
+      <g id="blink-eyelids"><ellipse cx="88" cy="117" rx="22" ry="0" fill="#EFB486"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.92;.94;.96;.98;1" dur="6.1s" repeatCount="indefinite"/></ellipse><ellipse cx="152" cy="117" rx="22" ry="0" fill="#EFB486"><animate attributeName="ry" values="0;0;20;20;0;0" keyTimes="0;.92;.94;.96;.98;1" dur="6.1s" begin=".025s" repeatCount="indefinite"/></ellipse></g>
+    </g>
+    <g fill="none" stroke="#8EC5FF" stroke-width="4" stroke-linecap="round"><path d="M39 94 Q23 114 39 134"><animate attributeName="opacity" values=".2;1;.2" dur="1.5s" repeatCount="indefinite"/></path><path d="M201 94 Q217 114 201 134"><animate attributeName="opacity" values="1;.2;1" dur="1.5s" repeatCount="indefinite"/></path></g>
+    <rect x="49" y="204" width="142" height="27" rx="13.5" fill="#0b1718" stroke="#65B7AB" stroke-width="2"/>
+    <circle cx="65" cy="217.5" r="4" fill="#8EC5FF"><animate attributeName="opacity" values=".35;1;.35" dur="1.2s" repeatCount="indefinite"/></circle>
+    <text x="125" y="222" fill="#e7fffb" font-family="system-ui,sans-serif" font-size="15" font-weight="700" text-anchor="middle">Escuchando</text>
+  </g>
+</svg>

@@ -27,7 +27,7 @@ Su personaje está inspirado en **Pericles Addams**, de *Los Locos Addams*: trav
   <a href="PRD.md">Consultar el PRD</a>
 </p>
 
-La demo permite comparar los **cinco modelos** y filtrar sus **siete estados animados**. Se publica automáticamente desde `main` mediante GitHub Pages.
+La demo permite comparar los **cinco modelos** y filtrar sus **ocho estados animados**. Se publica automáticamente desde `main` mediante GitHub Pages.
 
 | Pixel | Expressive | Windswept | Knit beanie | Backwards cap |
 |:-----:|:----------:|:---------:|:-----------:|:-------------:|

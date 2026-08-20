@@ -173,7 +173,7 @@
   <header>
     <p class="eyebrow">ESP32-S3 · Colección visual</p>
     <h1>Las caras de Pericles</h1>
-    <p class="intro">Cinco modelos intercambiables y siete estados animados. Filtrá una emoción, compará estilos y reiniciá las animaciones antes de elegir la cara del dispositivo.</p>
+    <p class="intro">Cinco modelos intercambiables y ocho estados animados. Filtrá una emoción, compará estilos y reiniciá las animaciones antes de elegir la cara del dispositivo.</p>
   </header>
 
   <main>
@@ -185,6 +185,7 @@
       <button type="button" data-state="surprised" aria-pressed="false">Surprised</button>
       <button type="button" data-state="funny" aria-pressed="false">Funny</button>
       <button type="button" data-state="angry" aria-pressed="false">Angry</button>
+      <button type="button" data-state="listening" aria-pressed="false">Listening</button>
       <button type="button" data-state="speaking" aria-pressed="false">Speaking</button>
       <button type="button" id="replay">Reiniciar</button>
       <a class="manual-link" href="https://github.com/aborra1972/pericles/blob/main/USER_MANUAL.md">Manual de uso</a>
@@ -196,7 +197,7 @@
 
   <script>
     const skins = ['pixel', 'expressive', 'windswept', 'knit-beanie', 'backwards-cap'];
-    const states = ['idle', 'happy', 'thinking', 'surprised', 'funny', 'angry', 'speaking'];
+    const states = ['idle', 'happy', 'thinking', 'surprised', 'funny', 'angry', 'listening', 'speaking'];
     const animatedPixelStates = new Set(['happy', 'thinking', 'surprised', 'funny', 'angry']);
     const gallery = document.querySelector('#gallery');
 

@@ -51,6 +51,7 @@ Todos los modelos completos ofrecen estos archivos:
 | Sorprendido | `surprised.svg` | Resultado inesperado. |
 | Gracioso | `funny.svg` | Chiste o comentario travieso. |
 | Enojado | `angry.svg` | Error o frustración controlada. |
+| Escuchando | `listening.svg` | Micrófono abierto durante una sesión. |
 | Hablando | `speaking.svg` | Reproducción de voz mediante TTS. |
 
 El modelo `pixel` también incluye variantes animadas como `happy-anim.svg`. La galería elige esas variantes automáticamente.
@@ -69,7 +70,7 @@ Ejemplo:
 skins/backwards-cap/happy.svg
 ```
 
-Durante la reproducción de voz, cambiá temporalmente a `speaking.svg`. Al finalizar, restaurá el estado que estaba activo antes de hablar.
+Al abrir el micrófono, cambiá a `listening.svg`; el asset muestra la expresión de escucha y el texto **Escuchando**. Durante la reproducción de voz, cambiá temporalmente a `speaking.svg`. Al finalizar, restaurá el estado que estaba activo antes de escuchar o hablar.
 
 ## Solución de problemas
 

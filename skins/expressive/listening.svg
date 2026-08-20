@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <clipPath id="round"><circle cx="120" cy="120" r="118"/></clipPath>
+    <radialGradient id="face" cx="42%" cy="38%"><stop stop-color="#FFE87A"/><stop offset=".65" stop-color="#FFD93D"/><stop offset="1" stop-color="#D4A017"/></radialGradient>
+    <radialGradient id="iris"><stop stop-color="#70D6FF"/><stop offset="1" stop-color="#2471A3"/></radialGradient>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="240" height="240" fill="#000000"/>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0;0,1;0,0" dur="3.8s" repeatCount="indefinite"/>
+      <circle cx="120" cy="108" r="88" fill="url(#face)" stroke="#C49214" stroke-width="2.5"/>
+      <ellipse cx="103" cy="79" rx="37" ry="23" fill="#fff" opacity=".07"/>
+      <ellipse cx="88" cy="104" rx="23" ry="22" fill="#fff" stroke="#333" stroke-width="2"/>
+      <ellipse cx="152" cy="104" rx="23" ry="22" fill="#fff" stroke="#333" stroke-width="2"/>
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0,0;2,0;0,0;-1,0;0,0" dur="3.2s" repeatCount="indefinite"/>
+        <circle cx="88" cy="104" r="12" fill="url(#iris)"/><circle cx="88" cy="104" r="6" fill="#0a0a1a"/><circle cx="84" cy="100" r="3" fill="#fff"/>
+        <circle cx="152" cy="104" r="12" fill="url(#iris)"/><circle cx="152" cy="104" r="6" fill="#0a0a1a"/><circle cx="148" cy="100" r="3" fill="#fff"/>
+      </g>
+      <path d="M66 72 Q88 61 109 70 M131 70 Q152 61 174 72" fill="none" stroke="#7A5C12" stroke-width="5" stroke-linecap="round"/>
+      <path d="M103 147 Q120 150 137 147" fill="none" stroke="#8B4513" stroke-width="3.5" stroke-linecap="round"/>
+      <g id="blink-eyelids">
+        <ellipse cx="88" cy="104" rx="24" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;22;22;0;0" keyTimes="0;.92;.94;.96;.98;1" dur="5.8s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="152" cy="104" rx="24" ry="0" fill="#FFD93D"><animate attributeName="ry" values="0;0;22;22;0;0" keyTimes="0;.92;.94;.96;.98;1" dur="5.8s" begin=".025s" repeatCount="indefinite"/></ellipse>
+      </g>
+    </g>
+    <g fill="none" stroke="#70D6FF" stroke-width="4" stroke-linecap="round">
+      <path d="M39 88 Q22 108 39 128"><animate attributeName="opacity" values=".2;1;.2" dur="1.5s" repeatCount="indefinite"/></path>
+      <path d="M29 76 Q5 108 29 140"><animate attributeName="opacity" values=".15;.75;.15" dur="1.5s" begin=".2s" repeatCount="indefinite"/></path>
+      <path d="M201 88 Q218 108 201 128"><animate attributeName="opacity" values="1;.2;1" dur="1.5s" repeatCount="indefinite"/></path>
+      <path d="M211 76 Q235 108 211 140"><animate attributeName="opacity" values=".75;.15;.75" dur="1.5s" begin=".2s" repeatCount="indefinite"/></path>
+    </g>
+    <rect x="49" y="204" width="142" height="27" rx="13.5" fill="#07131b" stroke="#70D6FF" stroke-width="2"/>
+    <circle cx="65" cy="217.5" r="4" fill="#70D6FF"><animate attributeName="opacity" values=".35;1;.35" dur="1.2s" repeatCount="indefinite"/></circle>
+    <text x="125" y="222" fill="#dff5ff" font-family="system-ui,sans-serif" font-size="15" font-weight="700" text-anchor="middle">Escuchando</text>
+  </g>
+</svg>
