@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 2 In Progress |
-| Active task | `SCAFF-05` |
-| Last completed | `SCAFF-04` |
+| Active task | `SCAFF-07` |
+| Last completed | `SCAFF-06` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -45,7 +45,9 @@
 | SCAFF-02 | PASS | health.ts module; 2 Vitest tests pass; server.ts refactored | pending |
 | SCAFF-03 | PASS | Electron main.ts; index.html; smoke test passes | pending |
 | SCAFF-04 | PASS | ESP-IDF project structure; pericles_core component; sdkconfig.defaults | pending |
+| SCAFF-05 | PASS | Two profile manifests in firmware/profiles/ | pending |
+| SCAFF-06 | PASS | 5 JSON schemas; valid+invalid fixtures; 15 tests pass | pending |
 
 ## Next Action
 
-Execute `SCAFF-05` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
+Execute `SCAFF-07` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).

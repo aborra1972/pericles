@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "device_id": "550e8400-e29b-41d4-a716-446655440000",
+  "state": "invalid_state",
+  "wifi_connected": true,
+  "backend_connected": true,
+  "firmware_version": "1.0.0",
+  "timestamp": "2025-08-20T14:30:00Z"
+}

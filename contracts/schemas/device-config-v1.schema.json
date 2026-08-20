@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pericles.dev/schemas/device-config-v1.json",
+  "title": "Device Configuration",
+  "description": "Configuration for a Pericles device",
+  "type": "object",
+  "required": ["schema_version", "device_id", "hardware_variant"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "hardware_variant": {
+      "type": "string",
+      "enum": ["integrated", "respeaker"]
+    },
+    "personality": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "default": "Pericles" },
+        "sarcasm": { "type": "integer", "minimum": 0, "maximum": 10, "default": 5 },
+        "profanity": { "type": "integer", "minimum": 0, "maximum": 10, "default": 5 },
+        "allowed_topics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "display": {
+      "type": "object",
+      "properties": {
+        "brightness": { "type": "integer", "minimum": 0, "maximum": 255, "default": 128 },
+        "dim_on_idle": { "type": "boolean", "default": true },
+        "sleep_after_seconds": { "type": "integer", "minimum": 0, "default": 300 },
+        "text_size": { "type": "integer", "minimum": 8, "maximum": 32, "default": 16 },
+        "scroll_speed": { "type": "number", "minimum": 0.5, "maximum": 3.0, "default": 1.0 }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "properties": {
+        "volume": { "type": "integer", "minimum": 0, "maximum": 100, "default": 50 },
+        "voice": { "type": "string", "default": "alloy" },
+        "speed": { "type": "number", "minimum": 0.5, "maximum": 2.0, "default": 1.0 },
+        "response_medium": { "type": "string", "enum": ["voice", "text", "both"], "default": "both" }
+      }
+    },
+    "ai_profile": {
+      "type": "string",
+      "enum": ["economico", "equilibrado", "maxima"],
+      "default": "equilibrado"
+    }
+  }
+}

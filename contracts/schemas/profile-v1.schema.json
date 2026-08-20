@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pericles.dev/schemas/profile-v1.json",
+  "title": "User Profile",
+  "description": "A known person's profile on a Pericles device",
+  "type": "object",
+  "required": ["schema_version", "id", "device_id", "name", "is_persistent"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "nickname": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "is_persistent": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

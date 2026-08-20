@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pericles.dev/schemas/status-v1.json",
+  "title": "Device Status",
+  "description": "Current status of a Pericles device",
+  "type": "object",
+  "required": ["schema_version", "device_id", "state", "timestamp"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["idle", "happy", "thinking", "surprised", "funny", "angry", "listening", "speaking"]
+    },
+    "overlay": {
+      "type": ["string", "null"],
+      "enum": ["offline", "actualizando", "error", null]
+    },
+    "battery_level": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "wifi_connected": {
+      "type": "boolean"
+    },
+    "backend_connected": {
+      "type": "boolean"
+    },
+    "firmware_version": {
+      "type": "string"
+    },
+    "xvf3800_version": {
+      "type": ["string", "null"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

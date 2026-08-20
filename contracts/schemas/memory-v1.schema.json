@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pericles.dev/schemas/memory-v1.json",
+  "title": "Memory Entry",
+  "description": "A persistent memory about a person",
+  "type": "object",
+  "required": ["schema_version", "id", "device_id", "profile_id", "content", "category", "importance", "source", "created_at"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "profile_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "category": {
+      "type": "string",
+      "enum": ["preference", "fact", "event", "context", "instruction"]
+    },
+    "importance": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "source": {
+      "type": "string",
+      "enum": ["conversation", "user_correction", "daily_briefing", "system"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "deleted_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  }
+}

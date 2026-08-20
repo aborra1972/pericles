@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pericles.dev/schemas/session-v1.json",
+  "title": "Conversation Session",
+  "description": "A conversation session between a person and Pericles",
+  "type": "object",
+  "required": ["schema_version", "id", "device_id", "profile_id", "started_at"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "device_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "profile_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "message_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "time_of_day": { "type": "string", "enum": ["morning", "afternoon", "evening", "night"] },
+        "weather": { "type": "string" },
+        "recent_memories": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

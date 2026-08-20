@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "id": "770e8400-e29b-41d4-a716-446655440002",
+  "device_id": "550e8400-e29b-41d4-a716-446655440000",
+  "profile_id": "660e8400-e29b-41d4-a716-446655440001",
+  "started_at": "2025-08-20T14:30:00Z",
+  "ended_at": "2025-08-20T15:00:00Z",
+  "message_count": 12,
+  "context": {
+    "time_of_day": "afternoon",
+    "weather": "nublado",
+    "recent_memories": ["mem-1", "mem-2"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "device_id": "550e8400-e29b-41d4-a716-446655440000",
+  "hardware_variant": "respeaker",
+  "personality": {
+    "name": "Pericles",
+    "sarcasm": 7,
+    "profanity": 3,
+    "allowed_topics": ["cocina", "futbol", "musica"]
+  },
+  "display": {
+    "brightness": 200,
+    "dim_on_idle": true,
+    "sleep_after_seconds": 300,
+    "text_size": 16,
+    "scroll_speed": 1.0
+  },
+  "audio": {
+    "volume": 60,
+    "voice": "alloy",
+    "speed": 1.0,
+    "response_medium": "both"
+  },
+  "ai_profile": "equilibrado"
+}
