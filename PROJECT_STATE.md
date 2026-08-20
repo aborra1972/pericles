@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-19` |
-| Last completed | `BE-18` |
+| Active task | `BE-20` |
+| Last completed | `BE-19` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -67,7 +67,8 @@
 | BE-16 | PASS | MemoryQuota with retention and per-person limits; 96 tests total | pending |
 | BE-17 | PASS | AIProvider interface + MockAIProvider; 102 tests total | pending |
 | BE-18 | PASS | OpenAIAdapter with mocked HTTP; 106 tests total | pending |
+| BE-19 | PASS | Quality profiles with backend remapping; 111 tests total | pending |
 
 ## Next Action
 
-Execute `BE-19` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-20` from [`tasks/03-backend.md`](tasks/03-backend.md).
