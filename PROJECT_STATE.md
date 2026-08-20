@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Ready for implementation |
-| Active task | `ADR-08` |
-| Last completed | `ADR-07` |
+| Status | Phase 1 Complete |
+| Active task | None — Phase 1 done, ready for Phase 2 |
+| Last completed | `ADR-08` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -40,7 +40,8 @@
 | ADR-05 | PASS | BLE pairing flow; JWT auth; URI versioning; WebSocket streaming | pending |
 | ADR-06 | PASS | USB-C flash; backup/restore; safe mode; XVF3800 DFU; version mgmt | pending |
 | ADR-07 | PASS | Two profile manifests; capability API; auto-detection; display/audio abstraction | pending |
+| ADR-08 | PASS | Provider adapter; 3 quality profiles; retry strategy; offline fallback | pending |
 
 ## Next Action
 
-Execute `ADR-08` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Phase 1 complete (8 ADRs). Begin Phase 2: Backend Core (TASK-01 through TASK-06) from [`TASKS.md`](TASKS.md).
