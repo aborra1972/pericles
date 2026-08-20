@@ -1,9 +1,9 @@
 # Phase 3 - Online Backend
 
 - [x] **BE-01** Add backend config loading and `/health`; reject missing secrets. Verify focused unit tests.
-- [ ] **BE-02** Write RED tests for expired email codes and owner sessions.
-- [ ] **BE-03** Implement email-code request and delivery abstraction. Verify fake-mail fixture.
-- [ ] **BE-04** Implement code verification and owner session issuance. Verify `BE-02`.
+- [x] **BE-02** Write RED tests for expired email codes and owner sessions.
+- [x] **BE-03** Implement email-code request and delivery abstraction. Verify fake-mail fixture.
+- [x] **BE-04** Implement code verification and owner session issuance. Verify `BE-02`.
 - [ ] **BE-05** Write RED tests for cross-device access and expired device tokens.
 - [ ] **BE-06** Implement device registration and owner assignment. Verify tenant isolation.
 - [ ] **BE-07** Store one encrypted OpenAI key per device. Verify keys never reach logs.

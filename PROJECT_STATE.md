@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-02` |
-| Last completed | `BE-01` |
+| Active task | `BE-05` |
+| Last completed | `BE-04` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -50,7 +50,10 @@
 | SCAFF-07 | PASS | contracts/src/types.ts; 20 tests pass (schemas + round-trip) | pending |
 | SCAFF-08 | PASS | GitHub Actions CI defined locally; PAT lacks `workflow` scope to push | pending |
 | BE-01 | PASS | loadConfig(); ConfigError on missing secrets; 9 tests pass | pending |
+| BE-02 | PASS | RED tests for email codes and owner sessions | pending |
+| BE-03 | PASS | EmailCodeStore with expiration and consumption | pending |
+| BE-04 | PASS | OwnerSessionStore with HMAC tokens; 25 tests total | pending |
 
 ## Next Action
 
-Execute `BE-02` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-05` from [`tasks/03-backend.md`](tasks/03-backend.md).
