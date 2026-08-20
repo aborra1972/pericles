@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 2 Complete |
-| Active task | None — Phase 2 done, ready for Phase 3 |
-| Last completed | `SCAFF-08` |
+| Status | Phase 3 In Progress |
+| Active task | `BE-02` |
+| Last completed | `BE-01` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -49,7 +49,8 @@
 | SCAFF-06 | PASS | 5 JSON schemas; valid+invalid fixtures; 15 tests pass | pending |
 | SCAFF-07 | PASS | contracts/src/types.ts; 20 tests pass (schemas + round-trip) | pending |
 | SCAFF-08 | PASS | GitHub Actions CI defined locally; PAT lacks `workflow` scope to push | pending |
+| BE-01 | PASS | loadConfig(); ConfigError on missing secrets; 9 tests pass | pending |
 
 ## Next Action
 
-Phase 2 complete (8 SCAFF tasks). Begin Phase 3: Backend Core from [`TASKS.md`](TASKS.md).
+Execute `BE-02` from [`tasks/03-backend.md`](tasks/03-backend.md).

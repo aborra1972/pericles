@@ -1,6 +1,8 @@
 import http from 'node:http';
-import { config } from './config.js';
+import { loadConfig } from './config.js';
 import { handleHealth, handleReadiness } from './health.js';
+
+const config = loadConfig();
 
 const server = http.createServer((req, res) => {
   if (req.url === '/health') {

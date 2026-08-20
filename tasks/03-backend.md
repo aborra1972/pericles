@@ -1,6 +1,6 @@
 # Phase 3 - Online Backend
 
-- [ ] **BE-01** Add backend config loading and `/health`; reject missing secrets. Verify focused unit tests.
+- [x] **BE-01** Add backend config loading and `/health`; reject missing secrets. Verify focused unit tests.
 - [ ] **BE-02** Write RED tests for expired email codes and owner sessions.
 - [ ] **BE-03** Implement email-code request and delivery abstraction. Verify fake-mail fixture.
 - [ ] **BE-04** Implement code verification and owner session issuance. Verify `BE-02`.
