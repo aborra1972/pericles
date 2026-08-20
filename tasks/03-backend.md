@@ -14,7 +14,7 @@
 - [x] **BE-12** Implement owner-only profile export and delete. Verify forbidden non-owner calls.
 - [x] **BE-13** Implement canonical Markdown memory repository. Verify deterministic read/write.
 - [x] **BE-14** Add memory metadata schema and migrations. Verify upgrade from v1 fixture.
-- [ ] **BE-15** Add FTS index updates and ranked retrieval. Verify query fixtures.
+- [x] **BE-15** Add FTS index updates and ranked retrieval. Verify query fixtures.
 - [ ] **BE-16** Add configurable retention and quota enforcement. Verify boundary cases.
 - [ ] **BE-17** Define AI provider interface and deterministic mock. Verify provider contract.
 - [ ] **BE-18** Implement OpenAI adapter behind the interface. Verify mocked HTTP responses.
