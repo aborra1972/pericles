@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-16` |
-| Last completed | `BE-15` |
+| Active task | `BE-17` |
+| Last completed | `BE-16` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -64,7 +64,8 @@
 | BE-13 | PASS | MarkdownMemoryRepo with frontmatter; 77 tests total | pending |
 | BE-14 | PASS | Memory schema v0→v1 migration; 82 tests total | pending |
 | BE-15 | PASS | MemorySearchIndex with ranked retrieval; 90 tests total | pending |
+| BE-16 | PASS | MemoryQuota with retention and per-person limits; 96 tests total | pending |
 
 ## Next Action
 
-Execute `BE-16` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-17` from [`tasks/03-backend.md`](tasks/03-backend.md).
