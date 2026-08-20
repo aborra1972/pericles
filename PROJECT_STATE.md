@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 2 In Progress |
-| Active task | `SCAFF-02` |
-| Last completed | `SCAFF-01` |
+| Active task | `SCAFF-03` |
+| Last completed | `SCAFF-02` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -42,7 +42,8 @@
 | ADR-07 | PASS | Two profile manifests; capability API; auto-detection; display/audio abstraction | pending |
 | ADR-08 | PASS | Provider adapter; 3 quality profiles; retry strategy; offline fallback | pending |
 | SCAFF-01 | PASS | npm workspaces; .editorconfig; build/test scripts; backend builds | pending |
+| SCAFF-02 | PASS | health.ts module; 2 Vitest tests pass; server.ts refactored | pending |
 
 ## Next Action
 
-Execute `SCAFF-02` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
+Execute `SCAFF-03` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
