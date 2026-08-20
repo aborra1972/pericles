@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Ready for implementation |
-| Active task | `ADR-05` |
-| Last completed | `ADR-04` |
+| Active task | `ADR-06` |
+| Last completed | `ADR-05` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -37,7 +37,8 @@
 | ADR-02 | PASS | Backend build OK; Configurator build OK; Firmware structure OK | pending |
 | ADR-03 | PASS | Health endpoints respond; config fail-fast verified; .env.example created | pending |
 | ADR-04 | PASS | Schema defined; retrieval strategy documented; retention/deletion/export covered | pending |
+| ADR-05 | PASS | BLE pairing flow; JWT auth; URI versioning; WebSocket streaming | pending |
 
 ## Next Action
 
-Execute `ADR-05` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-06` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
