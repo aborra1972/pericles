@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 2 In Progress |
-| Active task | `SCAFF-08` |
-| Last completed | `SCAFF-07` |
+| Status | Phase 2 Complete |
+| Active task | None — Phase 2 done, ready for Phase 3 |
+| Last completed | `SCAFF-08` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -48,7 +48,8 @@
 | SCAFF-05 | PASS | Two profile manifests in firmware/profiles/ | pending |
 | SCAFF-06 | PASS | 5 JSON schemas; valid+invalid fixtures; 15 tests pass | pending |
 | SCAFF-07 | PASS | contracts/src/types.ts; 20 tests pass (schemas + round-trip) | pending |
+| SCAFF-08 | PASS | GitHub Actions CI: contracts, backend, configurator workflows | pending |
 
 ## Next Action
 
-Execute `SCAFF-08` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
+Phase 2 complete (8 SCAFF tasks). Begin Phase 3: Backend Core from [`TASKS.md`](TASKS.md).
