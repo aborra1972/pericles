@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Ready for implementation |
-| Active task | `ADR-04` |
-| Last completed | `ADR-03` |
+| Active task | `ADR-05` |
+| Last completed | `ADR-04` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -36,7 +36,8 @@
 | ADR-01 | PASS | 10 directories checked; links valid | pending |
 | ADR-02 | PASS | Backend build OK; Configurator build OK; Firmware structure OK | pending |
 | ADR-03 | PASS | Health endpoints respond; config fail-fast verified; .env.example created | pending |
+| ADR-04 | PASS | Schema defined; retrieval strategy documented; retention/deletion/export covered | pending |
 
 ## Next Action
 
-Execute `ADR-04` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
+Execute `ADR-05` from [`tasks/01-architecture.md`](tasks/01-architecture.md).
