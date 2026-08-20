@@ -96,13 +96,47 @@ Después abrí `http://localhost:8000/demo/`. El [manual de usuario](USER_MANUAL
 
 ### Stack
 
-| Capa | Tecnologías |
-|------|-------------|
-| Firmware | ESP-IDF v5.4 · C · LVGL |
-| Configurator | Electron · React · TypeScript |
-| Backend | Node.js · Express · PostgreSQL · Redis |
-| AI | OpenAI Whisper (STT) + GPT-4o/4o-mini (chat) |
-| Build | npm workspaces · Vitest · ESP-IDF CMake |
+| Capa | Tecnologías | Versión |
+|------|-------------|---------|
+| **Firmware** | ESP-IDF · C · LVGL | v5.4 |
+| **Display** | GC9A01 round 240×240 | SPI |
+| **Audio** | I2S (INMP441 · MAX98357) | Native |
+| **ReSpeaker** | XVF3800 (4-mic, AEC, VAD, DoA) | I2S + I2C |
+| **Backend** | Node.js · Express · TypeScript | v24+ |
+| **Database** | PostgreSQL · Redis | — |
+| **Memory** | Markdown + PostgreSQL | ADR-004 |
+| **Auth** | JWT · BLE | ADR-005 |
+| **Configurator** | Electron · React · TypeScript | ES2022 |
+| **AI** | OpenAI Whisper + GPT-4o/4o-mini | API |
+| **Build** | npm workspaces · CMake · Ninja | — |
+| **Testing** | Vitest | v3.2 |
+| **CI/CD** | GitHub Actions | — |
+
+#### Dependencias principales
+
+**Backend** (`package.json`):
+- `express` — HTTP server
+- `pg` — PostgreSQL client
+- `ioredis` — Redis client
+- `jsonwebtoken` — JWT auth
+- `openai` — OpenAI SDK
+- `marked` — Markdown parsing
+- `vitest` — testing
+
+**Configurator** (`package.json`):
+- `electron` — desktop shell
+- `react` — UI framework
+- `react-dom` — DOM rendering
+- `esbuild` — bundler
+- `electron-builder` — packaging
+- `vitest` — testing
+
+**Firmware** (`CMakeLists.txt`):
+- `espressif__lvgl` — display library
+- `espressif__cjson` — JSON parsing
+- `driver` — I2S, I2C, SPI
+- `esp_wifi` — WiFi connectivity
+- `nvs_flash` — persistent storage
 
 ## Personalidad
 
@@ -149,13 +183,14 @@ La API devuelve `mood` + `text`, y el ESP32:
 - [x] Detectar y configurar ESP32-S3 en Linux
 - [x] npm workspaces + build scripts + CI/CD
 - [x] Backend online (Railway) con memoria Markdown+PG
-- [x] Configurador Linux (Electron + React)
+- [x] Configurador Linux (Electron + React) — rutas y tests
 - [x] Firmware ESP-IDF v5.4 completo (30 módulos)
 - [x] Drivers hardware (ReSpeaker XVF3800, I2S, I2C, codec, LEDs)
 - [x] 5 skins animadas con 8 estados cada una
 - [x] Auth (JWT + BLE) + perfiles por persona
-- [x] 447 tests (Backend + Configurator + Contracts + Acceptance)
-- [ ] Fase 7: Integración y aceptación (14/15 tasks ✅)
+- [x] 597+ tests (Backend + Configurator + Contracts + Acceptance)
+- [x] Phase 7: Integración y aceptación (15/15 tasks ✅)
+- [ ] Configurador UI completa (pendiente para MVP funcional)
 
 ## Desarrollo
 
