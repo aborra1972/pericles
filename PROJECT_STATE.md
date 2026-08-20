@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-08` |
-| Last completed | `BE-07` |
+| Active task | `BE-09` |
+| Last completed | `BE-08` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -56,7 +56,8 @@
 | BE-05 | PASS | RED tests for device tokens and cross-device access | pending |
 | BE-06 | PASS | DeviceTokenStore with cross-device prevention; 33 tests total | pending |
 | BE-07 | PASS | ApiKeyStore with AES-256-CBC encryption; 40 tests total | pending |
+| BE-08 | PASS | ScopedTokenStore with scope enforcement; 48 tests total | pending |
 
 ## Next Action
 
-Execute `BE-08` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-09` from [`tasks/03-backend.md`](tasks/03-backend.md).
