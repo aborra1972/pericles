@@ -6,7 +6,7 @@
 - [x] **GUI-04** Match N16R8 and ReSpeaker hardware manifests. Verify `GUI-02`.
 - [x] **GUI-05** Implement owner email-code login. Verify expired and invalid code states.
 - [x] **GUI-06** Implement bind, relink, and logout flows. Verify physical-confirmation fixture.
-- [ ] **GUI-07** Build personality and session settings panel. Verify schema round trip.
+- [x] **GUI-07** Build personality and session settings panel. Verify schema round trip.
 - [ ] **GUI-08** Build voice and display settings with voice preview. Verify persistence.
 - [ ] **GUI-09** Build memory, retention, and summary settings panel. Verify category toggles.
 - [ ] **GUI-10** List, preview, and push skins. Verify five skins and eight states.
