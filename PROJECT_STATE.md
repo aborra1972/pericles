@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-16` |
-| Last completed | `GUI-15` |
+| Active task | `GUI-17` |
+| Last completed | `GUI-16` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -92,7 +92,8 @@
 | GUI-13 | PASS | WiFi, BLE, OpenAI, XVF3800 diagnostics; 58 configurator tests total | pending |
 | GUI-14 | PASS | ConfigBackup with checksum and clone; 66 configurator tests total | pending |
 | GUI-15 | PASS | FactoryReset with double confirmation; 73 configurator tests total | pending |
+| GUI-16 | PASS | FirmwareFlash with error handling; 79 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-16` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-17` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
