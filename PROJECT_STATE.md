@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-20` |
-| Last completed | `GUI-19` |
+| Active task | — |
+| Last completed | `GUI-20` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -96,7 +96,8 @@
 | GUI-17 | PASS | EspFlashWorkflow with backup/flash/verify/reboot; 93 configurator tests total | pending |
 | GUI-18 | PASS | XvfDfu with I2C DFU flow; 100 configurator tests total | pending |
 | GUI-19 | PASS | RecoveryScreen with ESP32/XVF3800 flows and Safe Mode; 107 configurator tests total | pending |
+| GUI-20 | PASS | AppImageBuilder with smoke test and manifest; 113 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-20` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Phase 4 complete. All 20 GUI tasks done. 113 configurator tests passing.
