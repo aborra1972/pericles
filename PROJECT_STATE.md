@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-18` |
-| Last completed | `GUI-17` |
+| Active task | `GUI-19` |
+| Last completed | `GUI-18` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -94,7 +94,8 @@
 | GUI-15 | PASS | FactoryReset with double confirmation; 73 configurator tests total | pending |
 | GUI-16 | PASS | FirmwareFlash with error handling; 79 configurator tests total | pending |
 | GUI-17 | PASS | EspFlashWorkflow with backup/flash/verify/reboot; 93 configurator tests total | pending |
+| GUI-18 | PASS | XvfDfu with I2C DFU flow; 100 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-18` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-19` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).

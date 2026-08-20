@@ -17,6 +17,6 @@
 - [x] **GUI-15** Implement guarded factory reset. Verify double confirmation.
 - [x] **GUI-16** Write RED tests for invalid image, interrupted flash, and profile mismatch.
 - [x] **GUI-17** Implement ESP32 backup, flash progress, verification, and reboot. Verify `GUI-16`.
-- [ ] **GUI-18** Implement XVF3800 I2C DFU flow. Verify simulated success and failure.
+- [x] **GUI-18** Implement XVF3800 I2C DFU flow. Verify simulated success and failure.
 - [ ] **GUI-19** Add guided ESP32 and XVF3800 recovery screens. Verify Safe Mode path.
 - [ ] **GUI-20** Build versioned AppImage and run clean-machine smoke test.
