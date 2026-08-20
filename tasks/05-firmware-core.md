@@ -1,6 +1,6 @@
 # Phase 5 - Shared ESP-IDF Firmware
 
-- [ ] **FW-01** Load and validate hardware/config manifests in `firmware/components/pericles_core/`. Verify host tests.
+- [x] **FW-01** Load and validate hardware/config manifests in `firmware/components/pericles_core/`. Verify host tests.
 - [ ] **FW-02** Write RED tests for debounce, session start/stop, and timeout.
 - [ ] **FW-03** Implement action, volume, mute, and power button FSM. Verify `FW-02`.
 - [ ] **FW-04** Initialize GC9A01 and backlight controls. Verify color-bar harness.

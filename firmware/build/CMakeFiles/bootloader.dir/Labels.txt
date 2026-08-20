@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/CMakeFiles/bootloader
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/CMakeFiles/bootloader.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/CMakeFiles/bootloader-complete.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/media/ale/Windows/Users/aleja/Documents/Proyectos/pericles/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
