@@ -12,7 +12,7 @@
 - [x] **BE-10** Implement person profiles, consent, and guest sessions. Verify guest writes nothing.
 - [x] **BE-11** Implement nickname disambiguation. Verify duplicate-name fixture.
 - [x] **BE-12** Implement owner-only profile export and delete. Verify forbidden non-owner calls.
-- [ ] **BE-13** Implement canonical Markdown memory repository. Verify deterministic read/write.
+- [x] **BE-13** Implement canonical Markdown memory repository. Verify deterministic read/write.
 - [ ] **BE-14** Add memory metadata schema and migrations. Verify upgrade from v1 fixture.
 - [ ] **BE-15** Add FTS index updates and ranked retrieval. Verify query fixtures.
 - [ ] **BE-16** Add configurable retention and quota enforcement. Verify boundary cases.
