@@ -22,8 +22,8 @@
 - [x] **BE-20** Implement conversation create/end endpoints. Verify timeout and explicit close.
 - [x] **BE-21** Load daily context and relevant memories for one person. Verify isolation.
 - [x] **BE-22** Stream text response and enforce configured duration. Verify interrupted client.
-- [ ] **BE-23** Write RED test proving source audio deletion after transcription.
-- [ ] **BE-24** Implement ephemeral transcription pipeline. Verify `BE-23` and failure cleanup.
+- [x] **BE-23** Write RED test proving source audio deletion after transcription.
+- [x] **BE-24** Implement ephemeral transcription pipeline. Verify `BE-23` and failure cleanup.
 - [ ] **BE-25** Implement configurable daily-summary orchestration. Verify category toggles.
 - [ ] **BE-26** Add Google Calendar OAuth adapter behind a fake. Verify token refresh.
 - [ ] **BE-27** Add weather, news, and Boca source adapters behind fakes. Verify partial failure.
