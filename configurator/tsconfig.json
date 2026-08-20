@@ -7,7 +7,7 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "commonjs",
+    "module": "es2022",
     "target": "es2022",
     "types": ["node"],
     // For nodejs:
@@ -42,5 +42,6 @@
     "skipLibCheck": true,
 
     "esModuleInterop": true,
-  }
+  },
+  "exclude": ["tests", "dist"]
 }

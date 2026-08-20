@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 4 In Progress |
-| Active task | — |
-| Last completed | `GUI-20` |
+| Status | Phase 7 Complete |
+| Active task | All INT tasks done |
+| Last completed | `INT-15` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -103,4 +103,4 @@
 
 ## Next Action
 
-Phase 5 complete (firmware skeleton). Phase 6 (Hardware Profiles) or Phase 7 (Integration & Acceptance) next.
+Phase 7 in progress — INT-01 complete (acceptance test README + fixtures). INT-02 (onboarding timing) next.

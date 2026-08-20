@@ -2,6 +2,10 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stddef.h>
+
+// Common XVF3800 types
+#include "xvf3800_common.h"
 
 typedef enum {
     PERICLES_OK = 0,
@@ -161,3 +165,21 @@ pericles_err_t ble_start_advertising(ble_handle_t *ble);
 pericles_err_t ble_on_connected(ble_handle_t *ble);
 pericles_err_t ble_on_pairing_complete(ble_handle_t *ble, bool success);
 pericles_err_t ble_stop(ble_handle_t *ble);
+
+// === XVF3800 I2S ===
+#include "xvf3800_i2s.h"
+
+// === XVF3800 I2C ===
+#include "xvf3800_i2c.h"
+
+// === XVF3800 Diagnostics ===
+#include "xvf3800_diag.h"
+
+// === Peripherals ===
+#include "peripherals.h"
+
+// === XVF3800 DFU ===
+#include "xvf3800_dfu.h"
+
+// === Smoke Test ===
+#include "smoke_test.h"

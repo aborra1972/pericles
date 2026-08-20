@@ -45,55 +45,64 @@ Después abrí `http://localhost:8000/demo/`. El [manual de usuario](USER_MANUAL
 
 ## Hardware
 
+### Variante N16R8 (integrada)
+
 | Componente | Estado |
 |------------|--------|
-| ESP32-S3 | ✅ Conectado (`1a86:55d3` CH343) |
-| Pantalla redonda | ⏳ Pendiente (GC9A01 o similar) |
-| Micrófono I2S | ⏳ Pendiente |
+| ESP32-S3 N16R8 | ✅ Detectado (`1a86:55d3` CH343) |
+| Pantalla GC9A01 240×240 | ✅ Driver implementado |
+| Micrófono INMP441 I2S | ✅ Driver implementado |
+| Speaker MAX98357 I2S | ✅ Driver implementado |
+| Action button (GPIO 9) | ✅ Implementado |
 | WiFi | ✅ Built-in |
-| Bluetooth | ✅ Built-in (no utilizado — WiFi directo a la nube) |
+
+### Variante ReSpeaker + XIAO
+
+| Componente | Estado |
+|------------|--------|
+| ReSpeaker XVF3800 (4 mics, AEC, AGC) | ✅ Drivers I2S + I2C |
+| XIAO ESP32-S3R8 (8MB flash, 8MB PSRAM) | ✅ sdkconfig defaults |
+| WS2812 LEDs | ✅ Control implementado |
+| TLV320AIC3104 Codec | ✅ Driver implementado |
+| Mute button (hardware) | ✅ Implementado |
+| WiFi | ✅ Built-in |
 
 ## Arquitectura
 
 ```
-┌──────────────────────────────────────────┐
-│              ESP32-S3                     │
-│                                           │
-│   🎤 Micrófono (I2S)                     │
-│      ↓                                    │
-│   Audio → Whisper API (transcripción)    │
-│      ↓                                    │
-│   Texto → GPT-4o / GPT-4o-mini          │
-│      ↓                                    │
-│   Respuesta + Mood → Pantalla            │
-│                                           │
-│   ┌──────────────────────────────┐        │
-│   │  🟢 Pantalla Redonda (240px) │        │
-│   │                              │        │
-│   │   Cara de Pericles           │        │
-│   │   Estado de ánimo animado    │        │
-│   │   Texto scrollando           │        │
-│   │                              │        │
-│   └──────────────────────────────┘        │
-└──────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│                    Linux Configurator                       │
+│  (Electron + React)                                        │
+│  Profiles · Diagnostics · Settings · Update                │
+└────────────────────────────────────────────────────────────┘
+                           │
+                     HTTPS + REST + WebSocket + JWT + BLE
+                           │
+┌────────────────────────────────────────────────────────────┐
+│                    Backend (Railway)                         │
+│  Node.js + Express + PostgreSQL + Redis                     │
+│  Memory (Markdown+PG) · AI Providers · Auth · OTA          │
+└────────────────────────────────────────────────────────────┘
+                           │
+                        WiFi directo
+                           │
+┌────────────────────────────────────────────────────────────┐
+│                    ESP32-S3 Firmware                         │
+│  N16R8 (integrada) · ReSpeaker + XIAO (8MB/8MB)            │
+│  Audio Capture → Whisper API → GPT-4o → Display            │
+│  Skins (5) · States (8) · Buttons · LEDs                   │
+└────────────────────────────────────────────────────────────┘
 ```
 
-### Decisión de arquitectura: Cloud-first
+### Stack
 
-Se evaluó procesamiento local vs nube. **Cloud gana** por:
-
-- **El ESP32-S3 no tiene potencia** para inferencia de LLM local
-- **La latencia WiFi es bajísima** (~20-50ms a la API)
-- **No se necesita intermediario** — conexión directa WiFi → OpenAI API
-- **Bluetooth descartado** — bandwidth limitado, OpenAI no habla BT
-
-## Stack
-
-- **Firmware:** Arduino core para ESP32-S3 (o ESP-IDF)
-- **Pantalla:** TFT_eSPI / LovyanGFX
-- **Audio:** driver I2S nativo
-- **APIs:** OpenAI Whisper (STT) + GPT-4o/4o-mini (chat)
-- **HTTPS:** ESP32 HTTPSClient
+| Capa | Tecnologías |
+|------|-------------|
+| Firmware | ESP-IDF v5.4 · C · LVGL |
+| Configurator | Electron · React · TypeScript |
+| Backend | Node.js · Express · PostgreSQL · Redis |
+| AI | OpenAI Whisper (STT) + GPT-4o/4o-mini (chat) |
+| Build | npm workspaces · Vitest · ESP-IDF CMake |
 
 ## Personalidad
 
@@ -136,32 +145,58 @@ La API devuelve `mood` + `text`, y el ESP32:
 
 ## Roadmap
 
-- [x] Crear repo y definir arquitectura
+- [x] Crear repo y definir arquitectura (ADR-001–008)
 - [x] Detectar y configurar ESP32-S3 en Linux
-- [ ] Levantar pantalla redonda y mostrar algo
-- [ ] Conexión WiFi + primera llamada a la API
-- [ ] Micrófono I2S + Whisper API
-- [x] Cinco caras animadas con sprites por mood
-- [ ] Streaming de respuestas (texto letra por letra)
-- [x] Definir la personalidad canónica
-- [ ] Carcaza / housing impreso en 3D
+- [x] npm workspaces + build scripts + CI/CD
+- [x] Backend online (Railway) con memoria Markdown+PG
+- [x] Configurador Linux (Electron + React)
+- [x] Firmware ESP-IDF v5.4 completo (30 módulos)
+- [x] Drivers hardware (ReSpeaker XVF3800, I2S, I2C, codec, LEDs)
+- [x] 5 skins animadas con 8 estados cada una
+- [x] Auth (JWT + BLE) + perfiles por persona
+- [x] 447 tests (Backend + Configurator + Contracts + Acceptance)
+- [ ] Fase 7: Integración y aceptación (14/15 tasks ✅)
 
 ## Desarrollo
 
 ### Prerequisitos
 
-- Arduino IDE 2.x o PlatformIO
-- Chrome o Edge (para ESPConnect / Web Serial)
-- API key de OpenAI
+- Node.js v24+ (o v20 LTS)
+- Python 3.12+ (para ESP-IDF)
+- ESP-IDF v5.4
+- Git
 
-### Flash
+### Instalación rápida
 
 ```bash
-# Por ESPConnect (navegador):
-# Abrir https://thelastoutpostworkshop.github.io/ESPConnect/ en Chrome
+git clone https://github.com/aborra1972/pericles.git
+cd pericles
+npm install
+npm run build
+npm test                # ejecuta los 447 tests
+```
 
-# Por PlatformIO:
-pio run -t upload
+### Desarrollo
+
+```bash
+# Backend
+npm run dev --workspace=backend
+
+# Configurador
+npm run dev --workspace=configurator
+
+# Firmware (necesita ESP-IDF)
+cd firmware
+idf.py set-target esp32s3
+idf.py build flash monitor
+```
+
+### Tests
+
+```bash
+npm test                # todos los tests
+npm test --workspace=backend
+npm test --workspace=configurator
 ```
 
 ### Permisos Linux

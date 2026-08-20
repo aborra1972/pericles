@@ -1,0 +1,8 @@
+{
+  "name": "simulated_100ms",
+  "description": "Simulated 100ms latency (typical home network)",
+  "latency_ms": 100,
+  "jitter_ms": 20,
+  "packet_loss_percent": 0.1,
+  "bandwidth_mbps": 50
+}

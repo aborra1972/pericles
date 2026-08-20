@@ -2,3 +2,10 @@ node_modules/
 dist/
 *.js.map
 *.d.ts.map
+firmware/build/
+*.bin
+*.elf
+*.d.ts
+*.js
+!vitest.config.ts
+!.eslintrc.js
