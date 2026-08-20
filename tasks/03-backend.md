@@ -16,7 +16,7 @@
 - [x] **BE-14** Add memory metadata schema and migrations. Verify upgrade from v1 fixture.
 - [x] **BE-15** Add FTS index updates and ranked retrieval. Verify query fixtures.
 - [x] **BE-16** Add configurable retention and quota enforcement. Verify boundary cases.
-- [ ] **BE-17** Define AI provider interface and deterministic mock. Verify provider contract.
+- [x] **BE-17** Define AI provider interface and deterministic mock. Verify provider contract.
 - [ ] **BE-18** Implement OpenAI adapter behind the interface. Verify mocked HTTP responses.
 - [ ] **BE-19** Map Economic, Balanced, and Maximum quality profiles. Verify backend remapping.
 - [ ] **BE-20** Implement conversation create/end endpoints. Verify timeout and explicit close.

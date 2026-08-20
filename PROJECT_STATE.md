@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-17` |
-| Last completed | `BE-16` |
+| Active task | `BE-18` |
+| Last completed | `BE-17` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -65,7 +65,8 @@
 | BE-14 | PASS | Memory schema v0→v1 migration; 82 tests total | pending |
 | BE-15 | PASS | MemorySearchIndex with ranked retrieval; 90 tests total | pending |
 | BE-16 | PASS | MemoryQuota with retention and per-person limits; 96 tests total | pending |
+| BE-17 | PASS | AIProvider interface + MockAIProvider; 102 tests total | pending |
 
 ## Next Action
 
-Execute `BE-17` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-18` from [`tasks/03-backend.md`](tasks/03-backend.md).
