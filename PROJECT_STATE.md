@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 4 In Progress |
-| Active task | `GUI-13` |
-| Last completed | `GUI-12` |
+| Active task | `GUI-14` |
+| Last completed | `GUI-13` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -89,7 +89,8 @@
 | GUI-10 | PASS | SkinManager with 5 skins and 8 states; 46 configurator tests total | pending |
 | GUI-11 | PASS | DiagnosticRunner with pass/fail/timeout; 52 configurator tests total | pending |
 | GUI-12 | PASS | Mic, speaker, display, button diagnostics mocked | pending |
+| GUI-13 | PASS | WiFi, BLE, OpenAI, XVF3800 diagnostics; 58 configurator tests total | pending |
 
 ## Next Action
 
-Execute `GUI-13` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).
+Execute `GUI-14` from [`tasks/04-linux-app.md`](tasks/04-linux-app.md).

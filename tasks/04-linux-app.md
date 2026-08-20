@@ -12,7 +12,7 @@
 - [x] **GUI-10** List, preview, and push skins. Verify five skins and eight states.
 - [x] **GUI-11** Build reusable diagnostic result component. Verify pass/fail/timeout states.
 - [x] **GUI-12** Add mic, speaker, display, and button diagnostics. Verify mocked devices.
-- [ ] **GUI-13** Add WiFi, BLE, OpenAI, and XVF3800 diagnostics. Verify mocked services.
+- [x] **GUI-13** Add WiFi, BLE, OpenAI, and XVF3800 diagnostics. Verify mocked services.
 - [ ] **GUI-14** Implement config backup, restore, and clone. Verify checksum failure.
 - [ ] **GUI-15** Implement guarded factory reset. Verify double confirmation.
 - [ ] **GUI-16** Write RED tests for invalid image, interrupted flash, and profile mismatch.
