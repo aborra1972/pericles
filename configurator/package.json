@@ -1,19 +1,21 @@
 {
-  "name": "configurator",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
+  "name": "@pericles/configurator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "electron src/main.ts",
+    "start": "electron dist/main.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
   },
-  "keywords": [],
-  "type": "commonjs",
   "devDependencies": {
     "@types/node": "^26.2.0",
     "electron": "^43.4.1",
-    "typescript": "^7.0.2"
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^3.2.0"
   }
 }

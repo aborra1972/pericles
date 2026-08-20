@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 1 Complete |
-| Active task | None — Phase 1 done, ready for Phase 2 |
-| Last completed | `ADR-08` |
+| Status | Phase 2 In Progress |
+| Active task | `SCAFF-02` |
+| Last completed | `SCAFF-01` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -41,7 +41,8 @@
 | ADR-06 | PASS | USB-C flash; backup/restore; safe mode; XVF3800 DFU; version mgmt | pending |
 | ADR-07 | PASS | Two profile manifests; capability API; auto-detection; display/audio abstraction | pending |
 | ADR-08 | PASS | Provider adapter; 3 quality profiles; retry strategy; offline fallback | pending |
+| SCAFF-01 | PASS | npm workspaces; .editorconfig; build/test scripts; backend builds | pending |
 
 ## Next Action
 
-Phase 1 complete (8 ADRs). Begin Phase 2: Backend Core (TASK-01 through TASK-06) from [`TASKS.md`](TASKS.md).
+Execute `SCAFF-02` from [`tasks/02-scaffold-contracts.md`](tasks/02-scaffold-contracts.md).
