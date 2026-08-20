@@ -20,7 +20,7 @@
 - [x] **BE-18** Implement OpenAI adapter behind the interface. Verify mocked HTTP responses.
 - [x] **BE-19** Map Economic, Balanced, and Maximum quality profiles. Verify backend remapping.
 - [x] **BE-20** Implement conversation create/end endpoints. Verify timeout and explicit close.
-- [ ] **BE-21** Load daily context and relevant memories for one person. Verify isolation.
+- [x] **BE-21** Load daily context and relevant memories for one person. Verify isolation.
 - [ ] **BE-22** Stream text response and enforce configured duration. Verify interrupted client.
 - [ ] **BE-23** Write RED test proving source audio deletion after transcription.
 - [ ] **BE-24** Implement ephemeral transcription pipeline. Verify `BE-23` and failure cleanup.

@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 3 In Progress |
-| Active task | `BE-21` |
-| Last completed | `BE-20` |
+| Active task | `BE-22` |
+| Last completed | `BE-21` |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -69,7 +69,8 @@
 | BE-18 | PASS | OpenAIAdapter with mocked HTTP; 106 tests total | pending |
 | BE-19 | PASS | Quality profiles with backend remapping; 111 tests total | pending |
 | BE-20 | PASS | ConversationManager with timeout and explicit close; 118 tests total | pending |
+| BE-21 | PASS | ContextLoader with person isolation and search; 123 tests total | pending |
 
 ## Next Action
 
-Execute `BE-21` from [`tasks/03-backend.md`](tasks/03-backend.md).
+Execute `BE-22` from [`tasks/03-backend.md`](tasks/03-backend.md).
