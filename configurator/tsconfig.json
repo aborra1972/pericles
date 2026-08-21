@@ -43,5 +43,5 @@
 
     "esModuleInterop": true,
   },
-  "exclude": ["tests", "dist"]
+  "exclude": ["tests", "dist", "vitest.config.ts"]
 }

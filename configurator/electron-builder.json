@@ -1,0 +1,22 @@
+{
+  "appId": "com.pericles.configurator",
+  "productName": "Pericles Configurator",
+  "artifactName": "pericles-configurator-${version}-${arch}.${ext}",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "index.html",
+    "package.json"
+  ],
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Utility",
+    "executableName": "pericles-configurator",
+    "icon": "icons"
+  },
+  "deb": {
+    "depends": ["libgtk-3-0", "libnotify4", "libnss3", "libxss1", "libxtst6", "xdg-utils", "libatspi2.0-0", "libuuid1", "libsecret-1-0"]
+  }
+}

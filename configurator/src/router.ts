@@ -44,7 +44,7 @@ export class ShellRouter {
   back(): void {
     if (this.history.length > 1) {
       this.history.pop();
-      this.current = this.history[this.history.length - 1];
+      this.current = this.history[this.history.length - 1]!;
     }
   }
 }

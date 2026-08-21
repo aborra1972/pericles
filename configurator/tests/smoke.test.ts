@@ -15,6 +15,7 @@ describe('configurator', () => {
 
     const html = fs.readFileSync(htmlPath, 'utf-8');
     expect(html).toContain('Pericles');
-    expect(html).toContain('USB-C');
+    expect(html).toContain('dist/renderer.js');
+    expect(html).not.toContain('onclick=');
   });
 });

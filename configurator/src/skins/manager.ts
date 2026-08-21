@@ -44,7 +44,7 @@ export class SkinManager {
   }
 
   getDefault(): Skin {
-    return this.skins.find((s) => s.isDefault) ?? this.skins[0];
+    return this.skins.find((s) => s.isDefault) ?? this.skins[0]!;
   }
 
   preview(skinName: string, state: SkinState): { svg: string } | null {

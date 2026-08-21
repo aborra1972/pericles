@@ -1,11 +1,20 @@
 {
   "name": "@pericles/configurator",
   "version": "0.1.0",
+  "description": "Desktop configurator for the Pericles assistant",
+  "author": {
+    "name": "Pericles",
+    "email": "maintainers@pericles.local"
+  },
+  "homepage": "https://github.com/aborra1972/pericles",
+  "desktopName": "com.pericles.configurator",
   "private": true,
   "type": "module",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "dev": "electron src/main.ts",
+    "build:linux": "npm run build && electron-builder --linux --config electron-builder.json",
+    "dev": "npm run build && electron dist/main.js",
     "start": "electron dist/main.js",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -14,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^26.2.0",
     "electron": "^43.4.1",
+    "electron-builder": "^26.15.3",
     "tsx": "^4.23.0",
     "typescript": "^7.0.2",
     "vitest": "^3.2.0"
