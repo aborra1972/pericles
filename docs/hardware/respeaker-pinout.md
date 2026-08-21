@@ -1,5 +1,20 @@
 # HW-B1: ReSpeaker/XIAO Hardware Reference
 
+> ⚠️ **CORRECTED 2026-08-21**: The original pin tables below were written without
+> hardware contact and are WRONG for I2C/I2S (they used nonexistent ESP32-S3 pins).
+> Verified mappings from Seeed Studio wiki + confirmed by on-device bus scan:
+>
+> | Interface | Verified mapping |
+> |-----------|------------------|
+> | I2C (XVF3800 control + AIC3104) | **SDA=GPIO5, SCL=GPIO6**, XMOS addr **0x2C**, TLV320AIC3104 addr **0x18** |
+> | I2S audio | **BCLK=GPIO8, WS=GPIO7, DIN(XIAO←XVF)=GPIO43, DOUT(XIAO→XVF)=GPIO44** |
+> | Buttons/mute LED/amp/WS2812 power | Routed through XMOS GPO/GPI servicer (GPO30=mic mute+LED, GPO31=amp enable active-low, GPO33=WS2812 rail; GPI X1D09=mute button) |
+>
+> Source: https://wiki.seeedstudio.com/respeaker_xvf3800_agora_convo_client/
+> Evidence: `Bus scan: 2 device(s) ACK: 0x18 0x2C` on SDA=GPIO5/SCL=GPIO6 @400kHz.
+> The tables below are kept for the display/WS2812 wiring sections only where not
+> contradicted; treat any ESP32-S3 pin ≥22 as invalid on this SoC.
+
 ## XIAO ESP32-S3R8 Pinout
 
 | Pin | Function | Peripherals | Notes |

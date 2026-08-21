@@ -65,3 +65,20 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Consequence: flashing and running the current smoke test would PASS trivially without touching hardware — that is exactly how the false ticks of 2026-08-20 originated. The smoke suite itself also simulates button presses.
 - Design flag for implementation: on the ReSpeaker XVF3800 the TLV320AIC3104 codec/amp is managed by the XMOS XVF3800 firmware, so ESP32 volume/mute control must go through XMOS I2C commands, not direct TLV320 register writes as `peripherals.c` currently assumes. Validate I2S pin assignments (mock hardcodes BCK=17, WS=18, DIN=19, DOUT=20) against `docs/hardware/respeaker-pinout.md`.
 - Board observed today: same unit (MAC `68:EE:8F:50:6D:EC`), again enumerated as `303a:1001` USB JTAG/serial on `/dev/ttyACM0`.
+
+## 2026-08-21 — HW-B3 real I2C bring-up ✅ (first true device evidence)
+
+**Status:** ✅ XVF3800 control transport verified on hardware; register-map semantics still pending.
+
+- Root cause of first failure: repo pinout doc specified I2C on GPIO21/22, but **ESP32-S3 has no GPIO22** → `i2c_new_master_bus` returned `ESP_ERR_INVALID_ARG`. The whole HW-B1 pin table had been written without hardware contact.
+- Corrected against Seeed wiki (`respeaker_xvf3800_agora_convo_client`, `respeaker_xvf3800_xiao_gpio`) + Seeed-Projects/ESP32S3_reSpeaker_agora:
+  - I2C SDA=GPIO5 SCL=GPIO6; XMOS control addr **0x2C**; AIC3104 at **0x18**.
+  - XMOS servicer framing `[resid, cmd|0x80, len(incl. status)]` → read returns `[status, payload...]`; GPO20/GPO31(amp, active-low)/GPO30(mic mute+LED)/GPO33(WS2812 rail).
+- On-device evidence (serial capture after flash):
+  ```
+  [XVF] Bus scan: 2 device(s) ACK: 0x18 0x2C
+  [XVF] Control device ACK at 0x2C
+  [XVF] GPI read: status=0x42 raw=0x000023
+  ```
+- Files: `firmware/components/pericles_core/xvf3800_i2c.{c,h}` real `i2c_master` driver with shared-bus singleton, bus scan helper, GPI servicer read; `firmware/main/main.c` boot self-check; CMakeLists adds `driver`.
+- Still open for B3: the invented `xvf_cmd_t` register map does not correspond to the XMOS protocol — "version read" must be re-targeted to the proper servicer resource. GPI bit-packing needs interactive calibration (press mute button while polling) before trusting decoded states.
