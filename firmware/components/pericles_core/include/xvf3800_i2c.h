@@ -101,6 +101,11 @@ xvf_err_t xvf3800_gpo_write(xvf3800_control_t *ctrl,
 xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
                                    uint32_t *gpio_status);
 
+// Read one TLV320AIC3104 codec register (8-bit addressing) at 0x18 on the
+// shared bus. Uses a transient device handle; safe at low frequencies.
+xvf_err_t xvf3800_codec_read_reg(xvf3800_control_t *ctrl,
+                                 uint8_t reg, uint8_t *val);
+
 // Read all GPI input bits (legacy framing kept for reference diagnostics).
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
                                uint8_t gpi[3], uint8_t *status);

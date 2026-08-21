@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "xvf3800_i2c.h"
+#include "xvf3800_i2s.h"
 
 // HW-B3 bring-up: real I2C bus scan + control transaction evidence.
 // Per docs/hardware/respeaker-pinout.md reset sequence, allow the XVF3800
@@ -35,61 +37,44 @@ void app_main(void) {
     if (err == XVF_OK) {
         printf("[XVF] Control device ACK at 0x%02X\n", ctrl.i2c_addr);
 
-        // Self-calibrating loop: toggle GPO30 by software (write path is
-        // proven) and probe three split-transaction read framings, printing
-        // any stream that reacts. If a framing's bytes track our own writes,
-        // the read path is proven without human input.
-        printf("[XVF] SELFTEST: toggling GPO30 + probing read framings\n");
-        uint8_t level = 0;
-        char last_a[24] = "", last_b[24] = "", last_c[24] = "";
-        for (int i = 0; i < 60; i++) {  // 60 * 700ms ~= 42s
-            level ^= 1;
-            xvf_err_t w = xvf3800_gpo_write(&ctrl,
-                                            XVF3800_GPO_MUTE_LED_MIC, level);
-            vTaskDelay(pdMS_TO_TICKS(100));  // let XMOS latch before reads
-
-            uint8_t rx[8];
-            char cur[24];
-
-            // A2: GPO_READ_VALUES, wiki example 1 shape [20, 0x80, 6] -> rx6
-            if (xvf3800_servicer_read_split(&ctrl, 20, 0x80, 6,
-                                            rx, 6) == XVF_OK)
-                snprintf(cur, sizeof(cur), "%02X|%02X%02X%02X%02X%02X%02X",
-                         level, rx[0], rx[1], rx[2], rx[3], rx[4], rx[5]);
+        // Codec probe: read a few AIC3104 registers at 0x18 (page 0).
+        printf("[XVF] CODEC PROBE @0x18:\n");
+        const char *names[] = { "page", "reset", "ovr_cur", "clkgen" };
+        uint8_t regs[] = { 0x00, 0x01, 0x02, 0x03 };
+        for (int i = 0; i < 4; i++) {
+            uint8_t v = 0xFF;
+            if (xvf3800_codec_read_reg(&ctrl, regs[i], &v) == XVF_OK)
+                printf("[XVF]   reg %02X (%s) = %02X\n", regs[i], names[i], v);
             else
-                snprintf(cur, sizeof(cur), "%02X|ERR", level);
-            if (strcmp(cur, last_a) != 0) {
-                printf("[XVF] A2 %s\n", cur);
-                strcpy(last_a, cur);
-            }
-
-            // B2: GPI 3-byte values, wiki example 2 shape [36, 0x86, 4] -> rx4
-            if (xvf3800_servicer_read_split(&ctrl, 36, 0x86, 4,
-                                            rx, 4) == XVF_OK)
-                snprintf(cur, sizeof(cur), "%02X|%02X %02X%02X%02X",
-                         level, rx[0], rx[1], rx[2], rx[3]);
-            else
-                snprintf(cur, sizeof(cur), "%02X|ERR", level);
-            if (strcmp(cur, last_b) != 0) {
-                printf("[XVF] B2 %s\n", cur);
-                strcpy(last_b, cur);
-            }
-
-            // C2: GPIO status u32, wiki example 3 shape [36, 6, 1] -> rx5
-            if (xvf3800_servicer_read_split(&ctrl, 36, 6, 1,
-                                            rx, 5) == XVF_OK)
-                snprintf(cur, sizeof(cur), "%02X|%02X %02X%02X%02X%02X",
-                         level, rx[0], rx[1], rx[2], rx[3], rx[4]);
-            else
-                snprintf(cur, sizeof(cur), "%02X|ERR", level);
-            if (strcmp(cur, last_c) != 0) {
-                printf("[XVF] C2 %s\n", cur);
-                strcpy(last_c, cur);
-            }
-
-            vTaskDelay(pdMS_TO_TICKS(600));
+                printf("[XVF]   reg %02X (%s) READ FAILED\n",
+                       regs[i], names[i]);
         }
-        printf("[XVF] SELFTEST END\n");
+
+        // B2 tone test: 440 Hz sine on I2S TX (GPIO44 -> XVF3800), which
+        // the XMOS routes to the AIC3104 codec and amplifier. Unmistakable
+        // continuous tone on headphones or speaker.
+        printf("[XVF] TONE TEST: 440Hz ~30s - LISTEN\n");
+        if (xvf3800_i2s_init() == XVF_OK) {
+            const int rate = XVF3800_I2S_SAMPLE_RATE;
+            static int16_t frame[64];  // 32 interleaved stereo frames
+            for (int sec = 0; sec < 30; sec++) {
+                for (int i = 0; i < rate; i += 32) {
+                    for (int j = 0; j < 32; j++) {
+                        float phase = 2.0f * 3.14159265f * 440.0f *
+                                      ((i + j) / (float)rate);
+                        int16_t s = (int16_t)(8000.0f * sinf(phase));
+                        frame[j * 2] = s;
+                        frame[j * 2 + 1] = s;
+                    }
+                    xvf3800_i2s_write(frame, 64);
+                }
+                printf("[XVF] tone: %ds\n", sec + 1);
+            }
+            xvf3800_i2s_deinit();
+            printf("[XVF] TONE TEST END\n");
+        } else {
+            printf("[XVF] I2S INIT FAILED\n");
+        }
     } else {
         printf("[XVF] Control init result: err=%d (%s)\n", err,
                err == XVF_ERR_NOT_FOUND ? "no candidate address ACKed"

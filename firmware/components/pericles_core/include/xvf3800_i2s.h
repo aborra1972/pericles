@@ -1,43 +1,23 @@
 #pragma once
 
 #include "xvf3800_common.h"
+#include <stddef.h>
+#include <stdint.h>
 
-// XVF3800 I2S Configuration
-#define XVF3800_I2S_SAMPLE_RATE     16000
-#define XVF3800_I2S_BITS_PER_SAMPLE 16
-#define XVF3800_I2S_CHANNELS        1  // Mono output (processed)
-#define XVF3800_I2S_BUFFER_SIZE     4096
+// XVF3800 I2S audio link (wiring verified against Seeed wiki + board docs):
+//   BCLK=GPIO8, WS=GPIO7, DOUT(XIAO->XVF)=GPIO44, DIN(XIAO<-XVF)=GPIO43
+#define XVF3800_I2S_SAMPLE_RATE      16000
+#define XVF3800_I2S_BITS_PER_SAMPLE  16
+#define XVF3800_I2S_BCLK_GPIO        8
+#define XVF3800_I2S_WS_GPIO          7
+#define XVF3800_I2S_DOUT_GPIO        44
+#define XVF3800_I2S_DIN_GPIO         43
 
-// XVF3800 I2C Register Map
-#define XVF3800_REG_VERSION         0x0000
-#define XVF3800_REG_STATUS          0x0001
-#define XVF3800_REG_VAD             0x0002
-#define XVF3800_REG_DOA             0x0003
-#define XVF3800_REG_MUTE            0x0004
-#define XVF3800_REG_VOLUME          0x0005
+// Initialize the I2S standard-mode TX channel (controller role).
+xvf_err_t xvf3800_i2s_init(void);
 
-typedef struct {
-    int i2c_port;
-    int i2c_addr;
-    int i2s_bck;
-    int i2s_ws;
-    int i2s_data_in;
-    int i2s_data_out;
-    bool initialized;
-    uint16_t version;
-} xvf3800_handle_t;
+// Blocking write of interleaved stereo 16-bit samples.
+xvf_err_t xvf3800_i2s_write(const int16_t *samples, size_t sample_count);
 
-// Initialize XVF3800 I2S interface
-xvf_err_t xvf3800_init(xvf3800_handle_t *handle);
-
-// Start audio capture
-xvf_err_t xvf3800_start_capture(xvf3800_handle_t *handle);
-
-// Stop audio capture
-xvf_err_t xvf3800_stop_capture(xvf3800_handle_t *handle);
-
-// Read audio buffer (non-blocking)
-xvf_err_t xvf3800_read_audio(xvf3800_handle_t *handle, int16_t *buffer, size_t samples, size_t *read);
-
-// Get processed audio level (RMS)
-xvf_err_t xvf3800_get_audio_level(xvf3800_handle_t *handle, float *level_db);
+// Disable and free the TX channel.
+xvf_err_t xvf3800_i2s_deinit(void);

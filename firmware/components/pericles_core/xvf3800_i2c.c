@@ -208,6 +208,28 @@ xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
     return rx[0] == 0 ? XVF_OK : XVF_ERR_STATUS;
 }
 
+xvf_err_t xvf3800_codec_read_reg(xvf3800_control_t *ctrl,
+                                 uint8_t reg, uint8_t *val) {
+    if (!ctrl || !val || !ctrl->initialized || !ctrl->bus_handle)
+        return XVF_ERR_I2C;
+
+    i2c_device_config_t dev_cfg = {
+        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+        .device_address = XVF3800_AIC3104_ADDR,
+        .scl_speed_hz = XVF3800_I2C_FREQ_HZ,
+    };
+    i2c_master_dev_handle_t codec_dev;
+    esp_err_t err = i2c_master_bus_add_device(
+        (i2c_master_bus_handle_t)ctrl->bus_handle, &dev_cfg, &codec_dev);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+
+    // AIC3104 uses 8-bit register addressing: write reg, then read one byte.
+    err = i2c_master_transmit_receive(codec_dev, &reg, 1, val, 1, 100);
+    i2c_master_bus_rm_device(codec_dev);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+    return XVF_OK;
+}
+
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
                                uint8_t gpi[3], uint8_t *status) {
     if (!ctrl || !gpi || !status || !ctrl->initialized || !ctrl->dev_handle)

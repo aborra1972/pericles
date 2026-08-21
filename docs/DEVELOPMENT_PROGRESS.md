@@ -108,3 +108,20 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Interpretation: the XMOS application handles button→mute internally; ESP32 can READ mute state (X0D30 poll) and SET it (GPO30 write, already loopback-verified). Both directions proven.
 - HW-B3 ticked in tasks/06: bus scan + servicer write/read loopback = real-device response. The skeleton's invented "version register" was replaced by protocol-level verification.
 - Remaining for B5 independence checklist: WS2812 rail X0D33 write toggle (read shows 01=on), amp X0D31 pop test (needs speaker on jack), codec/volume path via XMOS commands.
+
+## 2026-08-21 — Audio path proven end-to-end ✅ (HW-B2 TX verified audibly)
+
+**Status:** ✅ Real I2S driver streams audio through the full chain; user heard 440 Hz tone twice on headphones.
+
+- Replaced the mock I2S driver (`xvf3800_i2s.{c,h}`) with a real `i2s_std` TX implementation: controller role, 16 kHz / 16-bit stereo Philips, **BCLK=GPIO8, WS=GPIO7, DOUT=GPIO44** (verified Seeed wiring). `smoke_test_audio_i2s()` updated to the new API.
+- Tone test: 440 Hz sine @ ~24% amplitude streamed for 30 s. User confirmed hearing it clearly on two separate runs → chain **ESP32 I2S → XVF3800 XMOS → AIC3104 codec → amp → jack** works end-to-end.
+- Codec probe (direct reads at 0x18): page=00, reset=00, ovr_cur=44, clkgen=10 — AIC3104 alive and answering with plausible register state.
+- Amp enable X0D31 anomaly: writes ACK but read-back stays 00 (enabled) — the XMOS application re-asserts the pin within ~300 ms. Conclusion: amp power is XMOS-owned on this firmware; host-side amp control must go through XMOS commands, not direct GPO31 writes. Pop test inconclusive by design (transient too short); superseded by the audible tone test.
+- WS2812 rail X0D33: toggle verified at register level AND physically (user saw ring blink 4×). Key product insight: when the board is MUTED the XMOS stops driving WS2812 data, so the ring stays dark regardless of rail state — first rail test was invisible because the board was left muted from the button test.
+- Mute state gates RGB animations — relevant for Pericles UX later.
+
+## 2026-08-21 — Session close snapshot
+
+- Ticked this session: HW-B3 (I2C control, servicer protocol decoded), HW-B2 (I2S TX audibly verified).
+- Still open: HW-B2 RX/capture direction (DIN=GPIO43), HW-B4 (VAD/DoA — needs RX path), HW-B5 codec-control half (volume/mute via XMOS commands; direct register reads OK), HW-B7 (DFU rehearsal), HW-B8 (full smoke).
+- Working tree at close: main.c still carries diagnostic sequences (codec probe + tone test) — fine for bring-up, to be replaced by the real app loop later.

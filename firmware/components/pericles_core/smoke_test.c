@@ -34,21 +34,15 @@ smoke_result_t smoke_test_buttons(void) {
 }
 
 smoke_result_t smoke_test_audio_i2s(void) {
-    xvf3800_handle_t xvf;
-    xvf_err_t err = xvf3800_init(&xvf);
+    xvf_err_t err = xvf3800_i2s_init();
     if (err != XVF_OK) return SMOKE_FAIL;
-    
-    err = xvf3800_start_capture(&xvf);
+
+    int16_t silence[256] = { 0 };
+    err = xvf3800_i2s_write(silence, 256);
+
+    xvf3800_i2s_deinit();
     if (err != XVF_OK) return SMOKE_FAIL;
-    
-    int16_t buffer[256];
-    size_t read;
-    err = xvf3800_read_audio(&xvf, buffer, 256, &read);
-    if (err != XVF_OK) return SMOKE_FAIL;
-    
-    err = xvf3800_stop_capture(&xvf);
-    if (err != XVF_OK) return SMOKE_FAIL;
-    
+
     return SMOKE_PASS;
 }
 
