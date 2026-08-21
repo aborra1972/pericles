@@ -67,10 +67,11 @@ Después abrí `http://localhost:8000/demo/`. El [manual de usuario](USER_MANUAL
 | Mute button (hardware) | ✅ Verificado bidireccional por I2C (X0D30) |
 | WiFi | ✅ Built-in |
 
-> **Validación en hardware real (2026-08-21):** camino de audio completo probado
-> audiblemente (ESP32 → XMOS → codec → amp → jack), protocolo del servicer XMOS
-> decodificado, mute y LEDs verificados. Pendiente: captura RX de micrófonos
-> (VAD/DoA) y DFU. Detalle en [docs/DEVELOPMENT_PROGRESS.md](docs/DEVELOPMENT_PROGRESS.md).
+> **Validación en hardware real (2026-08-21):** audio full-duplex probado en
+> placa — tono audible por el jack (TX) y captura de micrófonos con la voz del
+> usuario visible en los datos (RX, beam procesado + mic crudo). Protocolo del
+> servicer XMOS decodificado, mute y LEDs verificados. Pendiente: VAD/DoA y
+> DFU. Detalle en [docs/DEVELOPMENT_PROGRESS.md](docs/DEVELOPMENT_PROGRESS.md).
 
 ## Arquitectura
 

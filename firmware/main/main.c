@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "xvf3800_i2c.h"
@@ -50,19 +51,56 @@ void app_main(void) {
                        regs[i], names[i]);
         }
 
-        // B2 tone test: 440 Hz sine on I2S TX (GPIO44 -> XVF3800), which
-        // the XMOS routes to the AIC3104 codec and amplifier. Unmistakable
-        // continuous tone on headphones or speaker.
-        printf("[XVF] TONE TEST: 440Hz ~30s - LISTEN\n");
+        // Line-ownership diagnostic: with the I2S peripheral OFF, are the
+        // I2S lines driven by the XMOS (master) or idle/floating (slave)?
+        printf("[XVF] LINE OWNERSHIP PROBE (I2S off, pulldowns on):\n");
+        {
+            gpio_config_t in_cfg = {
+                .pin_bit_mask = (1ULL << XVF3800_I2S_BCLK_GPIO) |
+                                (1ULL << XVF3800_I2S_WS_GPIO) |
+                                (1ULL << XVF3800_I2S_DIN_GPIO),
+                .mode = GPIO_MODE_INPUT,
+                .pull_down_en = true,
+            };
+            gpio_config(&in_cfg);
+            const int n = 200000;
+            long hb = 0, hw = 0, hd = 0;
+            for (int i = 0; i < n; i++) {
+                hb += gpio_get_level(XVF3800_I2S_BCLK_GPIO);
+                hw += gpio_get_level(XVF3800_I2S_WS_GPIO);
+                hd += gpio_get_level(XVF3800_I2S_DIN_GPIO);
+            }
+            printf("[XVF]   bclk high=%ld%% ws high=%ld%% din high=%ld%%\n",
+                   hb * 100 / n, hw * 100 / n, hd * 100 / n);
+        }
+
+        // The XMOS gates several outputs on mute (RGB data, likely the
+        // host I2S stream too). Force unmute before probing RX.
+        {
+            uint8_t st[6];
+            if (xvf3800_servicer_read_split(&ctrl, 20, 0x80, 6,
+                                            st, 6) == XVF_OK) {
+                printf("[XVF] pre-RX mute state: x0d30=%02X\n", st[2]);
+                if (st[2] != 0) {
+                    xvf3800_gpo_write(&ctrl, XVF3800_GPO_MUTE_LED_MIC, 0);
+                    vTaskDelay(pdMS_TO_TICKS(300));
+                    printf("[XVF] wrote UNMUTE before RX probe\n");
+                }
+            }
+        }
+
+        // B2 duplex test, part 1: short 440 Hz tone to confirm TX still
+        // works with the full-duplex channel pair.
+        printf("[XVF] TONE TEST: 440Hz ~5s - LISTEN\n");
         if (xvf3800_i2s_init() == XVF_OK) {
             const int rate = XVF3800_I2S_SAMPLE_RATE;
-            static int16_t frame[64];  // 32 interleaved stereo frames
-            for (int sec = 0; sec < 30; sec++) {
+            static int32_t frame[64];  // 32 interleaved stereo frames
+            for (int sec = 0; sec < 5; sec++) {
                 for (int i = 0; i < rate; i += 32) {
                     for (int j = 0; j < 32; j++) {
                         float phase = 2.0f * 3.14159265f * 440.0f *
                                       ((i + j) / (float)rate);
-                        int16_t s = (int16_t)(8000.0f * sinf(phase));
+                        int32_t s = (int32_t)(268435456.0f * sinf(phase));
                         frame[j * 2] = s;
                         frame[j * 2 + 1] = s;
                     }
@@ -70,8 +108,53 @@ void app_main(void) {
                 }
                 printf("[XVF] tone: %ds\n", sec + 1);
             }
+
+            // B2 duplex test, part 2: capture the processed mic stream.
+            // First 5 s: stay quiet (baseline). Then talk / clap near the
+            // device for the remaining seconds.
+            printf("[XVF] RX PROBE: quiet 5s, then TALK/CLAP ~7s\n");
+            static int32_t buf[512];  // 256 stereo frames
+            double sumsq_l = 0, sumsq_r = 0;
+            int64_t peak_l = 0, peak_r = 0;
+            long n_l = 0, n_r = 0;
+            int frames_left = 8;  // hex-dump budget (first second)
+            for (int sec = 0; sec < 12; sec++) {
+                long consumed = 0;
+                while (consumed < rate) {
+                    if (xvf3800_i2s_read(buf, 512) != XVF_OK) break;
+                    int frames = 512 / 2;
+                    for (int i = 0; i < frames; i++) {
+                        int64_t l = buf[i * 2], r = buf[i * 2 + 1];
+                        sumsq_l += (double)l * l;
+                        sumsq_r += (double)r * r;
+                        if (l < 0) l = -l;
+                        if (r < 0) r = -r;
+                        if (l > peak_l) peak_l = l;
+                        if (r > peak_r) peak_r = r;
+                    }
+                    n_l += frames;
+                    n_r += frames;
+                    consumed += frames;
+                    if (frames_left > 0 && sec == 0) {
+                        for (int i = 0; i < 4 && frames_left > 0; i++)
+                            { printf("[XVF] rx[%d]=%11ld %11ld\n",
+                                     8 - frames_left,
+                                     (long)buf[i * 2],
+                                     (long)buf[i * 2 + 1]);
+                              frames_left--; }
+                    }
+                }
+                double rms_l = n_l ? sqrt(sumsq_l / n_l) : 0.0;
+                double rms_r = n_r ? sqrt(sumsq_r / n_r) : 0.0;
+                printf("[XVF] rx %2ds: rmsL=%9.1f rmsR=%9.1f "
+                       "peakL=%7ld peakR=%7ld\n",
+                       sec + 1, rms_l, rms_r,
+                       (long)peak_l, (long)peak_r);
+                sumsq_l = sumsq_r = 0; peak_l = peak_r = 0;
+                n_l = n_r = 0;
+            }
             xvf3800_i2s_deinit();
-            printf("[XVF] TONE TEST END\n");
+            printf("[XVF] DUPLEX TEST END\n");
         } else {
             printf("[XVF] I2S INIT FAILED\n");
         }

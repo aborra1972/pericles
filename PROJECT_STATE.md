@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 6 hardware validation in progress; audio path proven end-to-end on device (audible) |
-| Active task | HW-B2 RX direction: capture mic/processed audio from XMOS via DIN=GPIO43 (unlocks HW-B4 VAD/DoA) |
-| Last completed | `HW-B3` + `HW-B2` TX — real XVF3800 drivers verified on device (`961fd2f`…`2a23165`) |
+| Status | Phase 6 hardware validation in progress; full-duplex audio proven on device (TX audible + RX mic capture) |
+| Active task | HW-B4: VAD/DoA diagnostics via XMOS servicer commands (RX path now proven) |
+| Last completed | `HW-B2` both directions — 32-bit full-duplex I2S, speech captured (`2a23165` + RX commit) |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -103,15 +103,19 @@
 | FW-03–FW-20 | PASS | Button FSM, display, audio, WiFi, BLE, session, debounce, timeout modules; firmware compiles clean | pending |
 | HW-B6 | PASS | XIAO sdkconfig defaults; size gate; verified flash/boot on device | `846f6bd` |
 | HW-B1 | PASS | Pinout corrected against Seeed wiki + live bus scan (SDA=5/SCL=6, XMOS 0x2C, codec 0x18) | `961fd2f` |
+| HW-B2 | PASS | Full-duplex 32-bit I2S; TX tone heard; RX speech/claps captured (L=beam, R=raw mic) | RX commit |
 | HW-B3 | PASS | Real i2c_master driver; servicer protocol decoded (split tx/rx); GPO loopback verified on device | `961fd2f`–`143b59b` |
-| HW-B2 | PASS (TX) | i2s_std TX driver; 440 Hz tone heard twice through XMOS→codec→amp→jack. RX direction pending | `2a23165` |
+| HW-B2 (TX) | PASS (TX) | i2s_std TX driver; 440 Hz tone heard twice through XMOS→codec→amp→jack. RX direction pending | `2a23165` |
 
 ## Next Action
 
-Implement the I2S RX capture path (DIN=GPIO43): discover which slot/channel the
-XMOS uses to send processed audio to the XIAO, then expose VAD/DoA diagnostics
-(HW-B4). After that: XMOS-side codec control for the remaining HW-B5 half,
-HW-B7 DFU rehearsal, HW-B8 full smoke. The USB VID/PID conflict (`303a:1001` vs
-`2886:0018`) must be resolved before changing detector behavior. Bring-up
-diagnostics in `firmware/main/main.c` (codec probe + tone test) are intentional
-and get replaced by the real app loop later.
+Expose VAD and DoA diagnostics (HW-B4) using the XMOS servicer control
+interface — the I2S RX path is proven. Key facts for that work: the XVF3800
+INT variant is a pure I2S slave requiring **32-bit slots** (XMOS Programming
+Guide Table 2.1); default output mux is L=processed beam / R=raw mic;
+`AUDIO_MGR_SELECTED_AZIMUTHS` returns processed DoA. After B4: XMOS-side codec
+control for the remaining HW-B5 half, HW-B7 DFU rehearsal, HW-B8 full smoke.
+The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before
+changing detector behavior. Bring-up diagnostics in `firmware/main/main.c`
+(codec probe + duplex test) are intentional and get replaced by the real app
+loop later.

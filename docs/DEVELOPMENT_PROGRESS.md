@@ -120,6 +120,21 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - WS2812 rail X0D33: toggle verified at register level AND physically (user saw ring blink 4×). Key product insight: when the board is MUTED the XMOS stops driving WS2812 data, so the ring stays dark regardless of rail state — first rail test was invisible because the board was left muted from the button test.
 - Mute state gates RGB animations — relevant for Pericles UX later.
 
+## 2026-08-21 — Mic capture proven end-to-end ✅ (HW-B2 complete, both directions)
+
+**Status:** ✅ Real mic audio captured from the XVF3800 over I2S; user speech/claps clearly visible in data.
+
+- Root cause of silent RX found: the XVF3800 **INT variant requires 32-bit I2S slots** (XMOS Programming Guide Table 2.1: Integrated device = I2S slave, Data Bit Depth 32). Seeed's reference confirms it (`AUDIO_I2S_BITS 32` in their common.h). Our initial 16-bit config produced no data.
+- Driver upgraded to full-duplex: TX+RX channel pair created via one `i2s_new_channel` call on `I2S_NUM_0`, sharing BCLK/WS (controller role), Philips 32-bit stereo @16 kHz. API now uses `int32_t` buffers.
+- Diagnostic chain that got us there (all evidence in serial captures):
+  - Line-ownership probe (I2S off, pulldowns on): bclk/ws/din all 0% high → XMOS is a **pure I2S slave**, never drives the bus. Host-controller role confirmed electrically.
+  - First RX attempt showed sparse spikes (16384/32767/-1) with constant RMS even in silence → floating-pin crosstalk, not audio. Pull-down test gave exact zeros → line genuinely undriven.
+  - Mute ruled out as gate: board already unmuted (`x0d30=00`), still zeros at 16-bit.
+  - After switching to 32-bit slots: real audio. Quiet baseline rmsL ≈ 19–50 M; user speech pushed rmsL to 71–118 M; clap peaked at full-scale clip (2^31). Right channel (raw mic) reacted in parallel (8 M → 123 M).
+- Channel layout matches XMOS docs: **left = processed beamforming output, right = raw mic after amplification**.
+- User confirmed audibly: tone heard at 32-bit TX, spoke during capture window.
+- Note: `peakL=-2147483648` in one log line is a printf cast artifact on Xtensa (long is 32-bit); true peak was +2^31. Cosmetic only.
+
 ## 2026-08-21 — Session close snapshot
 
 - Ticked this session: HW-B3 (I2C control, servicer protocol decoded), HW-B2 (I2S TX audibly verified).

@@ -37,7 +37,7 @@ smoke_result_t smoke_test_audio_i2s(void) {
     xvf_err_t err = xvf3800_i2s_init();
     if (err != XVF_OK) return SMOKE_FAIL;
 
-    int16_t silence[256] = { 0 };
+    int32_t silence[256] = { 0 };
     err = xvf3800_i2s_write(silence, 256);
 
     xvf3800_i2s_deinit();
