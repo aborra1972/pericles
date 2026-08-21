@@ -5,7 +5,7 @@
 | Field | Value |
 |-------|-------|
 | Status | Phase 6 hardware validation in progress; full-duplex audio proven on device (TX audible + RX mic capture) |
-| Active task | HW-B4: VAD/DoA diagnostics via XMOS servicer commands (RX path now proven) |
+| Active task | HW-B4 blocked on XMOS fw v1.0.4 (DoA cmd missing); next: DFU update to v1.0.7 (= HW-B7 rehearsal), then DoA poll |
 | Last completed | `HW-B2` both directions — 32-bit full-duplex I2S, speech captured (`2a23165` + RX commit) |
 | Blocker | None |
 | Branch | `main` |
@@ -109,13 +109,15 @@
 
 ## Next Action
 
-Expose VAD and DoA diagnostics (HW-B4) using the XMOS servicer control
-interface — the I2S RX path is proven. Key facts for that work: the XVF3800
-INT variant is a pure I2S slave requiring **32-bit slots** (XMOS Programming
-Guide Table 2.1); default output mux is L=processed beam / R=raw mic;
-`AUDIO_MGR_SELECTED_AZIMUTHS` returns processed DoA. After B4: XMOS-side codec
-control for the remaining HW-B5 half, HW-B7 DFU rehearsal, HW-B8 full smoke.
+HW-B4 (VAD/DoA) is **blocked on XMOS firmware version**: the board runs
+v1.0.4 and its GPO-servicer command space ends at c11 — DoA (c19) and LED
+effect (c12) return st=41. Seeed's DoA recipe needs `i2s_dfu_firmware_v1.0.7+`.
+Unblock by updating the XVF3800 firmware via DFU (bins at
+`github.com/respeaker/reSpeaker_XVF3800_USB_4MIC_ARRAY/xmos_firmwares`);
+this doubles as HW-B7 rehearsal. Then re-run the DoA poll (r20 c19, reply =
+status + 4 B, uint16 LE `[azimuth][speech]`). After B4: XMOS-side codec
+control for the remaining HW-B5 half, HW-B8 full smoke.
 The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before
 changing detector behavior. Bring-up diagnostics in `firmware/main/main.c`
-(codec probe + duplex test) are intentional and get replaced by the real app
-loop later.
+(codec probe + command-map scanner) are intentional and get replaced by the
+real app loop later.

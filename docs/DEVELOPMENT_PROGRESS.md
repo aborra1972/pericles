@@ -140,3 +140,14 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Ticked this session: HW-B3 (I2C control, servicer protocol decoded), HW-B2 (I2S TX audibly verified).
 - Still open: HW-B2 RX/capture direction (DIN=GPIO43), HW-B4 (VAD/DoA — needs RX path), HW-B5 codec-control half (volume/mute via XMOS commands; direct register reads OK), HW-B7 (DFU rehearsal), HW-B8 (full smoke).
 - Working tree at close: main.c still carries diagnostic sequences (codec probe + tone test) — fine for bring-up, to be replaced by the real app loop later.
+
+## 2026-08-21 — HW-B4 diagnosis: DoA/VAD blocked on XMOS firmware v1.0.4
+
+**Status:** ⛔ Blocked by device firmware version, NOT by our code. Evidence below.
+
+- Empirical command-map discovery over the control port (resid × cmd × reply-length sweeps, paced ~10 ms; flood scans misattribute responses due to a device-side response backlog — always calibrate against the known-good GPO read first).
+- Verified landscape: **r20** = GPO servicer, commands 0x00–0x11 supported (c00 GPO values len6; c01 GPO write; c10/c11 LED params, big-endian float 2.5); **r36** = IO_CONFIG servicer (c00 → 3-byte GPI bitmap); **r48** = version info (c00 → `01 00 04` = **v1.0.4**; c05/c0B ASCII build strings); r49 scalar endpoint.
+- Status-byte semantics established: `0x00` ok · `0x05` bad resource · `0x41` command unsupported · `0x42` reply-length mismatch (length validation is strict per command).
+- Resource 20's command space **ends at c11**: c12–c1F all return st=41. Seeed's official DoA/VAD recipe (`wiki.seeedstudio.com/respeaker_xvf3800_xiao_doa_vad`) uses **r20 c19** (reply = status + 4 B, uint16 LE `[azimuth_deg][speech_detected]`) and requires firmware `i2s_dfu_firmware_v1.0.7` or `i2s_master_..._48k_test5`. Our board runs **v1.0.4**, which predates the DoA/LED-effect commands.
+- Corroborating hits: r20 c12 currently st=41 too (LED effect also missing), while Seeed's GPIO/GPI/LED-brightness examples match our working commands exactly.
+- Unblock path: XMOS firmware DFU update to v1.0.7+ (bins at `github.com/respeaker/reSpeaker_XVF3800_USB_4MIC_ARRAY/xmos_firmwares`). This doubles as the HW-B7 DFU rehearsal. I2C DFU works from the ESP32 host for I2S-variant firmware; USB DFU needs safe mode.
