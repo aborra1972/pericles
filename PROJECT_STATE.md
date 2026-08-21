@@ -106,18 +106,17 @@
 | HW-B2 | PASS | Full-duplex 32-bit I2S; TX tone heard; RX speech/claps captured (L=beam, R=raw mic) | RX commit |
 | HW-B3 | PASS | Real i2c_master driver; servicer protocol decoded (split tx/rx); GPO loopback verified on device | `961fd2f`–`143b59b` |
 | HW-B2 (TX) | PASS (TX) | i2s_std TX driver; 440 Hz tone heard twice through XMOS→codec→amp→jack. RX direction pending | `2a23165` |
+| HW-B4 | PASS | DoA/VAD live after XMOS fw upgrade to i2s_dfu_firmware_v1.0.7: r20 c19 [azimuth][speech] tracked user around array; needs LED effect via write-only r20 c12 | this session |
+| HW-B7 (rehearsal) | PASS (partial) | Safe mode + USB DFU from PC verified; ESP32-hosted I2C DFU adapter still open | this session |
 
 ## Next Action
 
-HW-B4 (VAD/DoA) is **blocked on XMOS firmware version**: the board runs
-v1.0.4 and its GPO-servicer command space ends at c11 — DoA (c19) and LED
-effect (c12) return st=41. Seeed's DoA recipe needs `i2s_dfu_firmware_v1.0.7+`.
-Unblock by updating the XVF3800 firmware via DFU (bins at
-`github.com/respeaker/reSpeaker_XVF3800_USB_4MIC_ARRAY/xmos_firmwares`);
-this doubles as HW-B7 rehearsal. Then re-run the DoA poll (r20 c19, reply =
-status + 4 B, uint16 LE `[azimuth][speech]`). After B4: XMOS-side codec
-control for the remaining HW-B5 half, HW-B8 full smoke.
+HW-B4 is resolved. Remaining Phase 6 work: the XMOS-side codec-control half of
+HW-B5 (volume/mute must route through XMOS commands; amp pin X0D31 is
+XMOS-owned), the ESP32-hosted I2C DFU adapter for HW-B7, and the HW-B8 full
+smoke test. The app's audio pipeline can now consume r20 c19 DoA/VAD data —
+remember to select an LED effect (r20 c12 write, effect 4) at boot or the
+values stay frozen at 0.
 The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before
 changing detector behavior. Bring-up diagnostics in `firmware/main/main.c`
-(codec probe + command-map scanner) are intentional and get replaced by the
-real app loop later.
+(DoA verify loop) are intentional and get replaced by the real app loop later.

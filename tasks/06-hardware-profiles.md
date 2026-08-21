@@ -8,8 +8,8 @@
 - [x] **HW-B1** Document ReSpeaker/XIAO pinout, power budget, GC9A01 wiring, and enclosure constraints.
 - [x] **HW-B2** Implement XVF3800 I2S audio adapter. Verify processed channel stream. _(full-duplex i2s_std on BCLK=8/WS=7/DOUT=44/DIN=43, 32-bit slots per XMOS INT spec; TX: 440Hz tone heard; RX: user speech/claps captured with clear SNR contrast, L=processed beam R=raw mic — 2026-08-21)_
 - [x] **HW-B3** Implement XVF3800 I2C control and version read. Verify real-device response. _(done via XMOS servicer protocol: bus scan ACKs 0x18+0x2C, GPO write/read loopback verified on device; invented register map replaced — see DEVELOPMENT_PROGRESS 2026-08-21)_
-- [ ] **HW-B4** Expose VAD and DoA diagnostics. Verify direction and speech fixtures. _(I2S RX path now proven 2026-08-21; VAD/DoA status reads via XMOS servicer commands are the remaining work)_
+- [x] **HW-B4** Expose VAD and DoA diagnostics. Verify direction and speech fixtures. _(resolved 2026-08-21 after XMOS fw upgrade to i2s_dfu_firmware_v1.0.7: r20 c19 returns uint16 LE [azimuth][speech], tracked user walking around array; requires LED effect active via write-only r20 c12 — see DEVELOPMENT_PROGRESS)_
 - [ ] **HW-B5** Control codec, mute, and WS2812 status LEDs. Verify each independently. _(mute ✅ both directions w/ physical cross-check; WS2812 rail ✅ register+physical; codec registers readable @0x18 but volume/mute control must route via XMOS commands — amp pin X0D31 is XMOS-owned (write overridden ~300ms); remaining: XMOS-side codec control)_
 - [x] **HW-B6** Add XIAO 8 MB flash/8 MB PSRAM sdkconfig and size gate. Verify memory report.
-- [ ] **HW-B7** Implement XVF3800 I2C DFU adapter. Verify Safe Mode recovery rehearsal. _(depends on real B3 I2C — audited 2026-08-21)_
+- [ ] **HW-B7** Implement XVF3800 I2C DFU adapter. Verify Safe Mode recovery rehearsal. _(safe-mode + USB DFU rehearsal done 2026-08-21, board now on i2s_dfu_firmware_v1.0.7; remaining: ESP32-hosted I2C DFU adapter)_
 - [ ] **HW-B8** Run ReSpeaker display, buttons, audio, WiFi, BLE, and dual-firmware smoke test. _(blocked until B2–B5 verified — audited 2026-08-21)_

@@ -186,6 +186,25 @@ xvf_err_t xvf3800_gpo_write(xvf3800_control_t *ctrl,
     return XVF_OK;
 }
 
+xvf_err_t xvf3800_servicer_write(xvf3800_control_t *ctrl,
+                                 uint8_t resid, uint8_t cmd,
+                                 const uint8_t *payload, size_t payload_len) {
+    if (!ctrl || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+    if (payload_len > 30) return XVF_ERR_I2C;  // keep tx on the stack
+
+    // Seeed wiki xmos_write_bytes: [resid, cmd, len, payload...] ending in
+    // STOP (no read phase).
+    uint8_t tx[33] = { resid, cmd, (uint8_t)payload_len };
+    for (size_t i = 0; i < payload_len; i++) tx[3 + i] = payload[i];
+
+    esp_err_t err = i2c_master_transmit(
+        (i2c_master_dev_handle_t)ctrl->dev_handle,
+        tx, (uint32_t)payload_len + 3, 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+    return XVF_OK;
+}
+
 xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
                                    uint32_t *gpio_status) {
     if (!ctrl || !gpio_status || !ctrl->initialized || !ctrl->dev_handle)

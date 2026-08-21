@@ -151,3 +151,14 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Resource 20's command space **ends at c11**: c12–c1F all return st=41. Seeed's official DoA/VAD recipe (`wiki.seeedstudio.com/respeaker_xvf3800_xiao_doa_vad`) uses **r20 c19** (reply = status + 4 B, uint16 LE `[azimuth_deg][speech_detected]`) and requires firmware `i2s_dfu_firmware_v1.0.7` or `i2s_master_..._48k_test5`. Our board runs **v1.0.4**, which predates the DoA/LED-effect commands.
 - Corroborating hits: r20 c12 currently st=41 too (LED effect also missing), while Seeed's GPIO/GPI/LED-brightness examples match our working commands exactly.
 - Unblock path: XMOS firmware DFU update to v1.0.7+ (bins at `github.com/respeaker/reSpeaker_XVF3800_USB_4MIC_ARRAY/xmos_firmwares`). This doubles as the HW-B7 DFU rehearsal. I2C DFU works from the ESP32 host for I2S-variant firmware; USB DFU needs safe mode.
+
+## 2026-08-21 — HW-B4 resolved: DoA/VAD live after XMOS firmware upgrade
+
+**Status:** ✅ Working on device. Firmware upgraded v1.0.4 → `i2s_dfu_firmware_v1.0.7.bin` (reports internally as **1.0.5** via r48 c00 — Seeed's bin versioning, not a flash failure).
+
+- DFU path used: USB DFU from the host PC (not the planned ESP32-hosted I2C DFU). Safe mode = full power cycle holding MUTE until the red LED blinks; board then enumerates as `2886:001a`; flash with `dfu-util -R -e -a 1 -D <bin>`. Bin archived at `~/pericles-flash-backups/` (sha256 `7f875e70…`).
+- Gotcha: safe mode times out after a few minutes back to normal boot, where the XMOS side does not enumerate on USB at all (looks like a dead port). Flash immediately after entering safe mode.
+- DoA recipe confirmed on device: r20 c19 read → st=00 + uint16 LE `[azimuth_deg][speech_detected]`. Azimuth tracked the user walking around the array (248→271→275→181→237→285→142), stable while stationary; speech flag toggled exactly with voice.
+- Critical gate discovered: **DOA_VALUE only updates while an LED effect is running** on this firmware generation (v1.0.8 changelog decouples them). The effect is set with a WRITE-ONLY command r20 c12, payload `[effect_id]` — invisible to read-only command scans (reads of c12 return st=41). Seeed's wiki uses effect 4 in setup. Without it: azimuth/speech frozen at 0 and the LED ring stays dark.
+- Driver addition: generic `xvf3800_servicer_write(ctrl, resid, cmd, payload, len)` ([resid, cmd, len, payload…] STOP framing), alongside the existing read_split.
+- Behavior change observed by user: stock v1.0.4 booted with the voice-reactive LED ring active; v1.0.7 boots dark until an effect is selected via c12.

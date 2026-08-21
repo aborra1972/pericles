@@ -95,6 +95,13 @@ xvf_err_t xvf3800_servicer_read_split(xvf3800_control_t *ctrl,
 xvf_err_t xvf3800_gpo_write(xvf3800_control_t *ctrl,
                             uint8_t pin, uint8_t value);
 
+// Generic servicer write: [resid, cmd, payload_len, payload...] ending in
+// STOP (Seeed wiki xmos_write_bytes shape). E.g. LED effect select is
+// [20, 12, 1, effect_id].
+xvf_err_t xvf3800_servicer_write(xvf3800_control_t *ctrl,
+                                 uint8_t resid, uint8_t cmd,
+                                 const uint8_t *payload, size_t payload_len);
+
 // Read the combined GPIO status register (Seeed readGPIOStatus pattern):
 // [36, 6, 1] -> [status][u32 LE] where bit N = port N state (bit 9 = mute
 // button X1D09, bit 30 = mute LED/mic control).
