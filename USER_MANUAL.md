@@ -34,6 +34,12 @@ Ver [Pinout N16R8](docs/hardware/n16r8-pinout.md).
 
 Ver [Pinout ReSpeaker](docs/hardware/respeaker-pinout.md).
 
+> **Estado de validación (agosto 2026):** la variante ReSpeaker está en
+> validación sobre placa real. Ya verificado: comunicación I2C con el XVF3800,
+> botón de mute (bidireccional), LEDs WS2812 y el camino de audio completo
+> (tono audible por el jack). Pendiente: captura de micrófonos (VAD/DoA) y
+> actualización DFU. Detalle en [docs/DEVELOPMENT_PROGRESS.md](docs/DEVELOPMENT_PROGRESS.md).
+
 ---
 
 ## 3. Instalación

@@ -4,10 +4,10 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 7 complete; real XVF3800 drivers required before on-device verification |
-| Active task | HW-B3: replace xvf3800_i2c.c mock with real i2c_master driver, then verify version read on device |
-| Last completed | `HW-B6` (XIAO sdkconfig, size gate, verified flash/boot) |
-| Blocker | None — `esptool.py` verified via `source ~/esp-idf/export.sh` (2026-08-21) |
+| Status | Phase 6 hardware validation in progress; audio path proven end-to-end on device (audible) |
+| Active task | HW-B2 RX direction: capture mic/processed audio from XMOS via DIN=GPIO43 (unlocks HW-B4 VAD/DoA) |
+| Last completed | `HW-B3` + `HW-B2` TX — real XVF3800 drivers verified on device (`961fd2f`…`2a23165`) |
+| Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
 
@@ -101,7 +101,17 @@
 | FW-01 | PASS | Manifest validation with cJSON; firmware builds for ESP32-S3 | pending |
 | FW-02 | PASS | RED tests for debounce, session, timeout | pending |
 | FW-03–FW-20 | PASS | Button FSM, display, audio, WiFi, BLE, session, debounce, timeout modules; firmware compiles clean | pending |
+| HW-B6 | PASS | XIAO sdkconfig defaults; size gate; verified flash/boot on device | `846f6bd` |
+| HW-B1 | PASS | Pinout corrected against Seeed wiki + live bus scan (SDA=5/SCL=6, XMOS 0x2C, codec 0x18) | `961fd2f` |
+| HW-B3 | PASS | Real i2c_master driver; servicer protocol decoded (split tx/rx); GPO loopback verified on device | `961fd2f`–`143b59b` |
+| HW-B2 | PASS (TX) | i2s_std TX driver; 440 Hz tone heard twice through XMOS→codec→amp→jack. RX direction pending | `2a23165` |
 
 ## Next Action
 
-Implement the real XVF3800 drivers (currently all mocks — see `docs/DEVELOPMENT_PROGRESS.md` 2026-08-21 "Driver reality check"), starting with HW-B3 I2C control using the ESP-IDF `i2c_master` API and the pinout in [`docs/hardware/respeaker-pinout.md`](docs/hardware/respeaker-pinout.md). Flash with the sourced IDF shell, run the on-device verifications in order B3 → B4 → B5 → B2 → B7 → B8, and record each result. The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before changing detector behavior.
+Implement the I2S RX capture path (DIN=GPIO43): discover which slot/channel the
+XMOS uses to send processed audio to the XIAO, then expose VAD/DoA diagnostics
+(HW-B4). After that: XMOS-side codec control for the remaining HW-B5 half,
+HW-B7 DFU rehearsal, HW-B8 full smoke. The USB VID/PID conflict (`303a:1001` vs
+`2886:0018`) must be resolved before changing detector behavior. Bring-up
+diagnostics in `firmware/main/main.c` (codec probe + tone test) are intentional
+and get replaced by the real app loop later.

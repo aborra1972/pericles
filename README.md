@@ -60,12 +60,17 @@ Después abrí `http://localhost:8000/demo/`. El [manual de usuario](USER_MANUAL
 
 | Componente | Estado |
 |------------|--------|
-| ReSpeaker XVF3800 (4 mics, AEC, AGC) | ✅ Drivers I2S + I2C |
-| XIAO ESP32-S3R8 (8MB flash, 8MB PSRAM) | ✅ sdkconfig defaults |
-| WS2812 LEDs | ✅ Control implementado |
-| TLV320AIC3104 Codec | ✅ Driver implementado |
-| Mute button (hardware) | ✅ Implementado |
+| ReSpeaker XVF3800 (4 mics, AEC, AGC) | ✅ Verificado en placa: I2C servicer @0x2C + I2S TX audible |
+| XIAO ESP32-S3R8 (8MB flash, 8MB PSRAM) | ✅ sdkconfig defaults + flasheo verificado |
+| WS2812 LEDs | ✅ Rail verificada físicamente; animaciones manejadas por el XMOS |
+| TLV320AIC3104 Codec | ✅ Registros legibles @0x18; control vía comandos XMOS |
+| Mute button (hardware) | ✅ Verificado bidireccional por I2C (X0D30) |
 | WiFi | ✅ Built-in |
+
+> **Validación en hardware real (2026-08-21):** camino de audio completo probado
+> audiblemente (ESP32 → XMOS → codec → amp → jack), protocolo del servicer XMOS
+> decodificado, mute y LEDs verificados. Pendiente: captura RX de micrófonos
+> (VAD/DoA) y DFU. Detalle en [docs/DEVELOPMENT_PROGRESS.md](docs/DEVELOPMENT_PROGRESS.md).
 
 ## Arquitectura
 
