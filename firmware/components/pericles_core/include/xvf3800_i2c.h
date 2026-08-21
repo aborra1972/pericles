@@ -110,8 +110,32 @@ xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
 
 // Read one TLV320AIC3104 codec register (8-bit addressing) at 0x18 on the
 // shared bus. Uses a transient device handle; safe at low frequencies.
+// Read-only evidence only: the XMOS application owns this codec at runtime,
+// so control changes must use xvf3800_codec_level_set below.
 xvf_err_t xvf3800_codec_read_reg(xvf3800_control_t *ctrl,
                                  uint8_t reg, uint8_t *val);
+
+// ---- Application servicer (resid 48): XMOS-owned codec level control ----
+// Command IDs per Seeed python_control/xvf_host.py PARAMETERS; resid 48 is
+// corroborated on device by our verified VERSION read (r48 c0, fw v1.0.7).
+// The XMOS application owns the TLV320AIC3104 registers, so output volume
+// MUST route through these commands; direct writes at 0x18 are overridden
+// by the XMOS application.
+#define XVF3800_SERVICER_APP_RESID                  48
+#define XVF3800_SERVICER_AIC3104_HP_LEVEL_CMD       11  // rw uint8 [0..9]
+#define XVF3800_SERVICER_AIC3104_LINEOUT_LEVEL_CMD  12  // rw uint8 [0..9]
+#define XVF3800_CODEC_LEVEL_MAX                     9
+
+// Read the current AIC3104 output level driven by the XMOS app
+// (uint8 0..9). lineout=false selects the headphone/jack path, true the
+// lineout/JST speaker path.
+xvf_err_t xvf3800_codec_level_get(xvf3800_control_t *ctrl,
+                                  bool lineout, uint8_t *level);
+
+// Set the AIC3104 output level through the XMOS app (0 = silent .. 9).
+// Returns XVF_ERR_I2C when level exceeds XVF3800_CODEC_LEVEL_MAX.
+xvf_err_t xvf3800_codec_level_set(xvf3800_control_t *ctrl,
+                                  bool lineout, uint8_t level);
 
 // Read all GPI input bits (legacy framing kept for reference diagnostics).
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,

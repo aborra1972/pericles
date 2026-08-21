@@ -1,19 +1,69 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "xvf3800_i2c.h"
+#include "xvf3800_i2s.h"
 
-// HW-B4 verification after XMOS firmware upgrade to v1.0.7.
-// 1. Confirm firmware identity via resource 48 command 0 (expect 1.0.7).
-// 2. Poll resource 20 command 19 (DOA_VALUE): status + 4 bytes,
-//    uint16 LE [azimuth_deg 0-359][speech_detected 0/1].
-// A known-good GPO transaction guards the measurement methodology.
+// HW-B5 verification: output volume control for the ReSpeaker XVF3800.
+// The Seeed AIC3104 servicer commands (r48 c11/c12) proved INERT on the
+// i2s_dfu firmware variant: reads answer st=42 at every length and writes
+// have no audible effect (see docs/DEVELOPMENT_PROGRESS.md 2026-08-21).
+// Volume therefore lives HOST-SIDE: scale the I2S TX samples digitally.
+// Mic mute stays on GPO X0D30 and WS2812 rail on X0D33 (both proven).
+
+static volatile bool s_tone_run;
+static volatile float s_amp_scale = 1.0f;  // host-side digital gain 0..1
+
+static void tone_task(void *arg) {
+    static int32_t frame[64];  // interleaved stereo slots, HW-B2 pattern
+    const int rate = XVF3800_I2S_SAMPLE_RATE;
+    int n = 0;
+    while (s_tone_run) {
+        for (int j = 0; j < 32; j++) {
+            float phase = 2.0f * 3.14159265f * 440.0f *
+                          ((n % rate) / (float)rate);
+            int32_t s =
+                (int32_t)(268435456.0f * s_amp_scale * sinf(phase));
+            frame[j * 2] = s;
+            frame[j * 2 + 1] = s;
+            n++;
+        }
+        xvf3800_i2s_write(frame, 64);
+    }
+    vTaskDelete(NULL);
+}
+
+// Reply length accepted by the servicer for r48 c11 reads (strictly
+// validated per command: wrong expected length answers st=42). 0 = unknown.
+static uint8_t s_hp_read_len = 0;
+
+static void report_level(xvf3800_control_t *ctrl, const char *name,
+                         bool lineout) {
+    uint8_t cmd = (lineout ? XVF3800_SERVICER_AIC3104_LINEOUT_LEVEL_CMD
+                           : XVF3800_SERVICER_AIC3104_HP_LEVEL_CMD);
+    uint8_t len = s_hp_read_len ? s_hp_read_len : 2;
+    uint8_t b[8] = {0};
+    xvf_err_t e = xvf3800_servicer_read_split(
+        ctrl, XVF3800_SERVICER_APP_RESID, (uint8_t)(cmd | 0x80), len, b,
+        len);
+    printf("[XVF] %s read L=%u err=%d st=%02X pay=%02X %02X %02X %02X\n",
+           name, len, e, b[0], b[1], b[2], b[3], b[4]);
+}
+
+static void gain_step(const char *what, float scale, int listen_ms) {
+    s_amp_scale = scale;
+    printf("[XVF] STEP %s -> gain %.2f (%d ms)\n", what, (double)scale,
+           listen_ms);
+    vTaskDelay(pdMS_TO_TICKS(listen_ms));
+}
+
 void app_main(void) {
     printf("Pericles firmware starting\n");
     vTaskDelay(pdMS_TO_TICKS(1000));
 
-    printf("[XVF] DoA verify: SDA=GPIO%d SCL=GPIO%d @%dkHz\n",
+    printf("[XVF] HW-B5 codec-level verify: SDA=GPIO%d SCL=GPIO%d @%dkHz\n",
            XVF3800_I2C_SDA_GPIO, XVF3800_I2C_SCL_GPIO,
            XVF3800_I2C_FREQ_HZ / 1000);
 
@@ -41,7 +91,7 @@ void app_main(void) {
                e, b[0], b[1], b[2], b[3], b[4], b[5]);
     }
 
-    // Firmware identity after the DFU upgrade.
+    // Firmware identity (r48 c0 also proves the app servicer answers).
     {
         uint8_t b[4];
         xvf_err_t e = xvf3800_servicer_read_split(&ctrl, 48, 0x80, 4, b, 4);
@@ -52,37 +102,78 @@ void app_main(void) {
                    e == XVF_OK ? b[0] : 0xFF);
     }
 
-    // Activate an LED effect: resource 20 command 12 (write-only, invisible
-    // to read scans), payload = effect id. The Seeed DoA wiki calls
-    // write_led_effect(4) during setup; on this firmware generation the
-    // DOA_VALUE register only updates while an LED effect is running.
+    // Discover the reply length the servicer accepts for the codec-level
+    // reads (the fixed guess of 2 answered st=42). First st=00 wins; also
+    // sweep LINEOUT c12 to confirm whether it exists at all on this variant.
     {
-        uint8_t effect = 4;
-        xvf_err_t e = xvf3800_servicer_write(&ctrl, 20, 12, &effect, 1);
-        printf("[XVF] LED EFFECT set(4): err=%d\n", e);
-        vTaskDelay(pdMS_TO_TICKS(500));
+        uint8_t best = 0;
+        printf("[XVF] probing r48 c11/c12 reply lengths L=2..8\n");
+        for (uint8_t L = 2; L <= 8 && !best; L++) {
+            uint8_t b[8] = {0}, c[8] = {0};
+            xvf_err_t e11 = xvf3800_servicer_read_split(
+                &ctrl, XVF3800_SERVICER_APP_RESID,
+                (uint8_t)(XVF3800_SERVICER_AIC3104_HP_LEVEL_CMD | 0x80),
+                L, b, L);
+            xvf_err_t e12 = xvf3800_servicer_read_split(
+                &ctrl, XVF3800_SERVICER_APP_RESID,
+                (uint8_t)(XVF3800_SERVICER_AIC3104_LINEOUT_LEVEL_CMD | 0x80),
+                L, c, L);
+            printf("[XVF]  L=%u c11 err=%d st=%02X pay=%02X %02X %02X | "
+                   "c12 err=%d st=%02X\n",
+                   L, e11, b[0], b[1], b[2], b[3], e12, c[0]);
+            if (e11 == XVF_OK && b[0] == 0x00)
+                best = L;
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
+        s_hp_read_len = best;
+        printf("[XVF] c11 working read length: %u\n", best);
     }
 
-    // DOA_VALUE poll: r20 c19, reply = status + 2x uint16 LE.
-    printf("[XVF] DOA POLL START (speak/move around the array)\n");
-    for (int i = 0; i < 150; i++) {
-        uint8_t b[5];
-        xvf_err_t e = xvf3800_servicer_read_split(&ctrl, 20, 19 | 0x80, 5,
-                                                  b, 5);
-        vTaskDelay(pdMS_TO_TICKS(200));
-        if (e != XVF_OK) {
-            printf("[XVF] DOA err=%d\n", e);
-            continue;
+    // Mic mute gates several XMOS outputs; force unmute so the tone is
+    // audible before judging codec levels (learned in HW-B2/B5 sessions).
+    {
+        uint8_t st[6];
+        if (xvf3800_servicer_read_split(&ctrl, 20, 0x80, 6, st, 6) ==
+            XVF_OK) {
+            printf("[XVF] pre-test mute state: x0d30=%02X\n", st[2]);
+            if (st[2] != 0) {
+                xvf3800_gpo_write(&ctrl, XVF3800_GPO_MUTE_LED_MIC, 0);
+                vTaskDelay(pdMS_TO_TICKS(300));
+                printf("[XVF] wrote UNMUTE before test\n");
+            }
         }
-        if (b[0] != 0x00) {
-            printf("[XVF] DOA st=%02X\n", b[0]);
-            continue;
-        }
-        uint16_t azimuth = (uint16_t)b[1] | ((uint16_t)b[2] << 8);
-        uint16_t speech = (uint16_t)b[3] | ((uint16_t)b[4] << 8);
-        printf("[XVF] DOA azimuth=%03u speech=%u\n", azimuth, speech);
     }
 
-    printf("[XVF] DOA POLL DONE\n");
+    // Defaults before touching anything.
+    report_level(&ctrl, "HP (jack)", false);
+    report_level(&ctrl, "LINEOUT (JST)", true);
+
+    if (xvf3800_i2s_init() != XVF_OK) {
+        printf("[XVF] I2S INIT FAILED - aborting audio steps\n");
+        printf("Ready\n");
+        return;
+    }
+    s_tone_run = true;
+    if (xTaskCreate(tone_task, "tone", 4096, NULL, 5, NULL) != pdPASS) {
+        printf("[XVF] tone task create FAILED\n");
+        xvf3800_i2s_deinit();
+        printf("Ready\n");
+        return;
+    }
+    printf("[XVF] TONE STARTED: continuous 440 Hz on the jack path\n");
+
+    // Host-side digital volume proof: the operator confirms each step by
+    // ear. Same gradient the XMOS commands failed to produce.
+    gain_step("1 quieter", 0.25f, 6000);
+    gain_step("2 loudest", 1.0f, 6000);
+    gain_step("3 very-quiet", 0.08f, 5000);
+    gain_step("4 SILENCE(mute)", 0.0f, 8000);
+    gain_step("5 restore medium", 0.5f, 4000);
+    printf("[XVF] LINEOUT/JST path: not controllable on i2s_dfu (st=41)\n");
+
+    s_tone_run = false;
+    vTaskDelay(pdMS_TO_TICKS(300));
+    xvf3800_i2s_deinit();
+    printf("[XVF] TONE STOPPED - HW-B5 sequence done\n");
     printf("Ready\n");
 }

@@ -4,9 +4,9 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 6 hardware validation in progress; full-duplex audio proven on device (TX audible + RX mic capture) |
-| Active task | HW-B4 blocked on XMOS fw v1.0.4 (DoA cmd missing); next: DFU update to v1.0.7 (= HW-B7 rehearsal), then DoA poll |
-| Last completed | `HW-B2` both directions — 32-bit full-duplex I2S, speech captured (`2a23165` + RX commit) |
+| Status | Phase 6 hardware validation in progress; B-profile audio chain fully proven (TX, RX, mute, volume, DoA/VAD) |
+| Active task | None — session closed 2026-08-21 with HW-B5 done |
+| Last completed | `HW-B5` — output volume via HOST-SIDE digital gain (gradient confirmed by ear); AIC3104 servicer route closed as inert on i2s_dfu; boot-loop incident (Quad→Octal PSRAM) fixed and prevented |
 | Blocker | None |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
@@ -111,12 +111,21 @@
 
 ## Next Action
 
-HW-B4 is resolved. Remaining Phase 6 work: the XMOS-side codec-control half of
-HW-B5 (volume/mute must route through XMOS commands; amp pin X0D31 is
-XMOS-owned), the ESP32-hosted I2C DFU adapter for HW-B7, and the HW-B8 full
-smoke test. The app's audio pipeline can now consume r20 c19 DoA/VAD data —
-remember to select an LED effect (r20 c12 write, effect 4) at boot or the
-values stay frozen at 0.
-The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before
-changing detector behavior. Bring-up diagnostics in `firmware/main/main.c`
-(DoA verify loop) are intentional and get replaced by the real app loop later.
+Queue for the next session (Phase 6 B-profile close-out):
+
+1. **HW-B7** — ESP32-hosted I2C DFU adapter for the XVF3800. Safe mode +
+   USB DFU rehearsal is already proven; this task is driving the same flow
+   from the ESP32 over the control port.
+2. **HW-B8** — full smoke test (display, buttons, audio, WiFi, BLE,
+   dual-firmware). Unblocked now that B2–B5 are verified. Replace the
+   bring-up diagnostics in `firmware/main/main.c` with the real app loop
+   as part of this.
+3. Open item to schedule: USB VID/PID conflict (`303a:1001` vs `2886:0018`)
+   before changing detector behavior.
+
+A-profile track (N16R8 standalone) stays parked: HW-A1/A2/A3/A5.
+
+Prevention note: `SDKCONFIG_DEFAULTS` now pins `sdkconfig.defaults.xiao` in
+`firmware/CMakeLists.txt`; never hand-edit the generated `sdkconfig` without
+mirroring the change into the matching profile file, or it is lost on
+regeneration (that is how the Quad/Octal PSRAM boot loop happened).

@@ -162,3 +162,38 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Critical gate discovered: **DOA_VALUE only updates while an LED effect is running** on this firmware generation (v1.0.8 changelog decouples them). The effect is set with a WRITE-ONLY command r20 c12, payload `[effect_id]` — invisible to read-only command scans (reads of c12 return st=41). Seeed's wiki uses effect 4 in setup. Without it: azimuth/speech frozen at 0 and the LED ring stays dark.
 - Driver addition: generic `xvf3800_servicer_write(ctrl, resid, cmd, payload, len)` ([resid, cmd, len, payload…] STOP framing), alongside the existing read_split.
 - Behavior change observed by user: stock v1.0.4 booted with the voice-reactive LED ring active; v1.0.7 boots dark until an effect is selected via c12.
+
+## 2026-08-21 — HW-B5 flash hit a boot loop: generated sdkconfig had Quad PSRAM, XIAO S3R8 needs Octal
+
+**Status:** ✅ Fixed and verified on device (`octal_psram: Found 8MB PSRAM device`, memory test OK, app boots and runs the HW-B5 sequence).
+
+- Symptom: right after flashing the HW-B5 build, the board rebooted forever: `E quad_psram: PSRAM ID read error: 0x00ffffff, PSRAM chip not found or not supported` → `E cpu_start: Failed to init external RAM!` → `abort()` → `rst:0xc (RTC_SW_CPU_RST)`. Crash happens before `app_main`, so an `idf.py monitor` piped through grep shows *nothing* — looks like a dead flash but isn't. Capture boot logs with a raw pyserial reader toggling RTS/DTR instead (worked every time; `idf.py monitor` through a pipe proved unreliable twice).
+- Root cause: the generated (gitignored) `firmware/sdkconfig` carried `CONFIG_SPIRAM_MODE_QUAD=y`. The XIAO ESP32-S3**R8** has embedded **Octal** PSRAM, so quad probing can never find a chip. The correct octal config lives in `sdkconfig.defaults.xiao` since HW-B6, but `firmware/CMakeLists.txt` never wired that profile into `SDKCONFIG_DEFAULTS` — it had been applied by hand once, so any silent sdkconfig regeneration from plain defaults drifted back to IDF's quad default. Both `sdkconfig` and `sdkconfig.old` carried QUAD.
+- Fix: flip the active sdkconfig to `CONFIG_SPIRAM_MODE_OCT=y` (QUAD unset). Boot then enumerates the AP-memory PSRAM correctly (vendor 0x0d, 64 Mbit, 80 MHz).
+- **Prevention (why this entry exists):** `SDKCONFIG_DEFAULTS "sdkconfig.defaults;sdkconfig.defaults.xiao"` is now set in `firmware/CMakeLists.txt`, so every future sdkconfig regeneration includes the verified XIAO profile automatically. Rule: never hand-edit only the generated `sdkconfig`; mirror any manual tweak into the matching `sdkconfig.defaults.*` profile or it will be lost on regeneration. If a fresh checkout ever prints `quad_psram` errors on this board, check SPIRAM mode first.
+
+### Observations from the same post-fix run
+
+- `FW VER r48c0: 1.0.5` — expected, not a regression: Seeed's `v1.0.7` bin reports internally as 1.0.5 (documented above).
+- GPO guard healthy pre-test: `CALIB st=00 pins=00 00 00 01 00` → mic-mute X0D30=0 (unmuted), WS2812 rail X0D33=1.
+- Codec level read-backs (`r48 c11` HP, `r48 c12` LINEOUT) all fail with `err=-5` (nonzero servicer status byte) while the same framing works for r48 c00. Meanwhile the level *writes* ACK at I2C level — but `servicer_write` has no response frame, so an unsupported command ACKs identically. Effective volume changes are therefore unproven until confirmed audibly or via a successful read. Next diagnostic: log the raw status byte (per the established semantics: 41=unsupported, 42=length mismatch, 05=bad resource) before assuming these commands exist on the `i2s_dfu` variant.
+- Audio path itself is alive: user heard the 440 Hz test tone at the jack plug during the sequence.
+
+## 2026-08-21 — HW-B5 negative result: AIC3104 servicer commands are inert on i2s_dfu; output volume moved host-side
+
+**Status:** ⛔→✅ Route closed with evidence; replacement route implemented (host-side digital gain).
+
+- Reply-length sweep L=2..8 on `r48 c11`: **st=42 at every length**, and the trailing payload is always `01 00 05` — byte-for-byte the VERSION reply (`1.0.5`) read earlier via c00. The device never produces real c11 data here; after rejecting the command it echoes its previous valid response buffer.
+- `r48 c12` (LINEOUT level): st=41 (unsupported) at every length.
+- Writes ACK at transport level only (write-only framing carries no response frame), and produce **zero audible effect** — including value 0, which does not mute. Operator listened through the entire gradient: constant loudness start to finish.
+- Conclusion: Seeed's `python_control` PARAMETERS map (`AIC3104_HP_LEVEL`/`LINEOUT_LEVEL`) belongs to the **USB-audio variant**, where the XMOS owns USB-stream volume. On `i2s_dfu` these parameters are dead ends. Do not burn more time on r48 codec-level commands against this firmware generation.
+- **Architecture decision:** output loudness is controlled HOST-SIDE by scaling the I2S TX samples on the ESP32 (`s_amp_scale` in main.c). Division of labor now: ESP32 = loudness of what it sends; XMOS = mics, beamforming, DoA/VAD, mic-mute (GPO X0D30, proven), WS2812 rail (GPO X0D33, proven).
+- Driver kept: `xvf3800_codec_level_get/set` remain in `pericles_core`, annotated UA-variant-only, useful if the board ever runs UA firmware.
+- `main.c` HW-B5 sequence now proves host-side gain audibly: 0.25 → 1.00 → 0.08 → 0.00 (silence) → 0.50.
+
+## 2026-08-21 — HW-B5 closed: host-side gain gradient confirmed by ear
+
+**Status:** ✅ Operator confirmed the full digital-gain gradient (quieter/loudest/very-quiet/8 s silence/medium) on the jack output. Serial capture shows all five steps with exact timings.
+
+- HW-B5 final state: mic mute ✅ (GPO X0D30), WS2812 rail ✅ (GPO X0D33), output volume ✅ (host-side `s_amp_scale`), AIC3104 servicer route documented as UA-variant-only.
+- Phase 6 B-profile remaining: HW-B7 (ESP32-hosted I2C DFU adapter) and HW-B8 (full smoke test, now unblocked).

@@ -249,6 +249,41 @@ xvf_err_t xvf3800_codec_read_reg(xvf3800_control_t *ctrl,
     return XVF_OK;
 }
 
+static uint8_t codec_level_cmd(bool lineout) {
+    return lineout ? XVF3800_SERVICER_AIC3104_LINEOUT_LEVEL_CMD
+                   : XVF3800_SERVICER_AIC3104_HP_LEVEL_CMD;
+}
+
+xvf_err_t xvf3800_codec_level_get(xvf3800_control_t *ctrl,
+                                  bool lineout, uint8_t *level) {
+    if (!ctrl || !level || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+
+    // Read framing proven on device: tx [resid, cmd|0x80, status+payload]
+    // ending in STOP, then rx -> [status][uint8 level].
+    uint8_t rx[2];
+    xvf_err_t err = xvf3800_servicer_read_split(
+        ctrl, XVF3800_SERVICER_APP_RESID,
+        (uint8_t)(codec_level_cmd(lineout) | 0x80),
+        (uint8_t)sizeof(rx), rx, sizeof(rx));
+    if (err != XVF_OK) return err;
+    if (rx[0] != 0x00) return XVF_ERR_STATUS;
+
+    *level = rx[1];
+    return XVF_OK;
+}
+
+xvf_err_t xvf3800_codec_level_set(xvf3800_control_t *ctrl,
+                                  bool lineout, uint8_t level) {
+    if (!ctrl || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+    if (level > XVF3800_CODEC_LEVEL_MAX) return XVF_ERR_I2C;
+
+    // Write framing proven on device: [resid, cmd, len, payload] STOP.
+    return xvf3800_servicer_write(ctrl, XVF3800_SERVICER_APP_RESID,
+                                  codec_level_cmd(lineout), &level, 1);
+}
+
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
                                uint8_t gpi[3], uint8_t *status) {
     if (!ctrl || !gpi || !status || !ctrl->initialized || !ctrl->dev_handle)
