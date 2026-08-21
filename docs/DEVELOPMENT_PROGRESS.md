@@ -82,3 +82,15 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
   ```
 - Files: `firmware/components/pericles_core/xvf3800_i2c.{c,h}` real `i2c_master` driver with shared-bus singleton, bus scan helper, GPI servicer read; `firmware/main/main.c` boot self-check; CMakeLists adds `driver`.
 - Still open for B3: the invented `xvf_cmd_t` register map does not correspond to the XMOS protocol — "version read" must be re-targeted to the proper servicer resource. GPI bit-packing needs interactive calibration (press mute button while polling) before trusting decoded states.
+
+## 2026-08-21 — XMOS control protocol fully decoded ✅ (write loop + read-back verified)
+
+**Status:** ✅ GPO write path AND read path proven on device; button (GPI) read pending one interactive press test.
+
+- Root cause of dead reads found by self-calibrating experiment (toggle GPO30 by software, probe framings): the XMOS control slave requires **header write ending in STOP + separate read transaction**. ESP-IDF `i2c_master_transmit_receive` (repeated START) returns stale/garbage; split transmit→receive works.
+- Verified working read (GPO values): tx `[20, 0x80|cmd0, 6]` STOP, then rx 6 → `[status=0x00][X0D11, X0D30, X0D31, X0D33, X0D39]`, one byte per pin.
+- Verified working write (Seeed muteMic shape): tx `[20, 1, 2, {pin, value}]` STOP — all writes ACKed; red mute LED driven during phase-1 blink test.
+- Loopback evidence (selftest log): writing GPO30=1 reads back X0D30=01; writing 0 reads back 00, alternating perfectly with software toggles. X0D31 read as 00 (= amp enabled, active-low ✓ matches wiki), X0D33 read as 01 (WS2812 rail on ✓).
+- Non-working framings documented for posterity: repeated-START reads (`i2c_master_transmit_receive`) return static `42 23…` regardless of state; `[36,6,1]` u32 GPIO-status shape from wiki example 3 returns constant `03 06010001`.
+- Files since commit 961fd2f (uncommitted): `xvf3800_i2c.{h,c}` add `servicer_read_split`, `gpo_write`, `gpio_status_read`, `XVF_ERR_STATUS`; `main/main.c` self-calibrating diagnostic loop.
+- Next session: single interactive window — user presses mute button while polling; expected to settle GPI mapping (B4/B5 completion), then amp enable toggle (B5 speaker pop test), WS2812 rail, then I2S bring-up with speaker on jack (B2/B5).

@@ -73,7 +73,34 @@ xvf_err_t xvf3800_reset(xvf3800_control_t *ctrl);
 #define XVF3800_GPO_AMP_ENABLE     31  // low = amplifier enabled
 #define XVF3800_GPO_WS2812_POWER   33  // high = WS2812 rail on
 
-// Read all GPI input bits (mute button etc.). Returns 3 payload bytes in
-// gpi[0..2]; *status is the XMOS-reported command status (0 = success).
+// Servicer command IDs (Seeed wiki / XMOS IO_CONFIG resource 36, GPO resource 20)
+#define XVF3800_SERVICER_GPO_VALUE_ALL  0  // GPO_READ_VALUES (read flag |0x80)
+#define XVF3800_SERVICER_GPI_VALUE_ALL  6  // GPI_VALUE_ALL: [status][u32 LE]
+
+// Generic XMOS servicer transaction: transmit [resid, cmd, len] then
+// repeated-START read of rx_len bytes. Returns transport status only;
+// protocol-level status arrives inside rx[0] (framing under calibration).
+xvf_err_t xvf3800_servicer_read(xvf3800_control_t *ctrl,
+                                uint8_t resid, uint8_t cmd,
+                                uint8_t *rx, size_t rx_len);
+
+// Split-transaction variant: transmit header ending in STOP, then a plain
+// receive. Matches Seeed wiki read_gpo_values/read_gpi_values shape.
+xvf_err_t xvf3800_servicer_read_split(xvf3800_control_t *ctrl,
+                                      uint8_t resid, uint8_t cmd,
+                                      uint8_t len_byte,
+                                      uint8_t *rx, size_t rx_len);
+
+// Write a GPO pin (Seeed wiki muteMic pattern): [20, 1, 2, {pin, value}].
+xvf_err_t xvf3800_gpo_write(xvf3800_control_t *ctrl,
+                            uint8_t pin, uint8_t value);
+
+// Read the combined GPIO status register (Seeed readGPIOStatus pattern):
+// [36, 6, 1] -> [status][u32 LE] where bit N = port N state (bit 9 = mute
+// button X1D09, bit 30 = mute LED/mic control).
+xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
+                                   uint32_t *gpio_status);
+
+// Read all GPI input bits (legacy framing kept for reference diagnostics).
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
                                uint8_t gpi[3], uint8_t *status);

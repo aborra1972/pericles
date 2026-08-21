@@ -135,6 +135,79 @@ xvf_err_t xvf3800_reset(xvf3800_control_t *ctrl) {
     return xvf3800_write_reg(ctrl, XVF_CMD_RESET, 0x0001);
 }
 
+xvf_err_t xvf3800_servicer_read(xvf3800_control_t *ctrl,
+                                uint8_t resid, uint8_t cmd,
+                                uint8_t *rx, size_t rx_len) {
+    if (!ctrl || !rx || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+
+    // Framing is passed in verbatim so variants can be calibrated; the
+    // documented XMOS convention sets bit7 of cmd for reads.
+    uint8_t tx[3] = { resid, cmd, (uint8_t)rx_len };
+    esp_err_t err = i2c_master_transmit_receive(
+        (i2c_master_dev_handle_t)ctrl->dev_handle,
+        tx, sizeof(tx), rx, rx_len, 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+    return XVF_OK;
+}
+
+xvf_err_t xvf3800_servicer_read_split(xvf3800_control_t *ctrl,
+                                      uint8_t resid, uint8_t cmd,
+                                      uint8_t len_byte,
+                                      uint8_t *rx, size_t rx_len) {
+    if (!ctrl || !rx || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+
+    uint8_t tx[3] = { resid, cmd, len_byte };
+    esp_err_t err = i2c_master_transmit(
+        (i2c_master_dev_handle_t)ctrl->dev_handle, tx, sizeof(tx), 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+
+    err = i2c_master_receive(
+        (i2c_master_dev_handle_t)ctrl->dev_handle, rx, rx_len, 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+    return XVF_OK;
+}
+
+xvf_err_t xvf3800_gpo_write(xvf3800_control_t *ctrl,
+                            uint8_t pin, uint8_t value) {
+    if (!ctrl || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+
+    // Seeed wiki xmos_write_bytes: [resid, cmd, len, payload...] ending in
+    // STOP (no read phase).
+    uint8_t tx[5] = { XVF3800_SERVICER_GPO_RESID,
+                      XVF3800_SERVICER_GPO_WRITE_VALUE,
+                      2, pin, value };
+    esp_err_t err = i2c_master_transmit(
+        (i2c_master_dev_handle_t)ctrl->dev_handle,
+        tx, sizeof(tx), 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+    return XVF_OK;
+}
+
+xvf_err_t xvf3800_gpio_status_read(xvf3800_control_t *ctrl,
+                                   uint32_t *gpio_status) {
+    if (!ctrl || !gpio_status || !ctrl->initialized || !ctrl->dev_handle)
+        return XVF_ERR_I2C;
+
+    // Seeed readGPIOStatus: [resid=36, cmd=6 (GPI_VALUE_ALL), len=1] with
+    // repeated START, then read [status][4 data bytes], little-endian u32
+    // where bit N reflects port N.
+    uint8_t tx[3] = { XVF3800_SERVICER_IO_CONFIG_RESID,
+                      XVF3800_SERVICER_GPI_VALUE_ALL,
+                      1 };
+    uint8_t rx[5] = { 0 };
+    esp_err_t err = i2c_master_transmit_receive(
+        (i2c_master_dev_handle_t)ctrl->dev_handle,
+        tx, sizeof(tx), rx, sizeof(rx), 100);
+    if (err != ESP_OK) return XVF_ERR_I2C;
+
+    *gpio_status = ((uint32_t)rx[4] << 24) | ((uint32_t)rx[3] << 16) |
+                   ((uint32_t)rx[2] << 8)  | (uint32_t)rx[1];
+    return rx[0] == 0 ? XVF_OK : XVF_ERR_STATUS;
+}
+
 xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
                                uint8_t gpi[3], uint8_t *status) {
     if (!ctrl || !gpi || !status || !ctrl->initialized || !ctrl->dev_handle)
@@ -142,6 +215,8 @@ xvf_err_t xvf3800_gpi_read_all(xvf3800_control_t *ctrl,
 
     // Seeed wiki framing: [resid, cmd|0x80, len(incl. status byte)] with
     // repeated START into a read of len bytes: [status, payload...].
+    // Seeed wiki framing (variant A): cmd carries the read flag; len counts
+    // the incoming bytes including the leading status byte.
     uint8_t tx[3] = { XVF3800_SERVICER_IO_CONFIG_RESID,
                       (uint8_t)(XVF3800_SERVICER_GPI_READ_VALUES | 0x80),
                       4 };  // 3 payload bytes + 1 status byte

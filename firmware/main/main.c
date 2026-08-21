@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "xvf3800_i2c.h"
@@ -34,21 +35,61 @@ void app_main(void) {
     if (err == XVF_OK) {
         printf("[XVF] Control device ACK at 0x%02X\n", ctrl.i2c_addr);
 
-        // Real command-level transaction: read GPI inputs (mute button etc.)
-        // through the XMOS IO_CONFIG servicer. X1D09 reads high when the
-        // mute button is released.
-        uint8_t gpi[3];
-        uint8_t status = 0xFF;
-        if (xvf3800_gpi_read_all(&ctrl, gpi, &status) == XVF_OK) {
-            uint32_t bits = ((uint32_t)gpi[2] << 16) |
-                            ((uint32_t)gpi[1] << 8) | gpi[0];
-            printf("[XVF] GPI read: status=0x%02X raw=0x%06lX "
-                   "(mute btn %s)\n",
-                   status, (unsigned long)bits,
-                   (bits >> 9) & 1 ? "released" : "pressed");
-        } else {
-            printf("[XVF] GPI read FAILED (bus error)\n");
+        // Self-calibrating loop: toggle GPO30 by software (write path is
+        // proven) and probe three split-transaction read framings, printing
+        // any stream that reacts. If a framing's bytes track our own writes,
+        // the read path is proven without human input.
+        printf("[XVF] SELFTEST: toggling GPO30 + probing read framings\n");
+        uint8_t level = 0;
+        char last_a[24] = "", last_b[24] = "", last_c[24] = "";
+        for (int i = 0; i < 60; i++) {  // 60 * 700ms ~= 42s
+            level ^= 1;
+            xvf_err_t w = xvf3800_gpo_write(&ctrl,
+                                            XVF3800_GPO_MUTE_LED_MIC, level);
+            vTaskDelay(pdMS_TO_TICKS(100));  // let XMOS latch before reads
+
+            uint8_t rx[8];
+            char cur[24];
+
+            // A2: GPO_READ_VALUES, wiki example 1 shape [20, 0x80, 6] -> rx6
+            if (xvf3800_servicer_read_split(&ctrl, 20, 0x80, 6,
+                                            rx, 6) == XVF_OK)
+                snprintf(cur, sizeof(cur), "%02X|%02X%02X%02X%02X%02X%02X",
+                         level, rx[0], rx[1], rx[2], rx[3], rx[4], rx[5]);
+            else
+                snprintf(cur, sizeof(cur), "%02X|ERR", level);
+            if (strcmp(cur, last_a) != 0) {
+                printf("[XVF] A2 %s\n", cur);
+                strcpy(last_a, cur);
+            }
+
+            // B2: GPI 3-byte values, wiki example 2 shape [36, 0x86, 4] -> rx4
+            if (xvf3800_servicer_read_split(&ctrl, 36, 0x86, 4,
+                                            rx, 4) == XVF_OK)
+                snprintf(cur, sizeof(cur), "%02X|%02X %02X%02X%02X",
+                         level, rx[0], rx[1], rx[2], rx[3]);
+            else
+                snprintf(cur, sizeof(cur), "%02X|ERR", level);
+            if (strcmp(cur, last_b) != 0) {
+                printf("[XVF] B2 %s\n", cur);
+                strcpy(last_b, cur);
+            }
+
+            // C2: GPIO status u32, wiki example 3 shape [36, 6, 1] -> rx5
+            if (xvf3800_servicer_read_split(&ctrl, 36, 6, 1,
+                                            rx, 5) == XVF_OK)
+                snprintf(cur, sizeof(cur), "%02X|%02X %02X%02X%02X%02X",
+                         level, rx[0], rx[1], rx[2], rx[3], rx[4]);
+            else
+                snprintf(cur, sizeof(cur), "%02X|ERR", level);
+            if (strcmp(cur, last_c) != 0) {
+                printf("[XVF] C2 %s\n", cur);
+                strcpy(last_c, cur);
+            }
+
+            vTaskDelay(pdMS_TO_TICKS(600));
         }
+        printf("[XVF] SELFTEST END\n");
     } else {
         printf("[XVF] Control init result: err=%d (%s)\n", err,
                err == XVF_ERR_NOT_FOUND ? "no candidate address ACKed"

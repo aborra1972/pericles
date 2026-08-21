@@ -10,6 +10,7 @@ typedef enum {
     XVF_ERR_I2S = -2,
     XVF_ERR_TIMEOUT = -3,
     XVF_ERR_NOT_FOUND = -4,
+    XVF_ERR_STATUS = -5,  // XMOS servicer reported non-zero command status
 } xvf_err_t;
 
 // Forward declaration
