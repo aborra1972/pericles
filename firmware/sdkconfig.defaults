@@ -1,5 +1,2 @@
 # Pericles firmware defaults
-CONFIG_ESPTOOLPYFLASHSIZE_16MB=y
-CONFIG_ESPTOOLPYFLASHMODE_QIO=y
-CONFIG_ESPTOOLPYFLASHFREQ_80M=y
-CONFIGPartitionTableCustom=y
+# Board-specific flash size and mode belong in sdkconfig.defaults.<board>.
