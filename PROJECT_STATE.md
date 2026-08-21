@@ -4,10 +4,10 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 7 Complete |
-| Active task | All INT tasks done |
-| Last completed | `INT-15` |
-| Blocker | None |
+| Status | Phase 7 complete; Phase 6 on-device verification pending (tick audit 2026-08-21) |
+| Active task | HW-B3 XVF3800 I2C control + version read on real device (first of B2–B5/B7/B8) |
+| Last completed | `HW-B6` (XIAO sdkconfig, size gate, verified flash/boot) |
+| Blocker | None — `esptool.py` verified via `source ~/esp-idf/export.sh` (2026-08-21) |
 | Branch | `main` |
 | Delivery strategy | Stacked PRs merged sequentially to `main` |
 
@@ -18,7 +18,8 @@
 3. Confirm the active task's dependencies are `[x]`.
 4. Change only files named by that task.
 5. Run its exact verification command.
-6. Update this file before committing or ending the session.
+6. Tick tasks only after recording their required evidence; preserve failed and blocked attempts in [`docs/DEVELOPMENT_PROGRESS.md`](docs/DEVELOPMENT_PROGRESS.md).
+7. Update this file before committing or ending the session.
 
 ## Delivered Baseline
 
@@ -103,4 +104,4 @@
 
 ## Next Action
 
-Phase 7 in progress — INT-01 complete (acceptance test README + fixtures). INT-02 (onboarding timing) next.
+With the board connected and inside a sourced IDF shell, run the pending on-device verifications in order (recording each result in `docs/DEVELOPMENT_PROGRESS.md`): HW-B3 I2C version read → HW-B4 VAD/DoA fixtures → HW-B5 codec/mute/WS2812 independent checks → HW-B2 I2S processed-channel stream → HW-B7 Safe Mode DFU rehearsal → HW-B8 full smoke test. The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before changing detector behavior.

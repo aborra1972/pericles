@@ -33,3 +33,23 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 
 ### IRAM margin
 - Remains at 1 byte free (16,383/16,384). This is an ESP-IDF linker constraint for the ESP32-S3, not a runtime failure — the firmware boots and runs. Additional ISR/peripheral driver code may require tuning before enabling I2S/SPI hardware features.
+
+## 2026-08-21 — Toolchain verification
+
+**Status:** ✅ `esptool` availability confirmed; previous session blocker cleared.
+
+- Fresh shell: `source ~/esp-idf/export.sh` exits 0; `command -v esptool.py` resolves to `/home/ale/.espressif/python_env/idf5.4_py3.12_env/bin/esptool.py`.
+- Conclusion: `esptool` was never missing from the system; it lives inside the ESP-IDF v5.4 Python virtualenv and only appears on `PATH` after sourcing `export.sh`. All flash/reset workflows must run inside a sourced IDF shell.
+- Still pending before any detector change: resolve the USB VID/PID evidence conflict (`303a:1001` observed on the wire vs repository mapping `303a:1001` = XIAO N16R8 bare, `2886:0018` = ReSpeaker+XIAO composite).
+
+## 2026-08-21 — Phase 6 tick audit (evidence review)
+
+**Status:** ⚠️ HW-B2–B5, B7, B8 ticks reverted to pending; implementation remains merged.
+
+- Session-log forensics: all HW-A4/HW-B ticks were applied on 2026-08-20 between 14:31 and 14:43 — **before** the board's first USB probe (17:35) and the successful Pericles flash (~21:00–21:24). The "Verify …" clauses of B2–B5/B7/B8 could not have been satisfied at that time.
+- No session in the OpenCode log exercises XVF3800 I2S capture, I2C version read, VAD/DoA diagnostics, codec/mute/WS2812 control, DFU rehearsal, or a full ReSpeaker smoke test against hardware.
+- Legitimate after review:
+  - **HW-B1** ✅ `docs/hardware/respeaker-pinout.md` exists.
+  - **HW-B6** ✅ XIAO 8MB/OCT/DIO sdkconfig + memory report + verified flash/boot (commit `846f6bd`, section above).
+- Corrected to pending (implementation code exists under `firmware/components/pericles_core/xvf3800_*.c`; only the on-device verification is missing): B2, B3, B4, B5, B7, B8. HW-A4 annotated: N16R8 size-gate report still pending.
+- Next physical session must run, in order: I2C version read → VAD/DoA fixtures → codec/mute/LED independent checks → I2S processed-channel stream → Safe Mode DFU rehearsal → full B8 smoke test, recording each result here.
