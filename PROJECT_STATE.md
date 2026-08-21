@@ -4,8 +4,8 @@
 
 | Field | Value |
 |-------|-------|
-| Status | Phase 7 complete; Phase 6 on-device verification pending (tick audit 2026-08-21) |
-| Active task | HW-B3 XVF3800 I2C control + version read on real device (first of B2–B5/B7/B8) |
+| Status | Phase 7 complete; real XVF3800 drivers required before on-device verification |
+| Active task | HW-B3: replace xvf3800_i2c.c mock with real i2c_master driver, then verify version read on device |
 | Last completed | `HW-B6` (XIAO sdkconfig, size gate, verified flash/boot) |
 | Blocker | None — `esptool.py` verified via `source ~/esp-idf/export.sh` (2026-08-21) |
 | Branch | `main` |
@@ -104,4 +104,4 @@
 
 ## Next Action
 
-With the board connected and inside a sourced IDF shell, run the pending on-device verifications in order (recording each result in `docs/DEVELOPMENT_PROGRESS.md`): HW-B3 I2C version read → HW-B4 VAD/DoA fixtures → HW-B5 codec/mute/WS2812 independent checks → HW-B2 I2S processed-channel stream → HW-B7 Safe Mode DFU rehearsal → HW-B8 full smoke test. The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before changing detector behavior.
+Implement the real XVF3800 drivers (currently all mocks — see `docs/DEVELOPMENT_PROGRESS.md` 2026-08-21 "Driver reality check"), starting with HW-B3 I2C control using the ESP-IDF `i2c_master` API and the pinout in [`docs/hardware/respeaker-pinout.md`](docs/hardware/respeaker-pinout.md). Flash with the sourced IDF shell, run the on-device verifications in order B3 → B4 → B5 → B2 → B7 → B8, and record each result. The USB VID/PID conflict (`303a:1001` vs `2886:0018`) must be resolved before changing detector behavior.

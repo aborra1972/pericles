@@ -53,3 +53,15 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
   - **HW-B6** ✅ XIAO 8MB/OCT/DIO sdkconfig + memory report + verified flash/boot (commit `846f6bd`, section above).
 - Corrected to pending (implementation code exists under `firmware/components/pericles_core/xvf3800_*.c`; only the on-device verification is missing): B2, B3, B4, B5, B7, B8. HW-A4 annotated: N16R8 size-gate report still pending.
 - Next physical session must run, in order: I2C version read → VAD/DoA fixtures → codec/mute/LED independent checks → I2S processed-channel stream → Safe Mode DFU rehearsal → full B8 smoke test, recording each result here.
+
+## 2026-08-21 — Driver reality check (board connected)
+
+**Status:** ⚠️ No real driver exists yet; on-device verification is blocked until they are implemented.
+
+- `xvf3800_i2c.c`: **mock** — "Mock I2C driver for compilation without hardware"; `read_reg` returns hardcoded values (`XVF_CMD_VERSION` → fabricated `0x0380` "v3.8.0").
+- `xvf3800_i2s.c`: **mock** — "Mock I2S driver… returns silence".
+- `peripherals.c`: codec/mute/WS2812 are `"In production: …"` stubs (no gpio/i2c/rmt calls anywhere).
+- `main.c` `app_main` prints two lines and sleeps; it never invokes the smoke suite.
+- Consequence: flashing and running the current smoke test would PASS trivially without touching hardware — that is exactly how the false ticks of 2026-08-20 originated. The smoke suite itself also simulates button presses.
+- Design flag for implementation: on the ReSpeaker XVF3800 the TLV320AIC3104 codec/amp is managed by the XMOS XVF3800 firmware, so ESP32 volume/mute control must go through XMOS I2C commands, not direct TLV320 register writes as `peripherals.c` currently assumes. Validate I2S pin assignments (mock hardcodes BCK=17, WS=18, DIN=19, DOUT=20) against `docs/hardware/respeaker-pinout.md`.
+- Board observed today: same unit (MAC `68:EE:8F:50:6D:EC`), again enumerated as `303a:1001` USB JTAG/serial on `/dev/ttyACM0`.
