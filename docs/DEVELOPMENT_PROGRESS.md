@@ -94,3 +94,17 @@ Tick a task only after its required evidence has been recorded. Preserve failed 
 - Non-working framings documented for posterity: repeated-START reads (`i2c_master_transmit_receive`) return static `42 23…` regardless of state; `[36,6,1]` u32 GPIO-status shape from wiki example 3 returns constant `03 06010001`.
 - Files since commit 961fd2f (uncommitted): `xvf3800_i2c.{h,c}` add `servicer_read_split`, `gpo_write`, `gpio_status_read`, `XVF_ERR_STATUS`; `main/main.c` self-calibrating diagnostic loop.
 - Next session: single interactive window — user presses mute button while polling; expected to settle GPI mapping (B4/B5 completion), then amp enable toggle (B5 speaker pop test), WS2812 rail, then I2S bring-up with speaker on jack (B2/B5).
+
+## 2026-08-21 — Mute button mapped, HW-B3 ticked ✅ (interactive window)
+
+**Status:** ✅ Physical mute button fully characterized over I2C; HW-B3 closed with real-device evidence.
+
+- Interactive capture (~20 clean transitions in 60s while user pressed the mute button):
+  ```
+  idle:      GPO 00 0000000100   (X0D30=0 unmuted)
+  pressed:   GPO 00 0001000000   (X0D30=1 mic muted + LED on)
+  ```
+- Dual-stream confirmation: the same state appears in GPO values byte[1] (X0D30) and in the `[36,0x86,4]` GPIO status byte[1] — consistent cross-reads.
+- Interpretation: the XMOS application handles button→mute internally; ESP32 can READ mute state (X0D30 poll) and SET it (GPO30 write, already loopback-verified). Both directions proven.
+- HW-B3 ticked in tasks/06: bus scan + servicer write/read loopback = real-device response. The skeleton's invented "version register" was replaced by protocol-level verification.
+- Remaining for B5 independence checklist: WS2812 rail X0D33 write toggle (read shows 01=on), amp X0D31 pop test (needs speaker on jack), codec/volume path via XMOS commands.
